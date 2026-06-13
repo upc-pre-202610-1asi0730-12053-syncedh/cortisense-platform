@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "NOCy+zDq2GI=",
+  "success": true,
+  "projectFilePath": "/Users/alumnos/Documents/GitHub/cortisense-platform/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj",
+  "expectedPackageFiles": [
+    "/Users/alumnos/.nuget/packages/microsoft.aspnetcore.openapi/10.0.5/microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
+    "/Users/alumnos/.nuget/packages/microsoft.openapi/2.0.0/microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
