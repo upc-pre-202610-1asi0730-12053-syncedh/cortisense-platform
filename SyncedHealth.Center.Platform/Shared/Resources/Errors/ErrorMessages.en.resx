@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="GenericError" xml:space="preserve">
+    <value>An error occurred.</value>
+  </data>
+    <data name="OperationCancelled" xml:space="preserve">
+    <value>The operation was cancelled.</value>
+  </data>
+    <data name="DatabaseError" xml:space="preserve">
+    <value>A database error occurred during the operation.</value>
+  </data>
+
+    <data name="IamError.UserNotFound" xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+    <data name="IamError.EmailAlreadyRegistered" xml:space="preserve">
+    <value>Email address {0} is already registered.</value>
+  </data>
+    <data name="IamError.InvalidCredentials" xml:space="preserve">
+    <value>Invalid email or password.</value>
+  </data>
+    <data name="IamError.UnauthorizedAccess" xml:space="preserve">
+    <value>User does not have the required role to perform this action.</value>
+  </data>
+    <data name="IamError.InvitationExpired" xml:space="preserve">
+    <value>The invitation link has expired or is invalid.</value>
+  </data>
+
+    <data name="SubscriptionError.PlanNotFound" xml:space="preserve">
+    <value>The requested subscription plan was not found.</value>
+  </data>
+    <data name="SubscriptionError.PaymentDeclined" xml:space="preserve">
+    <value>The subscription payment was declined by the gateway.</value>
+  </data>
+    <data name="SubscriptionError.SubscriptionExpired" xml:space="preserve">
+    <value>The institutional subscription has expired. Access restricted.</value>
+  </data>
+
+    <data name="ClinicalRiskError.DeviceNotPaired" xml:space="preserve">
+    <value>The IoT wearable device is not paired with the medical staff account.</value>
+  </data>
+    <data name="ClinicalRiskError.InvalidBiometricData" xml:space="preserve">
+    <value>Inconsistent or corrupted biometric data received from the sensor.</value>
+  </data>
+    <data name="ClinicalRiskError.AnomalyDetected" xml:space="preserve">
+    <value>A severe biometric anomaly was detected and requires immediate evaluation.</value>
+  </data>
+
+    <data name="IncidentError.IncidentNotFound" xml:space="preserve">
+    <value>Risk incident not found.</value>
+  </data>
+    <data name="IncidentError.SupervisorTimeout" xml:space="preserve">
+    <value>The clinical supervisor did not respond in time. Escalation required.</value>
+  </data>
+    <data name="IncidentError.CannotCloseExtremeRisk" xml:space="preserve">
+    <value>An extreme risk incident cannot be closed without a documented resolution.</value>
+  </data>
+
+    <data name="ShiftError.ShiftNotFound" xml:space="preserve">
+    <value>The specified medical shift could not be found.</value>
+  </data>
+    <data name="ShiftError.ShiftAlreadyBlocked" xml:space="preserve">
+    <value>This shift is already blocked due to extreme fatigue risk.</value>
+  </data>
+    <data name="ShiftError.ReplacementNotAvailable" xml:space="preserve">
+    <value>No available medical staff meets the rest requirements for replacement.</value>
+  </data>
+
+    <data name="RecoveryError.PlanNotFound" xml:space="preserve">
+    <value>Recovery plan not found.</value>
+  </data>
+    <data name="RecoveryError.InvalidRestPeriod" xml:space="preserve">
+    <value>The suggested rest period is below the minimum required protocol.</value>
+  </data>
+    <data name="RecoveryError.UnresolvedRefusal" xml:space="preserve">
+    <value>The medical staff rejected the recovery plan. Supervisor review required.</value>
+  </data>
+
+    <data name="AuditError.LogSyncFailed" xml:space="preserve">
+    <value>Failed to synchronize the critical decision to the immutable audit log.</value>
+  </data>
+    <data name="AuditError.InvalidDateRange" xml:space="preserve">
+    <value>The date range provided for the compliance report is invalid.</value>
+  </data>
+</root>

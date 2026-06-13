@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="GenericError" xml:space="preserve">
+    <value>Ocurrió un error.</value>
+  </data>
+  <data name="OperationCancelled" xml:space="preserve">
+    <value>La operación fue cancelada.</value>
+  </data>
+  <data name="DatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos durante la operación.</value>
+  </data>
+
+  <data name="IamError.UserNotFound" xml:space="preserve">
+    <value>Usuario no encontrado.</value>
+  </data>
+  <data name="IamError.EmailAlreadyRegistered" xml:space="preserve">
+    <value>El correo electrónico {0} ya está registrado.</value>
+  </data>
+  <data name="IamError.InvalidCredentials" xml:space="preserve">
+    <value>Correo electrónico o contraseña inválidos.</value>
+  </data>
+  <data name="IamError.UnauthorizedAccess" xml:space="preserve">
+    <value>El usuario no tiene el rol requerido para realizar esta acción.</value>
+  </data>
+  <data name="IamError.InvitationExpired" xml:space="preserve">
+    <value>El enlace de invitación ha expirado o es inválido.</value>
+  </data>
+
+  <data name="SubscriptionError.PlanNotFound" xml:space="preserve">
+    <value>El plan de suscripción solicitado no fue encontrado.</value>
+  </data>
+  <data name="SubscriptionError.PaymentDeclined" xml:space="preserve">
+    <value>El pago de la suscripción fue rechazado por la pasarela.</value>
+  </data>
+  <data name="SubscriptionError.SubscriptionExpired" xml:space="preserve">
+    <value>La suscripción institucional ha expirado. Acceso restringido.</value>
+  </data>
+
+  <data name="ClinicalRiskError.DeviceNotPaired" xml:space="preserve">
+    <value>El dispositivo wearable IoT no está vinculado con la cuenta del personal médico.</value>
+  </data>
+  <data name="ClinicalRiskError.InvalidBiometricData" xml:space="preserve">
+    <value>Se recibieron datos biométricos inconsistentes o corruptos del sensor.</value>
+  </data>
+  <data name="ClinicalRiskError.AnomalyDetected" xml:space="preserve">
+    <value>Se detectó una anomalía biométrica severa que requiere evaluación inmediata.</value>
+  </data>
+
+  <data name="IncidentError.IncidentNotFound" xml:space="preserve">
+    <value>Incidente de riesgo no encontrado.</value>
+  </data>
+  <data name="IncidentError.SupervisorTimeout" xml:space="preserve">
+    <value>El supervisor clínico no respondió a tiempo. Se requiere escalamiento.</value>
+  </data>
+  <data name="IncidentError.CannotCloseExtremeRisk" xml:space="preserve">
+    <value>Un incidente de riesgo extremo no puede cerrarse sin una resolución documentada.</value>
+  </data>
+
+  <data name="ShiftError.ShiftNotFound" xml:space="preserve">
+    <value>El turno médico especificado no pudo ser encontrado.</value>
+  </data>
+  <data name="ShiftError.ShiftAlreadyBlocked" xml:space="preserve">
+    <value>Este turno ya está bloqueado debido a un riesgo extremo de fatiga.</value>
+  </data>
+  <data name="ShiftError.ReplacementNotAvailable" xml:space="preserve">
+    <value>Ningún miembro del personal médico disponible cumple con los requisitos de descanso para el reemplazo.</value>
+  </data>
+
+  <data name="RecoveryError.PlanNotFound" xml:space="preserve">
+    <value>Plan de recuperación no encontrado.</value>
+  </data>
+  <data name="RecoveryError.InvalidRestPeriod" xml:space="preserve">
+    <value>El periodo de descanso sugerido está por debajo del protocolo mínimo requerido.</value>
+  </data>
+  <data name="RecoveryError.UnresolvedRefusal" xml:space="preserve">
+    <value>El personal médico rechazó el plan de recuperación. Se requiere revisión del supervisor.</value>
+  </data>
+
+  <data name="AuditError.LogSyncFailed" xml:space="preserve">
+    <value>Fallo al sincronizar la decisión crítica en el log de auditoría inmutable.</value>
+  </data>
+  <data name="AuditError.InvalidDateRange" xml:space="preserve">
+    <value>El rango de fechas proporcionado para el reporte de cumplimiento es inválido.</value>
+  </data>
+</root>
