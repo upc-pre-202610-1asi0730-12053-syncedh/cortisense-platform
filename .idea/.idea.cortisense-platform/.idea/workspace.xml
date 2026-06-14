@@ -15,8 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Repositories/UnitOfWork.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/Extensions/ModelBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Interceptors/AuditableEntityInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Repositories/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4,
@@ -104,7 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1781448554496</updated>
       <workItem from="1781448557451" duration="1430000" />
-      <workItem from="1781450133008" duration="4534000" />
+      <workItem from="1781450133008" duration="4848000" />
     </task>
     <servers />
   </component>
