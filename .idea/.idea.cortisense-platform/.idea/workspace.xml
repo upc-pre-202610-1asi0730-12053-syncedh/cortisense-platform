@@ -15,7 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Interfaces/AspNetCore/Configuration/Extensions/StringExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Interfaces/AspNetCore/Configuration/KebabCaseRouteNamingConvention.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +30,7 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Application/Model/Result.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Domain/Model/Error.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Interfaces/AspNetCore/Configuration/Extensions/StringExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Interfaces/AspNetCore/Configuration/KebabCaseRouteNamingConvention.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/Extensions/ModelBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Interceptors/AuditableEntityInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
