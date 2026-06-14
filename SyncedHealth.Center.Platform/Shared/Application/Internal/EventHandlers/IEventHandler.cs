@@ -1,4 +1,5 @@
-using SyncedHealth.Center.Platform.Shared.Domain
+using Cortex.Mediator.Notifications;
+using SyncedHealth.Center.Platform.Shared.Domain.Model.Events;
 
 
 namespace SyncedHealth.Center.Platform.Shared.Application.Internal.EventHandlers;
