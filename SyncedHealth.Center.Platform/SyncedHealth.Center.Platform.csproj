@@ -30,10 +30,57 @@
 
   <ItemGroup>
     <Compile Remove="IAM\Application\**" />
+    <Compile Update="Iam\Domain\Model\Errors\Resources\IamErrors.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamErrors.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Iam\Domain\Model\Errors\Resources\IamErrors.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamErrors.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Iam\Application\Acl\IamContextFacade.cs" />
+    <Compile Include="Iam\Application\CommandServices\IUserCommandService.cs" />
+    <Compile Include="Iam\Application\Internal\CommandServices\UserCommandService.cs" />
+    <Compile Include="Iam\Application\Internal\OutboundServices\IHashingService.cs" />
+    <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
+    <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
+    <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
+    <Compile Update="Iam\Resources\IamMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Iam\Resources\IamMessages.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamMessages.es.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="IAM\Application\**" />
+    <EmbeddedResource Update="Iam\Domain\Model\Errors\Resources\IamErrors.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamErrors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Iam\Domain\Model\Errors\IamErrors.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamErrors.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Iam\Domain\Model\Errors\Resources\IamErrors.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamErrors.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Iam\Resources\IamMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Iam\Resources\IamMessages.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamMessages.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +89,10 @@
 
   <ItemGroup>
     <None Remove="IAM\Application\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Iam\Resources\.gitkeep\" />
   </ItemGroup>
 
 </Project>
