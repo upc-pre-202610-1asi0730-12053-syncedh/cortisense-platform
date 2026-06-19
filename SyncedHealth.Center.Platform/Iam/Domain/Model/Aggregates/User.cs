@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace SyncedHealth.Center.Platform.IAM.Domain.Model.Aggregates;
+namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
 /**
  * <summary>

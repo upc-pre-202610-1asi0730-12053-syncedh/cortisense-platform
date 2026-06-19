@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SyncedHealth.Center.Platform.IAM.Domain.Model.Aggregates;
+using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes;
 

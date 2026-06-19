@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SyncedHealth.Center.Platform.IAM.Domain.Model.Aggregates;
+using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;

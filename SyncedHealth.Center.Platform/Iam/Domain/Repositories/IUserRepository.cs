@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.IAM.Domain.Model.Aggregates;
+using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Repositories;

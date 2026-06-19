@@ -1,6 +1,6 @@
 using SyncedHealth.Center.Platform.Shared.Domain.Model.Entities;
 
-namespace SyncedHealth.Center.Platform.IAM.Domain.Model.Aggregates;
+namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
 public partial class User : IAuditableEntity
 {
