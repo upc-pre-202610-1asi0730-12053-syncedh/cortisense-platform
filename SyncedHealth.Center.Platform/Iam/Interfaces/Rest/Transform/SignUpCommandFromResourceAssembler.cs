@@ -1,6 +1,8 @@
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
+// Added for ArgumentNullException
+
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
 /// <summary>
