@@ -40,6 +40,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IamErrors.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="Iam\Application\Acl\IamContextFacade.cs" />
     <Compile Include="Iam\Application\CommandServices\IUserCommandService.cs" />
     <Compile Include="Iam\Application\Internal\CommandServices\UserCommandService.cs" />
     <Compile Include="Iam\Application\Internal\OutboundServices\IHashingService.cs" />
