@@ -1,0 +1,507 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SyncedHealth.Center.Platform</name>
+    </assembly>
+    <members>
+        <member name="T:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService">
+            <summary>
+                Service for handling User-related commands.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.#ctor(SyncedHealth.Center.Platform.IAM.Domain.Repositories.IUserRepository,SyncedHealth.Center.Platform.IAM.Application.Internal.OutboundServices.IHashingService,SyncedHealth.Center.Platform.IAM.Application.Internal.OutboundServices.ITokenService,SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork)">
+            <summary>
+                Initializes a new instance of the UserCommandService.
+            </summary>
+            <param name="userRepository">The user repository.</param>
+            <param name="hashingService">The hashing service for passwords.</param>
+            <param name="tokenService">The token service for JWT generation.</param>
+            <param name="unitOfWork">The unit of work.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.SignUpCommand)">
+            <summary>
+                Handles the user sign-up command.
+            </summary>
+            <param name="command">The sign-up command parameters.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.SignInCommand)">
+            <summary>
+                Handles the user sign-in command.
+            </summary>
+            <param name="command">The sign-in command parameters.</param>
+            <returns>A tuple containing the user ID and generated token, or null if unauthorized.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController">
+            <summary>
+                Controller for handling Authentication endpoints.
+                Provides Sign-In and Sign-Up capabilities.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.#ctor(SyncedHealth.Center.Platform.IAM.Domain.Services.IUserCommandService)">
+            <summary>
+                Initializes a new instance of the AuthenticationController.
+            </summary>
+            <param name="userCommandService">The user command service to handle operations.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.SignIn(SyncedHealth.Center.Platform.IAM.Interfaces.REST.Resources.SignInResource)">
+            <summary>
+                Signs in a user and returns an authentication token.
+            </summary>
+            <param name="resource">The sign-in credentials.</param>
+            <returns>An authenticated user resource containing the JWT.</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.SignUp(SyncedHealth.Center.Platform.IAM.Interfaces.REST.Resources.SignUpResource)">
+            <summary>
+                Registers a new user into the platform.
+            </summary>
+            <param name="resource">The sign-up credentials.</param>
+            <returns>A confirmation message.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result`1">
+            <summary>
+                Generic Result class for Command Handlers in the Application Layer.
+            </summary>
+            <typeparam name="T">The type of the result value.</typeparam>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result">
+            <summary>
+                Non-generic Result class for Command Handlers.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity">
+            <summary>
+                Marks an entity as carrying audit timestamps managed by the persistence layer.
+            </summary>
+            <remarks>
+                Any entity in any bounded context that implements this interface will automatically
+                have <see cref="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity.CreatedAt" /> set once on first persistence and <see cref="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity.UpdatedAt" />
+                refreshed on every subsequent save, via <c>AuditableEntityInterceptor</c>.
+            </remarks>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity.CreatedAt">
+            <summary>
+                Gets or sets the UTC timestamp when the entity was first persisted.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity.UpdatedAt">
+            <summary>
+                Gets or sets the UTC timestamp when the entity was last saved.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Domain.Model.Error">
+            <summary>
+                Represents a domain error.
+            </summary>
+            <param name="Code">The unique error code.</param>
+            <param name="Message">The error message.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Model.Error.#ctor(System.String,System.String)">
+            <summary>
+                Represents a domain error.
+            </summary>
+            <param name="Code">The unique error code.</param>
+            <param name="Message">The error message.</param>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Error.Code">
+            <summary>The unique error code.</summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Shared.Domain.Model.Error.Message">
+            <summary>The error message.</summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Domain.Model.Events.IEvent">
+            <summary>
+                Represents a domain event in the system.
+            </summary>
+            <remarks>
+                This interface is used to mark classes as domain events that can be published and handled by the event bus.
+                It extends from <see cref="T:Cortex.Mediator.Notifications.INotification" /> to integrate with the mediator pattern for event handling.
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IBaseRepository`1">
+            <summary>
+                Base repository interface for all repositories
+            </summary>
+            <remarks>
+                This interface is used to define the basic CRUD operations for all repositories
+            </remarks>
+            <typeparam name="TEntity">
+                The entity type for the repository
+            </typeparam>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IBaseRepository`1.AddAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+                Add an entity to the repository
+            </summary>
+            <param name="entity">
+                The entity to add
+            </param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IBaseRepository`1.FindByIdAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+                Find an entity by its id
+            </summary>
+            <param name="id">
+                The id of the entity to find
+            </param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>
+                The entity if found, otherwise null
+            </returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IBaseRepository`1.Remove(`0)">
+            <summary>
+                Remove an entity from the repository
+            </summary>
+            <param name="entity">
+                The entity to remove
+            </param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IBaseRepository`1.ListAsync(System.Threading.CancellationToken)">
+            <summary>
+                List all entities in the repository
+            </summary>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>
+                A list of all entities in the repository
+            </returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork">
+            <summary>
+                Unit of work interface for all repositories
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork.CompleteAsync(System.Threading.CancellationToken)">
+            <summary>
+                Save changes to the repository
+            </summary>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.Extensions.StringExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.String" />.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.Extensions.StringExtensions.ToKebabCase(System.String)">
+            <summary>
+                Converts the text to kebab case.
+            </summary>
+            <param name="text">string to convert</param>
+            <returns>
+                The kebab case string.
+            </returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.Extensions.StringExtensions.KebabCaseRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>(?&lt;!^)([A-Z][a-z]|(?&lt;=[a-z])[A-Z])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Zero-width negative lookbehind.<br/>
+                ○ Match if at the beginning of the string.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [A-Z].<br/>
+                        ○ Match a character in the set [a-z].<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Zero-width positive lookbehind.<br/>
+                            ○ Match a character in the set [a-z] right-to-left.<br/>
+                        ○ Match a character in the set [A-Z].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.KebabCaseRouteNamingConvention">
+            <summary>
+                This class is used to replace the default route naming convention with a kebab-case naming convention.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.KebabCaseRouteNamingConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>
+                This method applies the kebab-case naming convention to the controller.
+            </summary>
+            <param name="controller">The <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration.KebabCaseRouteNamingConvention.ReplaceControllerTemplate(Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel,System.String)">
+            <summary>
+                This method replaces the default controller template with a kebab-case template.
+            </summary>
+            <param name="selector">The <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel" /></param>
+            <param name="name">string containing the name</param>
+            <returns></returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext">
+            <summary>
+                Application database context for the Learning Center Platform
+            </summary>
+            <param name="options">
+                The options for the database context
+            </param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+                Application database context for the Learning Center Platform
+            </summary>
+            <param name="options">
+                The options for the database context
+            </param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+                On creating the database model
+            </summary>
+            <remarks>
+                This method is used to create the database model for the application.
+            </remarks>
+            <param name="builder">
+                The model builder for the database context
+            </param>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions.ModelBuilderExtensions">
+            <summary>
+                Model builder extensions for the database context
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions.ModelBuilderExtensions.UseSnakeCaseNamingConvention(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+                Use snake case naming convention for the database context
+            </summary>
+            <param name="builder">
+                The model builder for the database context
+            </param>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions.StringExtensions">
+            <summary>
+                String extensions for the database context
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions.StringExtensions.ToSnakeCase(System.String)">
+            <summary>
+                Convert the string to snake case
+            </summary>
+            <param name="text">
+                The text to convert to snake case
+            </param>
+            <returns>
+                The snake cased text
+            </returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions.StringExtensions.ToPlural(System.String)">
+            <summary>
+                Convert the string to plural
+            </summary>
+            <param name="text">
+                The text to convert to plural
+            </param>
+            <returns>
+                The pluralized text
+            </returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors.AuditableEntityInterceptor">
+            <summary>
+                EF Core interceptor that automatically populates audit timestamps on any entity
+                that implements <see cref="T:SyncedHealth.Center.Platform.Shared.Domain.Model.Entities.IAuditableEntity" />.
+            </summary>
+            <remarks>
+                <list type="bullet">
+                    <item>
+                        <description><c>CreatedDate</c> — set once when the entity is first added.</description>
+                    </item>
+                    <item>
+                        <description><c>UpdatedDate</c> — refreshed on every addition or update.</description>
+                    </item>
+                </list>
+                Register this interceptor in <c>AppDbContext.OnConfiguring</c> so it applies to all
+                bounded contexts sharing the same <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors.AuditableEntityInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors.AuditableEntityInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories.BaseRepository`1">
+            <summary>
+                Base repository for all repositories
+            </summary>
+            <remarks>
+                This class is used to define the basic CRUD operations for all repositories.
+                This class implements the IBaseRepository interface.
+            </remarks>
+            <typeparam name="TEntity">
+                The entity type for the repository
+            </typeparam>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories.BaseRepository`1.#ctor(SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext)">
+            <summary>
+                Default constructor for the base repository
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UnitOfWork">
+            <summary>
+                Unit of work for the application.
+            </summary>
+            <remarks>
+                This class is used to save changes to the database context.
+                It implements the IUnitOfWork interface.
+            </remarks>
+            <param name="context">
+                The database context for the application
+            </param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UnitOfWork.#ctor(SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext)">
+            <summary>
+                Unit of work for the application.
+            </summary>
+            <remarks>
+                This class is used to save changes to the database context.
+                It implements the IUnitOfWork interface.
+            </remarks>
+            <param name="context">
+                The database context for the application
+            </param>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware">
+            <summary>
+                Global Exception Handling Middleware
+            </summary>
+            <remarks>
+                This middleware catches all unhandled exceptions and returns a Problem Details response.
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware},Microsoft.Extensions.Localization.IStringLocalizer{SyncedHealth.Center.Platform.Shared.Resources.Errors.ErrorMessages},Microsoft.Extensions.Localization.IStringLocalizer{SyncedHealth.Center.Platform.Shared.Resources.CommonMessages})">
+            <summary>
+                Global Exception Handling Middleware
+            </summary>
+            <remarks>
+                This middleware catches all unhandled exceptions and returns a Problem Details response.
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+                Invoke the middleware
+            </summary>
+            <param name="context">The http context</param>
+            <returns>A task</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware.HandleOperationCanceledExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.OperationCanceledException)">
+            <summary>
+                Handle the OperationCanceledException
+            </summary>
+            <param name="context">The http context</param>
+            <param name="exception">The exception</param>
+            <returns>A task</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components.GlobalExceptionHandlerMiddleware.HandleGenericExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)">
+            <summary>
+                Handle a generic exception
+            </summary>
+            <param name="context">The http context</param>
+            <param name="exception">The exception</param>
+            <returns>A task</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Extensions.MiddlewareExtensions">
+            <summary>
+                Middleware extensions
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Extensions.MiddlewareExtensions.UseGlobalExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Use the global exception handler middleware
+            </summary>
+            <param name="builder">The application builder</param>
+            <returns>The application builder</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService">
+            <summary>
+                Service for handling Subscription-related commands.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService.#ctor(SyncedHealth.Center.Platform.Subscription.Domain.Repositories.ISubscriptionPlanRepository,SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork)">
+            <summary>
+                Initializes a new instance of the SubscriptionCommandService.
+            </summary>
+            <param name="planRepository">The subscription plan repository.</param>
+            <param name="unitOfWork">The unit of work.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService.Handle(SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.CreateSubscriptionPlanCommand)">
+            <summary>
+                Handles the creation of a new subscription plan.
+            </summary>
+            <param name="command">The command parameters to create the plan.</param>
+            <returns>The ID of the created plan.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController">
+            <summary>
+                Controller for managing Subscription Plans.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController.#ctor(SyncedHealth.Center.Platform.Subscription.Domain.Services.ISubscriptionCommandService)">
+            <summary>
+                Initializes a new instance of the SubscriptionPlansController.
+            </summary>
+            <param name="subscriptionCommandService">The subscription command service to handle operations.</param>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController.CreatePlan(SyncedHealth.Center.Platform.Subscription.Interfaces.REST.Resources.CreateSubscriptionPlanResource)">
+            <summary>
+                Creates a new subscription plan.
+            </summary>
+            <param name="resource">The plan details.</param>
+            <returns>The newly created subscription plan basic details.</returns>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KebabCaseRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KebabCaseRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KebabCaseRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+    </members>
+</doc>
