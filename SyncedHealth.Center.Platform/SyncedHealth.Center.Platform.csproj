@@ -46,6 +46,11 @@
     <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
+    <Compile Update="Iam\Resources\IamMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +66,10 @@
     <EmbeddedResource Update="Iam\Domain\Model\Errors\Resources\IamErrors.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamErrors.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Iam\Resources\IamMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IamMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
