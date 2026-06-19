@@ -21,14 +21,14 @@ namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class IamErrors {
+    internal class IamErrors_es {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IamErrors() {
+        internal IamErrors_es() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors", typeof(IamErrors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors.es", typeof(IamErrors_es).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -56,6 +56,33 @@ namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username o password inválido..
+        /// </summary>
+        internal static string Iam_InvalidCredentials {
+            get {
+                return ResourceManager.GetString("Iam.InvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error al crear el usuario..
+        /// </summary>
+        internal static string Iam_UserCreationFailed {
+            get {
+                return ResourceManager.GetString("Iam.UserCreationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El username especificado ya está siendo utilizado..
+        /// </summary>
+        internal static string Iam_UsernameAlreadyTaken {
+            get {
+                return ResourceManager.GetString("Iam.UsernameAlreadyTaken", resourceCulture);
             }
         }
     }
