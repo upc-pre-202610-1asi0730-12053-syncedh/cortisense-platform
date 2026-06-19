@@ -44,6 +44,7 @@
     <Compile Include="Iam\Application\Internal\CommandServices\UserCommandService.cs" />
     <Compile Include="Iam\Application\Internal\OutboundServices\IHashingService.cs" />
     <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
+    <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
   </ItemGroup>
 
