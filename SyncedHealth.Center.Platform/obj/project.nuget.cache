@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C9W1bG7AVAk=",
+  "dgSpecHash": "DUmyo8mG5iE=",
   "success": true,
   "projectFilePath": "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj",
   "expectedPackageFiles": [
@@ -76,6 +76,7 @@
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.8\\microsoft.entityframeworkcore.abstractions.10.0.8.nupkg.sha512",
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.8\\microsoft.entityframeworkcore.analyzers.10.0.8.nupkg.sha512",
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.design\\10.0.8\\microsoft.entityframeworkcore.design.10.0.8.nupkg.sha512",
+    "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\10.0.8\\microsoft.entityframeworkcore.inmemory.10.0.8.nupkg.sha512",
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.8\\microsoft.entityframeworkcore.relational.10.0.8.nupkg.sha512",
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.6\\microsoft.entityframeworkcore.relational.design.1.1.6.nupkg.sha512",
     "C:\\Users\\marsr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\10.0.0\\microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",

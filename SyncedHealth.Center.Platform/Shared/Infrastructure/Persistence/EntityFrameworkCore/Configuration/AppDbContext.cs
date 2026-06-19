@@ -33,8 +33,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
-
+        
+        
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();
     }
