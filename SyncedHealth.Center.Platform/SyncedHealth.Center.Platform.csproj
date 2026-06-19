@@ -90,4 +90,8 @@
     <None Remove="IAM\Application\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Iam\Resources\.gitkeep\" />
+  </ItemGroup>
+
 </Project>
