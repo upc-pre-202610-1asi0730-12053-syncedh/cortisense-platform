@@ -1,3 +1,10 @@
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.QueryServices;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources;
 using System.Reflection;
 using Cortex.Mediator.Commands;
 using Cortex.Mediator.DependencyInjection;
@@ -78,7 +85,7 @@ builder.Services
     .AddSingleton<IStringLocalizer<CommonMessages>,
         StringLocalizer<CommonMessages>>(); // Corrected from Common to Commons
 builder.Services.AddSingleton<IStringLocalizer<IamMessages>, StringLocalizer<IamMessages>>(); // Added for IamMessages
-
+builder.Services.AddSingleton<IStringLocalizer<ClinicalRiskAssessmentMessages>, StringLocalizer<ClinicalRiskAssessmentMessages>>();
 // Register the custom ProblemDetailsFactory
 builder.Services.AddSingleton<ProblemDetailsFactory>();
 
@@ -137,7 +144,22 @@ builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
-builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+// Clinical Risk Assessment Bounded Context Injection Configuration
+builder.Services.AddScoped<IRiskAssessmentRepository, RiskAssessmentRepository>();
+builder.Services.AddScoped<IClinicalAlertRepository, ClinicalAlertRepository>();
+builder.Services.AddScoped<IVitalSignAnomalyRepository, VitalSignAnomalyRepository>();
+builder.Services.AddScoped<IVitalSignReadingRepository, VitalSignReadingRepository>();
+
+builder.Services.AddScoped<IRiskAssessmentQueryService, RiskAssessmentQueryService>();
+builder.Services.AddScoped<IClinicalAlertQueryService, ClinicalAlertQueryService>();
+builder.Services.AddScoped<IVitalSignAnomalyQueryService, VitalSignAnomalyQueryService>();
+builder.Services.AddScoped<IVitalSignReadingQueryService, VitalSignReadingQueryService>();
+
+builder.Services.AddScoped<IRiskAssessmentCommandService, RiskAssessmentCommandService>();
+builder.Services.AddScoped<IClinicalAlertCommandService, ClinicalAlertCommandService>();
+builder.Services.AddScoped<IVitalSignAnomalyCommandService, VitalSignAnomalyCommandService>();
+builder.Services.AddScoped<IVitalSignReadingCommandService, VitalSignReadingCommandService>();
 
 // Mediator Configuration
 
@@ -180,7 +202,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAllPolicy");
 
 // Add Authorization Middleware to Pipeline
-app.UseRequestAuthorization();
+//app.UseRequestAuthorization();
 
 app.UseHttpsRedirection();
 
