@@ -15,7 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Configuration/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +106,8 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Aggregates/RecoveryPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Commands/IssueRecoveryRecommendationCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Repositories/IRecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Configuration/Extensions/ModelBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Repositories/RecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/Aggregates/SubscriptionPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/ValueObjects/ESubscriptionStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,61 +120,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.4578524585350958" />
-      <entry key="MS500" value="3.4883196806661427" />
-      <entry key="S2" value="5.375363286313778" />
-      <entry key="S5" value="7.4355479174562475" />
-      <entry key="S10" value="9.36442811471285" />
-      <entry key="S30" value="11.520468112484973" />
-      <entry key="S60" value="12.247963093533974" />
-      <entry key="M2" value="12.782802177391082" />
-      <entry key="M5" value="14.652510594505857" />
-      <entry key="M10" value="19.75601295795416" />
-      <entry key="M15" value="24.011729069337775" />
-      <entry key="M30" value="31.107753991141294" />
-      <entry key="H1" value="36.28762406664311" />
-      <entry key="H2" value="39.42627400833077" />
-      <entry key="H4" value="41.1551172803644" />
-      <entry key="D1" value="42.6841327154031" />
-      <entry key="W1" value="42.95466628467542" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="S2" value="2.366522493715005E-118" />
+      <entry key="S5" value="3.0810803555421966E-47" />
+      <entry key="S10" value="1.5682443002903624E-23" />
+      <entry key="S30" value="1.0014512363701114E-7" />
+      <entry key="S60" value="9.197793788893642E-4" />
+      <entry key="M2" value="0.10285090441776602" />
+      <entry key="M5" value="2.362487859998202" />
+      <entry key="M10" value="8.549063194961596" />
+      <entry key="M15" value="14.385276365487291" />
+      <entry key="M30" value="26.005761932924226" />
+      <entry key="H1" value="36.042426669589005" />
+      <entry key="H2" value="42.76348072008304" />
+      <entry key="H4" value="46.670659084271605" />
+      <entry key="D1" value="50.24707649861949" />
+      <entry key="W1" value="50.891643039631475" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000006170044" />
+      <entry key="S2" value="1.0049839316547982" />
+      <entry key="S5" value="1.1199578936284051" />
+      <entry key="S10" value="1.3463493808690945" />
+      <entry key="S30" value="1.7022711139062556" />
+      <entry key="S60" value="1.8380161775922081" />
+      <entry key="M2" value="1.9154322353905875" />
+      <entry key="M5" value="1.965273715616113" />
+      <entry key="M10" value="1.9824834429221254" />
+      <entry key="M15" value="1.9882879349280802" />
+      <entry key="M30" value="1.9941267197536137" />
+      <entry key="H1" value="1.9970590352399469" />
+      <entry key="H2" value="1.9985284348680046" />
+      <entry key="H4" value="1.9992639465466593" />
+      <entry key="D1" value="1.999877286784269" />
+      <entry key="W1" value="1.9999824686185887" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.3566074072635588" />
-      <entry key="MS500" value="3.408541211013817" />
-      <entry key="S2" value="5.3461430303984985" />
-      <entry key="S5" value="7.418574133812629" />
-      <entry key="S10" value="9.35329249158006" />
-      <entry key="S30" value="11.515714469993327" />
-      <entry key="S60" value="12.244732344193586" />
-      <entry key="M2" value="12.779370570302222" />
-      <entry key="M5" value="14.649392245371985" />
-      <entry key="M10" value="19.753703003002325" />
-      <entry key="M15" value="24.00990631292168" />
-      <entry key="M30" value="31.106641589372078" />
-      <entry key="H1" value="36.287000742929166" />
-      <entry key="H2" value="39.42594273894969" />
-      <entry key="H4" value="41.15494633268546" />
-      <entry key="D1" value="42.68410344824315" />
-      <entry key="W1" value="42.95466208413422" />
+      <entry key="MS100" value="1.7527745895340508E-5" />
+      <entry key="MS500" value="0.11187813389736272" />
+      <entry key="S2" value="0.5807106401175466" />
+      <entry key="S5" value="0.8923465014870674" />
+      <entry key="S10" value="1.1946833625258046" />
+      <entry key="S30" value="1.6324058118716978" />
+      <entry key="S60" value="1.800299863360231" />
+      <entry key="M2" value="1.9978936482624245" />
+      <entry key="M5" value="4.319069776400079" />
+      <entry key="M10" value="10.526614108049575" />
+      <entry key="M15" value="16.36990800167981" />
+      <entry key="M30" value="27.997708920640008" />
+      <entry key="H1" value="38.03825033552873" />
+      <entry key="H2" value="44.76134395126097" />
+      <entry key="H4" value="48.669576795954555" />
+      <entry key="D1" value="52.246894016668044" />
+      <entry key="W1" value="52.891616916974336" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -255,7 +258,7 @@
       <workItem from="1781448557451" duration="1430000" />
       <workItem from="1781450133008" duration="4848000" />
       <workItem from="1781885703597" duration="21983000" />
-      <workItem from="1781937778880" duration="2476000" />
+      <workItem from="1781937778880" duration="3400000" />
     </task>
     <servers />
   </component>
