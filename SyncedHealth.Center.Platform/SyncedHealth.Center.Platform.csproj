@@ -89,8 +89,6 @@
     <Folder Include="ClinicalRiskAssessment\Application\QueryServices\" />
     <Folder Include="ClinicalRiskAssessment\Domain\Model\Errors\" />
     <Folder Include="ClinicalRiskAssessment\Domain\Model\ValueObjects\" />
-    <Folder Include="ClinicalRiskAssessment\Infrastructure\Persistence\EntityFrameworkCore\Configuration\Extensions\" />
-    <Folder Include="ClinicalRiskAssessment\Infrastructure\Persistence\EntityFrameworkCore\Repositories\" />
     <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Resources\" />
     <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Transform\" />
   </ItemGroup>
