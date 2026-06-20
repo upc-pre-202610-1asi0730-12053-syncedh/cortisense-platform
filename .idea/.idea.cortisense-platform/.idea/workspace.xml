@@ -15,7 +15,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.GenerateResource.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +130,7 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Components/GlobalExceptionHandlerMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Extensions/MiddlewareExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/CommandServices/IRecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/Internal/CommandServices/RecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Aggregates/RecoveryPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Commands/IssueRecoveryRecommendationCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Repositories/IRecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,61 +148,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.947466933852096" />
-      <entry key="MS500" value="4.355399345344686" />
-      <entry key="S2" value="6.112726631735086" />
-      <entry key="S5" value="6.684798891209179" />
-      <entry key="S10" value="7.690393480083466" />
-      <entry key="S30" value="12.206639410870928" />
-      <entry key="S60" value="15.23931066000451" />
-      <entry key="M2" value="17.38521896685948" />
-      <entry key="M5" value="20.381183993665342" />
-      <entry key="M10" value="26.262967887707866" />
-      <entry key="M15" value="32.011116789361715" />
-      <entry key="M30" value="43.94870884995981" />
-      <entry key="H1" value="54.6304335999906" />
-      <entry key="H2" value="61.92767106670976" />
-      <entry key="H4" value="66.21480570726696" />
-      <entry key="D1" value="70.16529080401617" />
-      <entry key="W1" value="70.87980949226932" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="3.725357092524554E-251" />
+      <entry key="S2" value="1.2085583728413564E-62" />
+      <entry key="S5" value="7.4579911426066385E-25" />
+      <entry key="S10" value="3.0744396563181624E-12" />
+      <entry key="S30" value="8.015896372399085E-4" />
+      <entry key="S60" value="0.10238490311275301" />
+      <entry key="M2" value="1.233937043968174" />
+      <entry key="M5" value="7.325240481925055" />
+      <entry key="M10" value="17.008458739767235" />
+      <entry key="M15" value="25.088834532057557" />
+      <entry key="M30" value="41.81789653284174" />
+      <entry key="H1" value="57.693265991550625" />
+      <entry key="H2" value="69.12701428924593" />
+      <entry key="H4" value="76.06588654059696" />
+      <entry key="D1" value="82.60184799908376" />
+      <entry key="W1" value="83.79831331747214" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="7.931463547349042E-117" />
-      <entry key="S2" value="9.48412896998603E-30" />
-      <entry key="S5" value="2.7487613036185667E-12" />
-      <entry key="S10" value="2.109237293874472E-6" />
-      <entry key="S30" value="0.019770513609499555" />
-      <entry key="S60" value="0.19808151120776213" />
-      <entry key="M2" value="0.6288022652462677" />
-      <entry key="M5" value="1.2586992342207408" />
-      <entry key="M10" value="1.5865692399383478" />
-      <entry key="M15" value="1.713874108460289" />
-      <entry key="M30" value="1.8514098634256722" />
-      <entry key="H1" value="1.9242691330980792" />
-      <entry key="H2" value="1.96176863559944" />
-      <entry key="H4" value="1.9807919475273754" />
-      <entry key="D1" value="1.9967857526839818" />
-      <entry key="W1" value="1.9995405047691477" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000000099176" />
+      <entry key="S60" value="1.0000044364879013" />
+      <entry key="M2" value="1.0029758550808414" />
+      <entry key="M5" value="1.1478975705678587" />
+      <entry key="M10" value="1.5438492902644771" />
+      <entry key="M15" value="1.8394444111024362" />
+      <entry key="M30" value="2.2957138026681587" />
+      <entry key="H1" value="2.609789422670165" />
+      <entry key="H2" value="2.794318004081447" />
+      <entry key="H4" value="2.8943694258900408" />
+      <entry key="D1" value="2.981994469318911" />
+      <entry key="W1" value="2.9974178007389245" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.86471993534942" />
-      <entry key="MS500" value="4.281254305332977" />
-      <entry key="S2" value="6.0855090141493795" />
-      <entry key="S5" value="6.672862472139498" />
-      <entry key="S10" value="7.683409955974487" />
-      <entry key="S30" value="12.22167501934761" />
-      <entry key="S60" value="15.430723846540095" />
-      <entry key="M2" value="18.005885594798887" />
-      <entry key="M5" value="21.6336848841845" />
-      <entry key="M10" value="27.845263924449295" />
-      <entry key="M15" value="33.72161978431924" />
-      <entry key="M30" value="45.7979841014431" />
-      <entry key="H1" value="56.55345665756694" />
-      <entry key="H2" value="63.888758793381356" />
-      <entry key="H4" value="68.19524063012169" />
-      <entry key="D1" value="72.16201454631577" />
-      <entry key="W1" value="72.87934107416345" />
+      <entry key="MS100" value="1.2972214271070416E-8" />
+      <entry key="MS500" value="0.02646079101132897" />
+      <entry key="S2" value="0.4033208796110631" />
+      <entry key="S5" value="0.695440985854994" />
+      <entry key="S10" value="0.8339310438280338" />
+      <entry key="S30" value="0.9420621653067303" />
+      <entry key="S60" value="1.072550608490549" />
+      <entry key="M2" value="2.221715544975759" />
+      <entry key="M5" value="8.466136268826478" />
+      <entry key="M10" value="18.547627596857936" />
+      <entry key="M15" value="26.924460380845083" />
+      <entry key="M30" value="44.11101890743488" />
+      <entry key="H1" value="60.30146034760282" />
+      <entry key="H2" value="71.92043215948219" />
+      <entry key="H4" value="78.9597755816831" />
+      <entry key="D1" value="85.58375772374357" />
+      <entry key="W1" value="86.79571889050925" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -258,7 +286,7 @@
       <workItem from="1781448557451" duration="1430000" />
       <workItem from="1781450133008" duration="4848000" />
       <workItem from="1781885703597" duration="21983000" />
-      <workItem from="1781937778880" duration="3962000" />
+      <workItem from="1781937778880" duration="4730000" />
     </task>
     <servers />
   </component>

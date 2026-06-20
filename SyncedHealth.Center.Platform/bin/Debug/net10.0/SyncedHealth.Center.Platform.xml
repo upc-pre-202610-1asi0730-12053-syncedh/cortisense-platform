@@ -4,6 +4,38 @@
         <name>SyncedHealth.Center.Platform</name>
     </assembly>
     <members>
+        <member name="T:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
         <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User">
             <summary>
                 The user aggregate
@@ -612,6 +644,18 @@
             <inheritdoc />
         </member>
         <member name="M:SyncedHealth.Center.Platform.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result`1">
