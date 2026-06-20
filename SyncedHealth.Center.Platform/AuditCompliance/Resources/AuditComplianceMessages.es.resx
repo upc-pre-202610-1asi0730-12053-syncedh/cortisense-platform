@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="AuditLogCreatedSuccessfully" xml:space="preserve">
+    <value>Registro de auditoría creado correctamente.</value>
+  </data>
+
+    <data name="AuditLogsRetrievedSuccessfully" xml:space="preserve">
+    <value>Registros de auditoría obtenidos correctamente.</value>
+  </data>
+
+    <data name="AuditLogRetrievedSuccessfully" xml:space="preserve">
+    <value>Registro de auditoría obtenido correctamente.</value>
+  </data>
+</root>

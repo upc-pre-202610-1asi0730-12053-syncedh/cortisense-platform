@@ -95,14 +95,14 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1",
         new OpenApiInfo
         {
-            Title = "Acme.Center.Platform",
+            Title = "SyncedHealth.Center.Platform",
             Version = "v1",
-            Description = "ACME Learning Center Platform API",
+            Description = "SyncedHealth CortiSense Platform API",
             TermsOfService = new Uri("https://acme-learning.com/tos"),
             Contact = new OpenApiContact
             {
-                Name = "ACME Studios",
-                Email = "contact@acme.com"
+                Name = "SyncedHealth",
+                Email = "contact@syncedhealth.com"
             },
             License = new OpenApiLicense
             {
@@ -196,7 +196,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.MapGet("/", () => Results.Redirect("/swagger"));
 }
+
+app.UseRouting();
 
 // Apply CORS Policy
 app.UseCors("AllowAllPolicy");
