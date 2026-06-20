@@ -15,18 +15,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/AuthenticationController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/SignInCommandFromResourceAssemblers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/SignInCommandFromResourceAssemblers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/SignUpCommandFromResourceAssembler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/SignUpCommandFromResourceAssembler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/UserResourceFromEntityAssembler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/Transform/UserResourceFromEntityAssembler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.es.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cortisense-platform.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/cortisense-platform.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +114,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
