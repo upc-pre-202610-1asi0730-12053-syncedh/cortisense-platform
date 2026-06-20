@@ -13,3 +13,10 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Others
+bin/
+obj/
+*.user
+*.suo
+rider.project.model.nuget.info
+.idea/

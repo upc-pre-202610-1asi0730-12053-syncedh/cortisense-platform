@@ -47,16 +47,6 @@
     <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
-    <Compile Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.en.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ClinicalRiskAssessmentMessages.en.resx</DependentUpon>
-    </Compile>
-    <Compile Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.es.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ClinicalRiskAssessmentMessages.es.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -82,14 +72,6 @@
       <LastGenOutput>IamMessages.es.Designer.cs</LastGenOutput>
       <DependentUpon>IamMessages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ClinicalRiskAssessmentMessages.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.es.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ClinicalRiskAssessmentMessages.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -101,8 +83,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClinicalRiskAssessment\Domain\Model\Errors\" />
-    <Folder Include="ClinicalRiskAssessment\Domain\Model\ValueObjects\" />
+    <AdditionalFiles Include="Shared\Resources\CommonMessages.en.resx" />
   </ItemGroup>
 
 </Project>
