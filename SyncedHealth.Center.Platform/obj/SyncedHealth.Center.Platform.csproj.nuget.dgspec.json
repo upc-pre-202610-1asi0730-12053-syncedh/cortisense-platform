@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj": {}
+    "C:\\Users\\PERSONAL\\RiderProjects\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj": {
+    "C:\\Users\\PERSONAL\\RiderProjects\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj",
+        "projectUniqueName": "C:\\Users\\PERSONAL\\RiderProjects\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj",
         "projectName": "SyncedHealth.Center.Platform",
-        "projectPath": "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj",
-        "packagesPath": "C:\\Users\\marsr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marsr\\cortisense-platform\\SyncedHealth.Center.Platform\\obj\\",
+        "projectPath": "C:\\Users\\PERSONAL\\RiderProjects\\cortisense-platform\\SyncedHealth.Center.Platform\\SyncedHealth.Center.Platform.csproj",
+        "packagesPath": "C:\\Users\\PERSONAL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PERSONAL\\RiderProjects\\cortisense-platform\\SyncedHealth.Center.Platform\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marsr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PERSONAL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,9 +42,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net10.0": {
@@ -128,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300-preview.24203.14/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
