@@ -6,12 +6,25 @@ using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
-public class CheckoutSessionRepository(AppDbContext context) : BaseRepository<CheckoutSession>(context), ICheckoutSessionRepository
+public class CheckoutSessionRepository(AppDbContext context)
+    : BaseRepository<CheckoutSession>(context), ICheckoutSessionRepository
 {
-    public async Task<IEnumerable<CheckoutSession>> FindByOrganizationIdAsync(int organizationId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<CheckoutSession>> FindByOrganizationIdAsync(
+        int organizationId,
+        CancellationToken cancellationToken = default)
     {
         return await Context.Set<CheckoutSession>()
-            .Where(c => c.OrganizationId == organizationId)
+            .Where(checkoutSession => checkoutSession.OrganizationId == organizationId)
             .ToListAsync(cancellationToken);
+    }
+
+    public async Task<CheckoutSession?> FindByStripeSessionIdAsync(
+        string stripeSessionId,
+        CancellationToken cancellationToken = default)
+    {
+        return await Context.Set<CheckoutSession>()
+            .FirstOrDefaultAsync(
+                checkoutSession => checkoutSession.StripeSessionId == stripeSessionId,
+                cancellationToken);
     }
 }

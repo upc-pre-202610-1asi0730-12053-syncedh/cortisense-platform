@@ -42,6 +42,11 @@ using SyncedHealth.Center.Platform.Subscription.Application.Internal.QueryServic
 using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
 using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.Subscription.Resources;
+using SyncedHealth.Center.Platform.Subscription.Application.OutboundServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
+using SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
+using SyncedHealth.Center.Platform.Subscription.Resources;
 
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration;
@@ -101,6 +106,7 @@ builder.Services.AddSingleton<IStringLocalizer<CommonMessages>, StringLocalizer<
 builder.Services.AddSingleton<IStringLocalizer<IamMessages>, StringLocalizer<IamMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ClinicalRiskAssessmentMessages>, StringLocalizer<ClinicalRiskAssessmentMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ShiftCoordinationMessages>, StringLocalizer<ShiftCoordinationMessages>>();
+builder.Services.AddSingleton<IStringLocalizer<SubscriptionMessages>, StringLocalizer<SubscriptionMessages>>();
 
 // Register the custom ProblemDetailsFactory
 builder.Services.AddSingleton<ProblemDetailsFactory>();
@@ -157,6 +163,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // IAM Bounded Context Injection Configuration
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
@@ -198,6 +205,8 @@ builder.Services.AddScoped<ICheckoutSessionQueryService, CheckoutSessionQuerySer
 
 builder.Services.AddScoped<ISubscriptionCommandService, SubscriptionCommandService>();
 builder.Services.AddScoped<ICheckoutSessionCommandService, CheckoutSessionCommandService>();
+
+builder.Services.AddScoped<IStripeBillingService, StripeBillingService>();
 
 // Mediator Configuration
 builder.Services.AddScoped(typeof(ICommandPipelineBehavior<>), typeof(LoggingCommandBehavior<>));

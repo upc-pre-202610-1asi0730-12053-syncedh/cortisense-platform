@@ -15,7 +15,16 @@ public static class CheckoutSessionResourceFromEntityAssembler
             SubscriptionId = entity.SubscriptionId,
             PlanId = entity.PlanId,
             PlanCode = entity.PlanCode,
-            Status = entity.Status.ToString()
+            Status = entity.Status.ToString().ToUpperInvariant(),
+            StripeSessionId = entity.StripeSessionId,
+            StripeUrl = entity.StripeUrl,
+            StripeSubscriptionId = entity.StripeSubscriptionId,
+            StripeCustomerId = entity.StripeCustomerId,
+            CreatedAt = entity.CreatedAt,
+            CompletedAt = entity.CompletedAt,
+            FailedAt = entity.FailedAt,
+            CancelledAt = entity.CancelledAt,
+            ErrorMessage = entity.ErrorMessage
         };
     }
 }

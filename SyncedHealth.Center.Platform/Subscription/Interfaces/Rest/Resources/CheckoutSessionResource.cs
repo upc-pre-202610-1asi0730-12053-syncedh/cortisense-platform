@@ -5,31 +5,35 @@ namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 /// </summary>
 public record CheckoutSessionResource
 {
-    /// <summary>The unique identifier of the checkout session.</summary>
-    /// <example>50</example>
     public int Id { get; init; }
 
-    /// <summary>The organization initiating the checkout.</summary>
-    /// <example>10</example>
     public int OrganizationId { get; init; }
 
-    /// <summary>The user ID of the administrator initiating the checkout.</summary>
-    /// <example>100</example>
     public int AdministratorId { get; init; }
 
-    /// <summary>The ID of the subscription being paid for (if applicable).</summary>
-    /// <example>1</example>
     public int SubscriptionId { get; init; }
 
-    /// <summary>The ID of the plan being purchased.</summary>
-    /// <example>2</example>
     public int PlanId { get; init; }
 
-    /// <summary>The internal code of the plan being purchased.</summary>
-    /// <example>premium_annual</example>
     public string PlanCode { get; init; } = string.Empty;
 
-    /// <summary>The current status of the checkout session.</summary>
-    /// <example>Pending</example>
     public string Status { get; init; } = string.Empty;
+
+    public string? StripeSessionId { get; init; }
+
+    public string? StripeUrl { get; init; }
+
+    public string? StripeSubscriptionId { get; init; }
+
+    public string? StripeCustomerId { get; init; }
+
+    public DateTimeOffset? CreatedAt { get; init; }
+
+    public DateTimeOffset? CompletedAt { get; init; }
+
+    public DateTimeOffset? FailedAt { get; init; }
+
+    public DateTimeOffset? CancelledAt { get; init; }
+
+    public string? ErrorMessage { get; init; }
 }

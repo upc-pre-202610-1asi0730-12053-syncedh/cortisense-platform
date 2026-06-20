@@ -11,8 +11,11 @@ public static class SubscriptionResourceFromEntityAssembler
             Id = entity.Id,
             OrganizationId = entity.OrganizationId,
             PlanId = entity.PlanId,
-            Status = entity.Status.ToString(),
-            StartedAt = entity.StartedAt
+            Status = entity.Status.ToString().ToUpperInvariant(),
+            StartedAt = entity.StartedAt,
+            CancelledAt = entity.CancelledAt,
+            StripeSubscriptionId = entity.StripeSubscriptionId,
+            StripeCustomerId = entity.StripeCustomerId
         };
     }
 }
