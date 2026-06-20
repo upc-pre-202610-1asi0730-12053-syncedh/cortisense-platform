@@ -26,7 +26,6 @@ using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.QuerySer
 using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Repositories;
 using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
-using SyncedHealth.Center.Platform.Iam.Application.Acl;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
@@ -51,7 +50,6 @@ using SyncedHealth.Center.Platform.Subscription.Resources;
 using SyncedHealth.Center.Platform.Subscription.Application.OutboundServices;
 using SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
 using SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
-using SyncedHealth.Center.Platform.Subscription.Resources;
 
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration;
@@ -151,7 +149,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
     {
-        [new OpenApiSecuritySchemeReference("bearer", document)] = []
+        [new OpenApiSecuritySchemeReference("Bearer", document)] = []
     });
 
     options.EnableAnnotations();
@@ -253,15 +251,15 @@ if (app.Environment.IsDevelopment())
     app.MapGet("/", () => Results.Redirect("/swagger"));
 }
 
+app.UseHttpsRedirection();
+
 app.UseRouting();
 
 // Apply CORS Policy
 app.UseCors("AllowAllPolicy");
 
 // Add Authorization Middleware to Pipeline
-// app.UseRequestAuthorization();
-
-app.UseHttpsRedirection();
+app.UseRequestAuthorization();
 
 app.UseAuthorization();
 
