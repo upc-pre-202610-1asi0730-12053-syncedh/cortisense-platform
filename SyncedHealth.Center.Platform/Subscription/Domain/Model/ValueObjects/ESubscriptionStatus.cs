@@ -4,5 +4,6 @@ public enum ESubscriptionStatus
 {
     Pending,
     Active,
-    Expired
+    PastDue,
+    Cancelled
 }

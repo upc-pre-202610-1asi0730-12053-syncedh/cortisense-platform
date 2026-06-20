@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="InvalidOrganizationUserOrWorkArea" xml:space="preserve">
+    <value>OrganizationId, UserId and WorkAreaId must be valid.</value>
+  </data>
+    <data name="InvalidShiftType" xml:space="preserve">
+    <value>Shift type must be DAY, NIGHT or EMERGENCY.</value>
+  </data>
+    <data name="InvalidShiftStatus" xml:space="preserve">
+    <value>Shift status must be SCHEDULED, IN_PROGRESS, COMPLETED or CANCELLED.</value>
+  </data>
+    <data name="InvalidShiftSchedule" xml:space="preserve">
+    <value>ScheduledStart and ScheduledEnd are required.</value>
+  </data>
+    <data name="ScheduledEndMustBeAfterStart" xml:space="preserve">
+    <value>ScheduledEnd must be after ScheduledStart.</value>
+  </data>
+    <data name="ShiftRecordNotFound" xml:space="preserve">
+    <value>Shift record not found.</value>
+  </data>
+    <data name="CheckInRequiredBeforeCheckout" xml:space="preserve">
+    <value>Check-in is required before completing a shift.</value>
+  </data>
+    <data name="OperationCancelled" xml:space="preserve">
+    <value>The operation was cancelled.</value>
+  </data>
+    <data name="CreateShiftRecordDatabaseError" xml:space="preserve">
+    <value>A database error occurred while creating the shift record.</value>
+  </data>
+    <data name="UpdateShiftRecordDatabaseError" xml:space="preserve">
+    <value>A database error occurred while updating the shift record.</value>
+  </data>
+    <data name="UnexpectedShiftRecordCreateError" xml:space="preserve">
+    <value>An unexpected error occurred while creating the shift record.</value>
+  </data>
+    <data name="UnexpectedShiftRecordUpdateError" xml:space="preserve">
+    <value>An unexpected error occurred while updating the shift record.</value>
+  </data>
+</root>
