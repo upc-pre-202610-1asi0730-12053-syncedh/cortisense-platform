@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="InvalidOrganizationOrUser" xml:space="preserve">
+    <value>OrganizationId y UserId deben ser válidos.</value>
+  </data>
+    <data name="InvalidFatigueLevel" xml:space="preserve">
+    <value>FatigueLevel debe estar entre 0 y 100.</value>
+  </data>
+    <data name="InvalidRiskLevel" xml:space="preserve">
+    <value>RiskLevel debe ser LOW, MEDIUM, HIGH o CRITICAL.</value>
+  </data>
+    <data name="InvalidHeartRateOrHrv" xml:space="preserve">
+    <value>HeartRate y Hrv deben ser mayores que cero.</value>
+  </data>
+    <data name="InvalidSeverity" xml:space="preserve">
+    <value>Severity debe ser LOW, MEDIUM, HIGH o CRITICAL.</value>
+  </data>
+    <data name="InvalidClinicalAlertStatus" xml:space="preserve">
+    <value>Status debe ser OPEN, ACKNOWLEDGED o RESOLVED.</value>
+  </data>
+    <data name="InvalidAnomalyStatus" xml:space="preserve">
+    <value>Status debe ser OPEN, REVIEWED o RESOLVED.</value>
+  </data>
+    <data name="MessageRequired" xml:space="preserve">
+    <value>Message es obligatorio.</value>
+  </data>
+    <data name="TypeRequired" xml:space="preserve">
+    <value>Type es obligatorio.</value>
+  </data>
+    <data name="ValueAndThresholdRequired" xml:space="preserve">
+    <value>Value y Threshold son obligatorios.</value>
+  </data>
+    <data name="ClinicalAlertNotFound" xml:space="preserve">
+    <value>Alerta clínica no encontrada.</value>
+  </data>
+    <data name="VitalSignAnomalyNotFound" xml:space="preserve">
+    <value>Anomalía de signos vitales no encontrada.</value>
+  </data>
+    <data name="InvalidCortisolLevel" xml:space="preserve">
+    <value>CortisolLevel no puede ser negativo.</value>
+  </data>
+    <data name="InvalidSensorStatus" xml:space="preserve">
+    <value>SensorStatus debe ser ACTIVE, DISCONNECTED o ERROR.</value>
+  </data>
+    <data name="OperationCancelled" xml:space="preserve">
+    <value>La operación fue cancelada.</value>
+  </data>
+    <data name="CreateRiskAssessmentDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al crear la evaluación de riesgo.</value>
+  </data>
+    <data name="CreateClinicalAlertDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al crear la alerta clínica.</value>
+  </data>
+    <data name="UpdateClinicalAlertDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al actualizar la alerta clínica.</value>
+  </data>
+    <data name="CreateVitalSignAnomalyDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al crear la anomalía de signos vitales.</value>
+  </data>
+    <data name="UpdateVitalSignAnomalyDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al actualizar la anomalía de signos vitales.</value>
+  </data>
+    <data name="CreateVitalSignReadingDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al crear la lectura de signos vitales.</value>
+  </data>
+    <data name="UnexpectedRiskAssessmentError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al crear la evaluación de riesgo.</value>
+  </data>
+    <data name="UnexpectedClinicalAlertCreateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al crear la alerta clínica.</value>
+  </data>
+    <data name="UnexpectedClinicalAlertUpdateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al actualizar la alerta clínica.</value>
+  </data>
+    <data name="UnexpectedVitalSignAnomalyCreateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al crear la anomalía de signos vitales.</value>
+  </data>
+    <data name="UnexpectedVitalSignAnomalyUpdateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al actualizar la anomalía de signos vitales.</value>
+  </data>
+    <data name="UnexpectedVitalSignReadingCreateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al crear la lectura de signos vitales.</value>
+  </data>
+</root>
