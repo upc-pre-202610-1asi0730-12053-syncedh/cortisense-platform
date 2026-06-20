@@ -82,4 +82,21 @@
     <None Remove="IAM\Application\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClinicalRiskAssessment\Application\CommandServices\" />
+    <Folder Include="ClinicalRiskAssessment\Application\Internal\CommandServices\" />
+    <Folder Include="ClinicalRiskAssessment\Application\Internal\QueryServices\" />
+    <Folder Include="ClinicalRiskAssessment\Application\QueryServices\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Model\Aggregates\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Model\Commands\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Model\Errors\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Model\Queries\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Model\ValueObjects\" />
+    <Folder Include="ClinicalRiskAssessment\Domain\Repositories\" />
+    <Folder Include="ClinicalRiskAssessment\Infrastructure\Persistence\EntityFrameworkCore\Configuration\Extensions\" />
+    <Folder Include="ClinicalRiskAssessment\Infrastructure\Persistence\EntityFrameworkCore\Repositories\" />
+    <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Resources\" />
+    <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Transform\" />
+  </ItemGroup>
+
 </Project>
