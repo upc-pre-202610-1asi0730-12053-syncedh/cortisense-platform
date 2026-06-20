@@ -15,34 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Migrations/20260620035456_ClinicalRiskAssessmentSchema.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Migrations/20260620035456_ClinicalRiskAssessmentSchema.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.deps.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +90,6 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Repositories/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Components/GlobalExceptionHandlerMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Extensions/MiddlewareExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/Aggregates/SubscriptionPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/ValueObjects/ESubscriptionStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" root0="FORCE_HIGHLIGHTING" />
@@ -142,7 +116,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -201,6 +175,7 @@
       <workItem from="1781448557451" duration="1430000" />
       <workItem from="1781450133008" duration="4848000" />
       <workItem from="1781885703597" duration="21983000" />
+      <workItem from="1781935948457" duration="5564000" />
     </task>
     <servers />
   </component>

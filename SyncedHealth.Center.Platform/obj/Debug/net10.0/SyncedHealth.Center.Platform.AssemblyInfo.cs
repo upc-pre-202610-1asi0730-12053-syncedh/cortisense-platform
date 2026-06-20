@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SyncedHealth.Center.Platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7a0696bc2d01a74452fb4e25ce66b0c76f66335")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80ea4a7089508a2a03224af87fa837c1eb561241")]
 [assembly: System.Reflection.AssemblyProductAttribute("SyncedHealth.Center.Platform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SyncedHealth.Center.Platform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
