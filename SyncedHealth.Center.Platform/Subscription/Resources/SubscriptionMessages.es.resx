@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="StripeSecretKeyNotConfigured" xml:space="preserve">
+    <value>La clave secreta de Stripe no está configurada.</value>
+  </data>
+
+    <data name="CustomerEmailRequired" xml:space="preserve">
+    <value>El correo del cliente es obligatorio.</value>
+  </data>
+
+    <data name="PlanNotFound" xml:space="preserve">
+    <value>Plan no encontrado.</value>
+  </data>
+
+    <data name="SubscriptionNotFound" xml:space="preserve">
+    <value>Suscripción no encontrada.</value>
+  </data>
+
+    <data name="SessionIdRequired" xml:space="preserve">
+    <value>session_id es obligatorio.</value>
+  </data>
+
+    <data name="CheckoutSessionNotFound" xml:space="preserve">
+    <value>Sesión de checkout no encontrada.</value>
+  </data>
+
+    <data name="CheckoutSessionAlreadyCompleted" xml:space="preserve">
+    <value>Esta sesión de checkout ya fue completada.</value>
+  </data>
+
+    <data name="CheckoutSessionCreated" xml:space="preserve">
+    <value>Sesión de checkout creada correctamente.</value>
+  </data>
+
+    <data name="CheckoutSessionCancelled" xml:space="preserve">
+    <value>Sesión de checkout cancelada correctamente.</value>
+  </data>
+
+    <data name="StripeSessionStatusRetrieved" xml:space="preserve">
+    <value>Estado de sesión de checkout obtenido correctamente.</value>
+  </data>
+
+    <data name="StripeWebhookReceived" xml:space="preserve">
+    <value>Webhook de Stripe recibido correctamente.</value>
+  </data>
+</root>

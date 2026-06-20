@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="InvalidOrganizationUserOrWorkArea" xml:space="preserve">
+    <value>OrganizationId, UserId y WorkAreaId deben ser válidos.</value>
+  </data>
+    <data name="InvalidShiftType" xml:space="preserve">
+    <value>El tipo de turno debe ser DAY, NIGHT o EMERGENCY.</value>
+  </data>
+    <data name="InvalidShiftStatus" xml:space="preserve">
+    <value>El estado del turno debe ser SCHEDULED, IN_PROGRESS, COMPLETED o CANCELLED.</value>
+  </data>
+    <data name="InvalidShiftSchedule" xml:space="preserve">
+    <value>ScheduledStart y ScheduledEnd son obligatorios.</value>
+  </data>
+    <data name="ScheduledEndMustBeAfterStart" xml:space="preserve">
+    <value>ScheduledEnd debe ser posterior a ScheduledStart.</value>
+  </data>
+    <data name="ShiftRecordNotFound" xml:space="preserve">
+    <value>Turno no encontrado.</value>
+  </data>
+    <data name="CheckInRequiredBeforeCheckout" xml:space="preserve">
+    <value>Se requiere check-in antes de completar un turno.</value>
+  </data>
+    <data name="OperationCancelled" xml:space="preserve">
+    <value>La operación fue cancelada.</value>
+  </data>
+    <data name="CreateShiftRecordDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al crear el turno.</value>
+  </data>
+    <data name="UpdateShiftRecordDatabaseError" xml:space="preserve">
+    <value>Ocurrió un error de base de datos al actualizar el turno.</value>
+  </data>
+    <data name="UnexpectedShiftRecordCreateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al crear el turno.</value>
+  </data>
+    <data name="UnexpectedShiftRecordUpdateError" xml:space="preserve">
+    <value>Ocurrió un error inesperado al actualizar el turno.</value>
+  </data>
+</root>

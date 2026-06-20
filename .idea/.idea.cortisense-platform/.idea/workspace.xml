@@ -16,20 +16,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/SyncedHealth.Center.Platform.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/SyncedHealth.Center.Platform.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/SyncedHealth.Center.Platform.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/SyncedHealth.Center.Platform.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,26 +26,25 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="85" />
+    <option name="cachedIndexableFilesCount" value="7" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Msa-ware"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Msa-ware&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/upc-pre-202610-1asi0730-12053-syncedh/cortisense-platform.git",
-    "accountId": "1303471a-8d22-4a5e-94b1-57c09371f33d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/upc-pre-202610-1asi0730-12053-syncedh/cortisense-platform.git&quot;,
+    &quot;accountId&quot;: &quot;1303471a-8d22-4a5e-94b1-57c09371f33d&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Acl/IamContextFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Internal/CommandServices/UserCommandService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Internal/OutboundServices/IHashingService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,6 +102,18 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Repositories/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Components/GlobalExceptionHandlerMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Extensions/MiddlewareExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/CommandServices/IRecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/Internal/CommandServices/RecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Aggregates/RecoveryPlan.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Commands/IssueRecoveryRecommendationCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Repositories/IRecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Configuration/Extensions/ModelBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Repositories/RecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/RecoveryPlansController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Resources/CreateRecoveryPlanResource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Resources/RecoveryPlanResource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Transform/CreateRecoveryPlanCommandFromResourceAssembler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Transform/RecoveryPlanResourceFromEntityAssembler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/Aggregates/SubscriptionPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/ValueObjects/ESubscriptionStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -127,6 +124,68 @@
     <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.6551967019291816" />
+      <entry key="MS500" value="1.9189128834791074" />
+      <entry key="S2" value="1.9807139688820452" />
+      <entry key="S5" value="2.1931796009742195" />
+      <entry key="S10" value="2.9997385043004963" />
+      <entry key="S30" value="4.926623252610135" />
+      <entry key="S60" value="5.869884652286822" />
+      <entry key="M2" value="7.154888525377123" />
+      <entry key="M5" value="12.195429371782154" />
+      <entry key="M10" value="21.58471540641103" />
+      <entry key="M15" value="31.13836695727924" />
+      <entry key="M30" value="55.87255062140585" />
+      <entry key="H1" value="86.15117962076825" />
+      <entry key="H2" value="112.33187259579262" />
+      <entry key="H4" value="130.0450338658065" />
+      <entry key="D1" value="147.9990999260777" />
+      <entry key="W1" value="151.41937333712573" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="1.3138277390716802E-170" />
+      <entry key="S10" value="1.1462232501008159E-85" />
+      <entry key="S30" value="4.857614778649196E-29" />
+      <entry key="S60" value="6.9696900075936E-15" />
+      <entry key="M2" value="8.373292183424308E-8" />
+      <entry key="M5" value="0.001692565342393371" />
+      <entry key="M10" value="0.05928243803593589" />
+      <entry key="M15" value="0.2093634036854959" />
+      <entry key="M30" value="0.7745060178721702" />
+      <entry key="H1" value="1.5158596479044575" />
+      <entry key="H2" value="2.129622329232288" />
+      <entry key="H4" value="2.5267794917854376" />
+      <entry key="D1" value="2.915249506703617" />
+      <entry key="W1" value="2.987740256862089" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.6235130181529902" />
+      <entry key="MS500" value="1.9110627015815271" />
+      <entry key="S2" value="1.9786626722826355" />
+      <entry key="S5" value="2.1922521117578944" />
+      <entry key="S10" value="2.999073362266092" />
+      <entry key="S30" value="4.9262411807167314" />
+      <entry key="S60" value="5.869648123338347" />
+      <entry key="M2" value="7.154678541334637" />
+      <entry key="M5" value="12.196763915672637" />
+      <entry key="M10" value="21.643395254209434" />
+      <entry key="M15" value="31.34687837817878" />
+      <entry key="M30" value="56.645852233795665" />
+      <entry key="H1" value="87.6658994058361" />
+      <entry key="H2" value="114.46068673738203" />
+      <entry key="H4" value="132.5713285001452" />
+      <entry key="D1" value="150.91425501011972" />
+      <entry key="W1" value="154.40709973532861" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="SWEA" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4,
   &quot;fromUser&quot;: false
@@ -149,12 +208,12 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -208,7 +267,8 @@
       <workItem from="1781448557451" duration="1430000" />
       <workItem from="1781450133008" duration="4848000" />
       <workItem from="1781885703597" duration="21983000" />
-      <workItem from="1781937778880" duration="623000" />
+      <workItem from="1781937778880" duration="5789000" />
+      <workItem from="1781991516333" duration="3978000" />
     </task>
     <servers />
   </component>
@@ -222,7 +282,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

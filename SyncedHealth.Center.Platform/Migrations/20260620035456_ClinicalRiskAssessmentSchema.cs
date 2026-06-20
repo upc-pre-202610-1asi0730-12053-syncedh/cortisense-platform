@@ -60,23 +60,6 @@ namespace SyncedHealth.Center.Platform.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "users",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    username = table.Column<string>(type: "longtext", nullable: false),
-                    password_hash = table.Column<string>(type: "longtext", nullable: false),
-                    created_at = table.Column<DateTimeOffset>(type: "datetime", nullable: true),
-                    updated_at = table.Column<DateTimeOffset>(type: "datetime", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("p_k_users", x => x.id);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "vital_sign_anomalies",
                 columns: table => new
                 {
@@ -134,9 +117,6 @@ namespace SyncedHealth.Center.Platform.Migrations
 
             migrationBuilder.DropTable(
                 name: "risk_assessments");
-
-            migrationBuilder.DropTable(
-                name: "users");
 
             migrationBuilder.DropTable(
                 name: "vital_sign_anomalies");
