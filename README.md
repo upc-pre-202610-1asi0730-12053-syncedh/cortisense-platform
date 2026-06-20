@@ -2,6 +2,3 @@
 
 bacalao2
 
-a
-
-xd
