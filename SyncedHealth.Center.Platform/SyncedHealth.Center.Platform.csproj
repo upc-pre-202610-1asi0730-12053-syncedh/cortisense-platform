@@ -57,6 +57,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IamMessages.es.resx</DependentUpon>
     </Compile>
+    <Compile Update="AuditCompliance\Resources\AuditComplianceMessages.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AuditComplianceMessages.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="AuditCompliance\Resources\AuditComplianceMessages.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AuditComplianceMessages.es.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +90,14 @@
     <EmbeddedResource Update="Iam\Resources\IamMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamMessages.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AuditCompliance\Resources\AuditComplianceMessages.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuditComplianceMessages.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AuditCompliance\Resources\AuditComplianceMessages.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuditComplianceMessages.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
