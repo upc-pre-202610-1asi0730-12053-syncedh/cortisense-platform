@@ -658,6 +658,18 @@
         <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:SyncedHealth.Center.Platform.Migrations.AddStaffRecoveryTable">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.AddStaffRecoveryTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.AddStaffRecoveryTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.AddStaffRecoveryTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result`1">
             <summary>
                 Generic Result class for Command Handlers in the Application Layer.
