@@ -1,0 +1,24 @@
+# .NET build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+*.sln.DotSettings.user
+workspace.xml
+modules.xml
+projectSettingsUpdater.xml
+contentModel.xml
+*.iml
+
+# Visual Studio / local user files
+.vs/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
