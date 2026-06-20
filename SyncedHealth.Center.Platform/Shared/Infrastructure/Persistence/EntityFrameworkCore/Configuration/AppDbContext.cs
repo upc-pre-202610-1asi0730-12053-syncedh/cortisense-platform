@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
 
@@ -20,7 +21,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         base.OnConfiguring(builder);
     }
 
-
     /// <summary>
     ///     On creating the database model
     /// </summary>
@@ -33,8 +33,10 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        
-        
+
+        // Audit Compliance Context
+        builder.ApplyAuditComplianceConfiguration();
+
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();
     }

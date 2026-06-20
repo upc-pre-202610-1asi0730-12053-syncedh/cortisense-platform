@@ -15,8 +15,9 @@ public static class ModelBuilderExtensions
     public static void ApplyAuditComplianceConfiguration(this ModelBuilder builder)
     {
         // Audit Compliance Context
+        builder.Entity<AuditLog>().ToTable("audit_logs");
         builder.Entity<AuditLog>().HasKey(a => a.Id);
-
+        
         builder.Entity<AuditLog>().Property(a => a.Id)
             .IsRequired()
             .ValueGeneratedOnAdd();
