@@ -24,3 +24,14 @@ contentModel.xml
 .env
 .env.*
 appsettings.Development.local.json
+
+# IDE settings
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Build outputs
+**/bin/
+**/obj/
