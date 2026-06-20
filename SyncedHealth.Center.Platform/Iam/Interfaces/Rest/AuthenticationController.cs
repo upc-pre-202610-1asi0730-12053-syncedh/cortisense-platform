@@ -9,6 +9,9 @@ using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 using SyncedHealth.Center.Platform.Iam.Resources;
 using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
+// For IamError enum
+// Corrected using directive
+// For ProblemDetailsFactory
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 
