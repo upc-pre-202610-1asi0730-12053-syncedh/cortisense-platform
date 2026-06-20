@@ -4,7 +4,7 @@ using SyncedHealth.Center.Platform.Iam.Domain.Model;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
-using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 // For IamError
 // For ProblemDetailsFactory

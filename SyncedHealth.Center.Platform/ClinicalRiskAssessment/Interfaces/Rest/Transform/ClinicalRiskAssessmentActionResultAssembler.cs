@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
-using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Transform;
 
