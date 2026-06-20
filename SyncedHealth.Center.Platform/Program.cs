@@ -9,6 +9,7 @@ using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
@@ -55,8 +56,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Shared Bounded Context Injection Configuration
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
 // IAM Bounded Context Injection Configuration
+
+// Token Settings Configuration
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
