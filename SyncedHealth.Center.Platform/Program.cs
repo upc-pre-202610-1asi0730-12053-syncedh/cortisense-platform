@@ -24,7 +24,7 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Mediator.Cortex.Configu
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Extensions;
-using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
