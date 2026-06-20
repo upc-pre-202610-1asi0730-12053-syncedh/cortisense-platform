@@ -217,7 +217,7 @@ C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\bin\Debug\net10.0\SyncedHealth.Center.Platform.xml
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.xml
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors.resources
-C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Iam.Resources.IamMessages.resources
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors.es.resources
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Iam.Resources.IamMessages.es.resources
 C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Shared.Resources.CommonMessages.en.resources
+C:\Users\marsr\cortisense-platform\SyncedHealth.Center.Platform\obj\Debug\net10.0\SyncedHealth.Center.Platform.Iam.Resources.IamMessages.en.resources

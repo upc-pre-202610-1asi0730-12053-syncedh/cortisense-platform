@@ -40,12 +40,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Iam\Domain\Model\Errors\Resources\IamErrors.resx
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.resx]
-build_metadata.AdditionalFiles.TargetPath = Iam\Resources\IamMessages.resx
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Domain/Model/Errors/Resources/IamErrors.es.resx]
 build_metadata.AdditionalFiles.TargetPath = Iam\Domain\Model\Errors\Resources\IamErrors.es.resx
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.en.resx]
+build_metadata.AdditionalFiles.TargetPath = Iam\Resources\IamMessages.en.resx
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.es.resx]

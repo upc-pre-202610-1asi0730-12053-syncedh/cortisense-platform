@@ -242,7 +242,7 @@
             It validates a token is included in the request header and that the token is valid.
             If the token is valid then it sets the user in HttpContext.Items["User"].
         </member>
-        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Components.RequestAuthorizationMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService,SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService,System.Threading.CancellationToken)">
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Components.RequestAuthorizationMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService,SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService)">
             InvokeAsync is called by the ASP.NET Core runtime.
             It is used to authorize requests.
             It validates a token is included in the request header and that the token is valid.
@@ -396,6 +396,38 @@
                 Get all users' endpoint. It allows getting all users
             </summary>
             <returns>The user resources</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
         </member>
         <member name="T:SyncedHealth.Center.Platform.Iam.Application.CommandServices.IUserCommandService">
             <summary>

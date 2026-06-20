@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="IAM\Application\**" />
+    <Compile Remove="Iam\Application\**" />
     <Compile Update="Iam\Domain\Model\Errors\Resources\IamErrors.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -47,10 +47,20 @@
     <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
+    <Compile Update="Iam\Resources\IamMessages.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamMessages.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Iam\Resources\IamMessages.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IamMessages.es.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="IAM\Application\**" />
+    <EmbeddedResource Remove="Iam\Application\**" />
     <EmbeddedResource Update="Iam\Domain\Model\Errors\Resources\IamErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamErrors.Designer.cs</LastGenOutput>
@@ -63,23 +73,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamErrors.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Iam\Resources\IamMessages.resx">
+    <EmbeddedResource Update="Iam\Resources\IamMessages.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>IamMessages.Designer.cs</LastGenOutput>
+      <LastGenOutput>IamMessages.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Iam\Resources\IamMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamMessages.es.Designer.cs</LastGenOutput>
-      <DependentUpon>IamMessages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="IAM\Application\**" />
+    <Content Remove="Iam\Application\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="IAM\Application\**" />
+    <None Remove="Iam\Application\**" />
   </ItemGroup>
 
   <ItemGroup>
