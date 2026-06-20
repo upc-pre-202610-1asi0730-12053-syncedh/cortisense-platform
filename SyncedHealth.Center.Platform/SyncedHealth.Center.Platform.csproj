@@ -68,6 +68,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AuditComplianceMessages.es.resx</DependentUpon>
     </Compile>
+    <Compile Update="ShiftCoordination\Resources\ShiftCoordinationMessages.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShiftCoordinationMessages.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ShiftCoordination\Resources\ShiftCoordinationMessages.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShiftCoordinationMessages.es.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -99,6 +109,14 @@
     <EmbeddedResource Update="AuditCompliance\Resources\AuditComplianceMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AuditComplianceMessages.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ShiftCoordination\Resources\ShiftCoordinationMessages.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShiftCoordinationMessages.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ShiftCoordination\Resources\ShiftCoordinationMessages.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShiftCoordinationMessages.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
