@@ -20,7 +20,12 @@ using Cortex.Mediator.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.OpenApi;
-
+using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Domain.Repositories;
+using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Iam.Application.Acl;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
@@ -207,6 +212,12 @@ builder.Services.AddScoped<ISubscriptionCommandService, SubscriptionCommandServi
 builder.Services.AddScoped<ICheckoutSessionCommandService, CheckoutSessionCommandService>();
 
 builder.Services.AddScoped<IStripeBillingService, StripeBillingService>();
+
+// Audit Compliance Bounded Context Injection Configuration
+builder.Services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+
+builder.Services.AddScoped<IAuditLogQueryService, AuditLogQueryService>();
+builder.Services.AddScoped<IAuditLogCommandService, AuditLogCommandService>();
 
 // Mediator Configuration
 builder.Services.AddScoped(typeof(ICommandPipelineBehavior<>), typeof(LoggingCommandBehavior<>));
