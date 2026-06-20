@@ -103,7 +103,6 @@
   <ItemGroup>
     <Folder Include="ClinicalRiskAssessment\Domain\Model\Errors\" />
     <Folder Include="ClinicalRiskAssessment\Domain\Model\ValueObjects\" />
-    <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Transform\" />
   </ItemGroup>
 
 </Project>
