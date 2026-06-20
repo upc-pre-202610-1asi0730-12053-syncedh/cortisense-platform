@@ -1,7 +1,7 @@
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Queries;
 
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Services;
+namespace SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
 
 /// <summary>
 /// Query service contract for audit log read operations.

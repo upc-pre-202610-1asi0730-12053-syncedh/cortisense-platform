@@ -2,8 +2,7 @@ using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 
-
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Services;
+namespace SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
 
 /// <summary>
 /// Command service contract for audit log write operations.
