@@ -9,7 +9,7 @@ public static class ModelBuilderExtensions
 {
     public static void ApplySubscriptionConfiguration(this ModelBuilder builder)
     {
-        var stringListComparer = new ValueComparer<List<string>>(
+        var stringListComparer = new ValueComparer<IList<string>>(
             (left, right) => left != null && right != null && left.SequenceEqual(right),
             list => list.Aggregate(0, (hash, item) => HashCode.Combine(hash, item.GetHashCode())),
             list => list.ToList()
@@ -74,21 +74,21 @@ public static class ModelBuilderExtensions
         builder.Entity<Plan>().Property(plan => plan.FeatureKeys)
             .HasConversion(
                 value => JsonSerializer.Serialize(value, (JsonSerializerOptions?)null),
-                value => JsonSerializer.Deserialize<List<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
+                value => JsonSerializer.Deserialize<IList<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
             )
             .Metadata.SetValueComparer(stringListComparer);
 
         builder.Entity<Plan>().Property(plan => plan.EnabledModules)
             .HasConversion(
                 value => JsonSerializer.Serialize(value, (JsonSerializerOptions?)null),
-                value => JsonSerializer.Deserialize<List<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
+                value => JsonSerializer.Deserialize<IList<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
             )
             .Metadata.SetValueComparer(stringListComparer);
 
         builder.Entity<Plan>().Property(plan => plan.DisabledModules)
             .HasConversion(
                 value => JsonSerializer.Serialize(value, (JsonSerializerOptions?)null),
-                value => JsonSerializer.Deserialize<List<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
+                value => JsonSerializer.Deserialize<IList<string>>(value, (JsonSerializerOptions?)null) ?? new List<string>()
             )
             .Metadata.SetValueComparer(stringListComparer);
 
