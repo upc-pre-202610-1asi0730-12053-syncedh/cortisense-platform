@@ -18,6 +18,12 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Resources;
+using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
+using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
+using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Mediator.Cortex.Configuration;
@@ -138,6 +144,16 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+// Subscription Bounded Context Injection Configuration
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddScoped<ICheckoutSessionRepository, CheckoutSessionRepository>();
+builder.Services.AddScoped<IPlanQueryService, PlanQueryService>();
+builder.Services.AddScoped<ISubscriptionCommandService, SubscriptionCommandService>();
+builder.Services.AddScoped<ISubscriptionQueryService, SubscriptionQueryService>();
+builder.Services.AddScoped<ICheckoutSessionCommandService, CheckoutSessionCommandService>();
+builder.Services.AddScoped<ICheckoutSessionQueryService, CheckoutSessionQueryService>();
 
 // Mediator Configuration
 

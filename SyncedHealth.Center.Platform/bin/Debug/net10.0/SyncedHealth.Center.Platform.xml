@@ -4,6 +4,38 @@
         <name>SyncedHealth.Center.Platform</name>
     </assembly>
     <members>
+        <member name="T:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_en.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources.ClinicalRiskAssessmentMessages_es.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
         <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User">
             <summary>
                 The user aggregate
@@ -614,6 +646,30 @@
         <member name="M:SyncedHealth.Center.Platform.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.ClinicalRiskAssessmentSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Migrations.SyncPendingModelChanges">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.SyncPendingModelChanges.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.SyncPendingModelChanges.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.SyncPendingModelChanges.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result`1">
             <summary>
                 Generic Result class for Command Handlers in the Application Layer.
@@ -976,6 +1032,184 @@
             </summary>
             <param name="builder">The application builder</param>
             <returns>The application builder</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource">
+            <summary>
+            Represents a payment or checkout session attempt.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.Id">
+            <summary>The unique identifier of the checkout session.</summary>
+            <example>50</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.OrganizationId">
+            <summary>The organization initiating the checkout.</summary>
+            <example>10</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.AdministratorId">
+            <summary>The user ID of the administrator initiating the checkout.</summary>
+            <example>100</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.SubscriptionId">
+            <summary>The ID of the subscription being paid for (if applicable).</summary>
+            <example>1</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.PlanId">
+            <summary>The ID of the plan being purchased.</summary>
+            <example>2</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.PlanCode">
+            <summary>The internal code of the plan being purchased.</summary>
+            <example>premium_annual</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CheckoutSessionResource.Status">
+            <summary>The current status of the checkout session.</summary>
+            <example>Pending</example>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource">
+            <summary>
+            Payload for initiating a new checkout session.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource.OrganizationId">
+            <summary>The organization initiating the checkout.</summary>
+            <example>10</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource.AdministratorId">
+            <summary>The user ID of the administrator initiating the checkout.</summary>
+            <example>100</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource.SubscriptionId">
+            <summary>The ID of the active or pending subscription.</summary>
+            <example>1</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource.PlanId">
+            <summary>The ID of the plan to purchase.</summary>
+            <example>2</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateCheckoutSessionResource.PlanCode">
+            <summary>The code of the plan to purchase.</summary>
+            <example>premium_annual</example>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateSubscriptionResource">
+            <summary>
+            Payload for creating a new subscription.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateSubscriptionResource.OrganizationId">
+            <summary>The ID of the organization purchasing the subscription.</summary>
+            <example>10</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.CreateSubscriptionResource.PlanId">
+            <summary>The ID of the selected plan.</summary>
+            <example>2</example>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource">
+            <summary>
+            Represents a subscription plan offering.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Id">
+            <summary>The unique identifier of the plan.</summary>
+            <example>1</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Code">
+            <summary>The internal code or slug of the plan.</summary>
+            <example>premium_annual</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Name">
+            <summary>The public display name of the plan.</summary>
+            <example>Premium Annual</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Price">
+            <summary>The base price of the plan.</summary>
+            <example>499.99</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Currency">
+            <summary>The currency code for the price.</summary>
+            <example>USD</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.BillingPeriod">
+            <summary>The billing cycle for this plan.</summary>
+            <example>Annual</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.MaxDoctors">
+            <summary>Maximum number of doctors allowed. Null means unlimited.</summary>
+            <example>50</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.MaxSupervisors">
+            <summary>Maximum number of supervisors allowed.</summary>
+            <example>10</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.MaxTeams">
+            <summary>Maximum number of teams/departments allowed.</summary>
+            <example>5</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.MaxWorkAreas">
+            <summary>Maximum number of work areas allowed.</summary>
+            <example>20</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.MonthlyInvitations">
+            <summary>Monthly invitations limit for assessments.</summary>
+            <example>1000</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.DataHistoryDays">
+            <summary>Number of days data history is retained.</summary>
+            <example>365</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.SupportLevel">
+            <summary>The level of support provided.</summary>
+            <example>Priority</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.Recommended">
+            <summary>Indicates if this plan is recommended/highlighted.</summary>
+            <example>true</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.FeatureKeys">
+            <summary>List of feature keys included in this plan.</summary>
+            <example>["custom_reports", "api_access"]</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.EnabledModules">
+            <summary>List of enabled specialized modules.</summary>
+            <example>["hr_analytics"]</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.PlanResource.DisabledModules">
+            <summary>List of disabled specialized modules.</summary>
+            <example>["white_labeling"]</example>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource">
+            <summary>
+            Represents an organization's active subscription.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource.Id">
+            <summary>The unique identifier of the subscription.</summary>
+            <example>1</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource.OrganizationId">
+            <summary>The identifier of the organization that owns the subscription.</summary>
+            <example>10</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource.PlanId">
+            <summary>The identifier of the active plan.</summary>
+            <example>2</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource.Status">
+            <summary>The current status of the subscription.</summary>
+            <example>Active</example>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.SubscriptionResource.StartedAt">
+            <summary>The date and time when the subscription started.</summary>
+            <example>2023-10-01T12:00:00Z</example>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.UpdateSubscriptionResource">
+            <summary>
+            Payload for upgrading or downgrading an existing subscription.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.UpdateSubscriptionResource.PlanId">
+            <summary>The ID of the new plan to switch to.</summary>
+            <example>3</example>
         </member>
         <member name="T:Program">
             <summary>

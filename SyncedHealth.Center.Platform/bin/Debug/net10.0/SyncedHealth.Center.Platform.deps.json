@@ -27,11 +27,11 @@
           "SyncedHealth.Center.Platform.dll": {}
         },
         "resources": {
-          "es/SyncedHealth.Center.Platform.resources.dll": {
-            "locale": "es"
-          },
           "en/SyncedHealth.Center.Platform.resources.dll": {
             "locale": "en"
+          },
+          "es/SyncedHealth.Center.Platform.resources.dll": {
+            "locale": "es"
           }
         }
       },
