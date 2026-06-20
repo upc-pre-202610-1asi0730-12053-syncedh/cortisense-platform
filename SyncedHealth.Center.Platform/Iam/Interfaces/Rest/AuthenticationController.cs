@@ -7,7 +7,7 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attrib
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 using SyncedHealth.Center.Platform.Iam.Resources;
-using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 // For IamError enum
 // Corrected using directive
@@ -88,7 +88,7 @@ public class AuthenticationController(
             result,
             errorLocalizer,
             problemDetailsFactory,
-            () => Ok(new { message = iamLocalizer["UserCreatedSuccessfully"] })
+            () => Ok(new { message = iamLocalizer["UserCreatedSuccessfully"].Value })
         );
     }
 }

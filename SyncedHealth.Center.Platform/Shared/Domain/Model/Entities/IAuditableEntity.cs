@@ -15,7 +15,6 @@ public interface IAuditableEntity
     /// </summary>
     DateTimeOffset? CreatedAt { get; set; }
 
-
     /// <summary>
     ///     Gets or sets the UTC timestamp when the entity was last saved.
     /// </summary>

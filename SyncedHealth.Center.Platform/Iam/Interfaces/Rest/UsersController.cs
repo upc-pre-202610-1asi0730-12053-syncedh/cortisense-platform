@@ -7,7 +7,7 @@ using SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
-using SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;

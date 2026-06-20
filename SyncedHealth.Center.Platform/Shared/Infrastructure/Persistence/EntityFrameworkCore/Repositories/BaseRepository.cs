@@ -18,7 +18,6 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 {
     protected readonly AppDbContext Context;
 
-
     /// <summary>
     ///     Default constructor for the base repository
     /// </summary>
@@ -27,13 +26,11 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         Context = context;
     }
 
-
     // inheritedDoc
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await Context.Set<TEntity>().AddAsync(entity, cancellationToken);
     }
-
 
     // inheritedDoc
     public async Task<TEntity?> FindByIdAsync(int id, CancellationToken cancellationToken = default)
@@ -41,20 +38,17 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         return await Context.Set<TEntity>().FindAsync(new object[] { id }, cancellationToken);
     }
 
-
     // inheritedDoc
     public void Update(TEntity entity)
     {
         Context.Set<TEntity>().Update(entity);
     }
 
-
     // inheritedDoc
     public void Remove(TEntity entity)
     {
         Context.Set<TEntity>().Remove(entity);
     }
-
 
     // inheritedDoc
     public async Task<IEnumerable<TEntity>> ListAsync(CancellationToken cancellationToken = default)

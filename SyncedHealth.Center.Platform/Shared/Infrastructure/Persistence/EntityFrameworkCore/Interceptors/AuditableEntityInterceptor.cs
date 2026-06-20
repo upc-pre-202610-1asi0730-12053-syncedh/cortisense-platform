@@ -29,7 +29,6 @@ public sealed class AuditableEntityInterceptor : SaveChangesInterceptor
         return base.SavingChanges(eventData, result);
     }
 
-
     /// <inheritdoc />
     public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
         DbContextEventData eventData,
@@ -40,14 +39,11 @@ public sealed class AuditableEntityInterceptor : SaveChangesInterceptor
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-
     private static void ApplyAuditTimestamps(DbContext? context)
     {
         if (context is null) return;
 
-
         var now = DateTimeOffset.UtcNow;
-
 
         foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
         {

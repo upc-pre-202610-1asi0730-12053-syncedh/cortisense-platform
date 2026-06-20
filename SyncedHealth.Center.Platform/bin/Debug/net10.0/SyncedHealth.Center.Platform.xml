@@ -4,58 +4,615 @@
         <name>SyncedHealth.Center.Platform</name>
     </assembly>
     <members>
-        <member name="T:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService">
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User">
             <summary>
-                Service for handling User-related commands.
+                The user aggregate
+            </summary>
+            <remarks>
+                This class is used to represent a user
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User.#ctor(System.String,System.String)">
+            <summary>
+                The user aggregate
+            </summary>
+            <remarks>
+                This class is used to represent a user
+            </remarks>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User.PasswordHash">
+            <summary>
+            Update the username
+            </summary>
+            <param name="username">The new username</param>
+            <returns>The updated user</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User.UpdatePasswordHash(System.String)">
+            <summary>
+                Update the password hash
+            </summary>
+            <param name="passwordHash">The new password hash</param>
+            <returns>The updated user</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand">
+            <summary>
+                The sign in command
+            </summary>
+            <remarks>
+                This command object includes the username and password to sign in
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand.#ctor(System.String,System.String)">
+            <summary>
+                The sign in command
+            </summary>
+            <remarks>
+                This command object includes the username and password to sign in
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand">
+            <summary>
+                The sign up command
+            </summary>
+            <remarks>
+                This command object includes the username and password to sign up
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand.#ctor(System.String,System.String)">
+            <summary>
+                The sign up command
+            </summary>
+            <remarks>
+                This command object includes the username and password to sign up
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.#ctor(SyncedHealth.Center.Platform.IAM.Domain.Repositories.IUserRepository,SyncedHealth.Center.Platform.IAM.Application.Internal.OutboundServices.IHashingService,SyncedHealth.Center.Platform.IAM.Application.Internal.OutboundServices.ITokenService,SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork)">
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors.ResourceManager">
             <summary>
-                Initializes a new instance of the UserCommandService.
-            </summary>
-            <param name="userRepository">The user repository.</param>
-            <param name="hashingService">The hashing service for passwords.</param>
-            <param name="tokenService">The token service for JWT generation.</param>
-            <param name="unitOfWork">The unit of work.</param>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.SignUpCommand)">
-            <summary>
-                Handles the user sign-up command.
-            </summary>
-            <param name="command">The sign-up command parameters.</param>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.IAM.Application.Internal.CommandServices.SignInCommand)">
-            <summary>
-                Handles the user sign-in command.
-            </summary>
-            <param name="command">The sign-in command parameters.</param>
-            <returns>A tuple containing the user ID and generated token, or null if unauthorized.</returns>
-        </member>
-        <member name="T:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController">
-            <summary>
-                Controller for handling Authentication endpoints.
-                Provides Sign-In and Sign-Up capabilities.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.#ctor(SyncedHealth.Center.Platform.IAM.Domain.Services.IUserCommandService)">
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors.Culture">
             <summary>
-                Initializes a new instance of the AuthenticationController.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
-            <param name="userCommandService">The user command service to handle operations.</param>
         </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.SignIn(SyncedHealth.Center.Platform.IAM.Interfaces.REST.Resources.SignInResource)">
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es">
             <summary>
-                Signs in a user and returns an authentication token.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
-            <param name="resource">The sign-in credentials.</param>
-            <returns>An authenticated user resource containing the JWT.</returns>
         </member>
-        <member name="M:SyncedHealth.Center.Platform.IAM.Interfaces.REST.AuthenticationController.SignUp(SyncedHealth.Center.Platform.IAM.Interfaces.REST.Resources.SignUpResource)">
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es.ResourceManager">
             <summary>
-                Registers a new user into the platform.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
-            <param name="resource">The sign-up credentials.</param>
-            <returns>A confirmation message.</returns>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es.Iam_InvalidCredentials">
+            <summary>
+              Looks up a localized string similar to Username o password inválido..
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es.Iam_UserCreationFailed">
+            <summary>
+              Looks up a localized string similar to Ocurrió un error al crear el usuario..
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Domain.Model.Errors.Resources.IamErrors_es.Iam_UsernameAlreadyTaken">
+            <summary>
+              Looks up a localized string similar to El username especificado ya está siendo utilizado..
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetAllUsersQuery">
+            <summary>
+                The get all users query
+            </summary>
+            <remarks>
+                This query object is used to get all users
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByIdQuery">
+            <summary>
+                The get all users query
+            </summary>
+            <remarks>
+                This query object includes the user id to search
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByIdQuery.#ctor(System.Int32)">
+            <summary>
+                The get all users query
+            </summary>
+            <remarks>
+                This query object includes the user id to search
+            </remarks>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Domain.Repositories.IUserRepository">
+            <summary>
+                The user repository
+            </summary>
+            <remarks>
+                This repository is used to manage users
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Repositories.IUserRepository.FindByUsernameAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+                Find a user by id
+            </summary>
+            <param name="username">The username to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Domain.Repositories.IUserRepository.ExistsByUsernameAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+                Check if a user exists by username
+            </summary>
+            <param name="username">The username to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>True if the user exists, false otherwise</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services.HashingService">
+            <summary>
+                This class is responsible for hashing and validating passwords.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services.HashingService.HashPassword(System.String)">
+            <summary>
+                This method hashes a password.
+            </summary>
+            <param name="password">The password to passwordHash.</param>
+            <returns>The hashed password.</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services.HashingService.VerifyPassword(System.String,System.String)">
+            <summary>
+                This method validates a password against a passwordHash.
+            </summary>
+            <param name="password">The password to validate.</param>
+            <param name="passwordHash">The passwordHash to validate against.</param>
+            <returns>True if the password is valid, false otherwise.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UserRepository">
+            <summary>
+                The user repository
+            </summary>
+            <remarks>
+                This repository is used to manage users
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UserRepository.#ctor(SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext)">
+            <summary>
+                The user repository
+            </summary>
+            <remarks>
+                This repository is used to manage users
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UserRepository.FindByUsernameAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+                Find a user by username
+            </summary>
+            <param name="username">The username to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories.UserRepository.ExistsByUsernameAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+                Check if a user exists by username
+            </summary>
+            <param name="username">The username to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>True if the user exists, false otherwise</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes.AllowAnonymousAttribute">
+            This attribute is used to decorate controllers and actions that do not require authorization.
+            It skips authorization if the action is decorated with [AllowAnonymous] attribute.
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes.AuthorizeAttribute">
+            This attribute is used to decorate controllers and actions that require authorization.
+            It checks if the user is logged in by checking if HttpContext.User is set.
+            If a user is not signed in, then it returns a 401-status code.
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes.AuthorizeAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+                This method is called when authorization is required.
+                It checks if the user is logged in by checking if HttpContext.User is set.
+                If a user is not signed in then it returns 401-status code.
+            </summary>
+            <param name="context">The authorization filter context</param>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Components.RequestAuthorizationMiddleware">
+            RequestAuthorizationMiddleware is a custom middleware.
+            This middleware is used to authorize requests.
+            It validates a token is included in the request header and that the token is valid.
+            If the token is valid then it sets the user in HttpContext.Items["User"].
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Components.RequestAuthorizationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            RequestAuthorizationMiddleware is a custom middleware.
+            This middleware is used to authorize requests.
+            It validates a token is included in the request header and that the token is valid.
+            If the token is valid then it sets the user in HttpContext.Items["User"].
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Components.RequestAuthorizationMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService,SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService)">
+            InvokeAsync is called by the ASP.NET Core runtime.
+            It is used to authorize requests.
+            It validates a token is included in the request header and that the token is valid.
+            If the token is valid then it sets the user in HttpContext.Items["User"].
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Extensions.RequestAuthorizationMiddlewareExtensions">
+            RequestAuthorizationMiddlewareExtensions
+            This class includes a method extension to register RequestAuthorizationMiddleware in the ASP.NET Core pipeline.
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Extensions.RequestAuthorizationMiddlewareExtensions.UseRequestAuthorization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            UseRequestAuthorization extension method is used to register RequestAuthorizationMiddleware in the ASP.NET Core pipeline.
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration.TokenSettings">
+            <summary>
+                This class is used to store the token settings.
+                It is used to configure the token settings in the app settings .json file.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services.TokenService">
+            <summary>
+                The token service
+            </summary>
+            <remarks>
+                This class is used to generate and validate tokens
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services.TokenService.#ctor(Microsoft.Extensions.Options.IOptions{SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration.TokenSettings})">
+            <summary>
+                The token service
+            </summary>
+            <remarks>
+                This class is used to generate and validate tokens
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services.TokenService.GenerateToken(SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User)">
+            <summary>
+                Generate token
+            </summary>
+            <param name="user">The user for token generation</param>
+            <returns>The generated Token</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services.TokenService.ValidateToken(System.String)">
+            <summary>
+                VerifyPassword token
+            </summary>
+            <param name="token">The token to validate</param>
+            <returns>The user id if the token is valid, null otherwise</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.AuthenticationController.SignIn(SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignInResource,System.Threading.CancellationToken)">
+            <summary>
+                Sign in endpoint. It allows authenticating a user
+            </summary>
+            <param name="signInResource">The sign-in resource containing username and password.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The authenticated user resource, including a JWT token</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.AuthenticationController.SignUp(SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignUpResource,System.Threading.CancellationToken)">
+            <summary>
+                Sign up endpoint. It allows creating a new user
+            </summary>
+            <param name="signUpResource">The sign-up resource containing username and password.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A confirmation message on successful creation.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.AuthenticatedUserResourceFromEntityAssembler">
+            <summary>
+                Assembler responsible for transforming a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate and a JWT token into an
+                <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.AuthenticatedUserResource" />.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.AuthenticatedUserResourceFromEntityAssembler.ToResourceFromEntity(SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User,System.String)">
+            <summary>
+                Converts a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate and a JWT token to an <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.AuthenticatedUserResource" />.
+            </summary>
+            <param name="user">
+                The <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate representing the authenticated user. Must not be null.
+            </param>
+            <param name="token">
+                The JWT token generated for the authenticated user. Must not be null or empty.
+            </param>
+            <returns>
+                A new <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.AuthenticatedUserResource" /> instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                Thrown if <paramref name="user" /> is null or <paramref name="token" /> is
+                null.
+            </exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="token" /> is empty.</exception>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.SignInCommandFromResourceAssembler">
+            <summary>
+                Assembler responsible for transforming a <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignInResource" /> into a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand" />.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.SignInCommandFromResourceAssembler.ToCommandFromResource(SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignInResource)">
+            <summary>
+                Converts a <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignInResource" /> to a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand" />.
+            </summary>
+            <param name="resource">
+                The <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignInResource" /> containing the sign-in data. Must not be null.
+            </param>
+            <returns>
+                A new <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand" /> instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the input <paramref name="resource" /> is null.</exception>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.SignUpCommandFromResourceAssembler">
+            <summary>
+                Assembler responsible for transforming a <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignUpResource" /> into a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand" />.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.SignUpCommandFromResourceAssembler.ToCommandFromResource(SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignUpResource)">
+            <summary>
+                Converts a <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignUpResource" /> to a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand" />.
+            </summary>
+            <param name="resource">
+                The <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.SignUpResource" /> containing the sign-up data. Must not be null.
+            </param>
+            <returns>
+                A new <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand" /> instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the input <paramref name="resource" /> is null.</exception>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.UserResourceFromEntityAssembler">
+            <summary>
+                Assembler responsible for transforming a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate into a <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.UserResource" />.
+            </summary>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform.UserResourceFromEntityAssembler.ToResourceFromEntity(SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User)">
+            <summary>
+                Converts a <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate to its <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.UserResource" /> representation.
+            </summary>
+            <param name="user">
+                The <see cref="T:SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User" /> aggregate to convert. Must not be null.
+            </param>
+            <returns>
+                A new <see cref="T:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources.UserResource" /> instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the input <paramref name="user" /> is null.</exception>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.UsersController.GetUserById(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+                Get user by id endpoint. It allows to get a user by id
+            </summary>
+            <param name="id">The user id</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The user resource</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Interfaces.Rest.UsersController.GetAllUsers(System.Threading.CancellationToken)">
+            <summary>
+                Get all users' endpoint. It allows getting all users
+            </summary>
+            <returns>The user resources</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_en.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SyncedHealth.Center.Platform.Iam.Resources.IamMessages_es.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.CommandServices.IUserCommandService">
+            <summary>
+                The user command service
+            </summary>
+            <remarks>
+                This interface is used to handle user commands
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.CommandServices.IUserCommandService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand,System.Threading.CancellationToken)">
+            <summary>
+                Handle sign in command
+            </summary>
+            <param name="command">The sign in command</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The authenticated user and the JWT token</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.CommandServices.IUserCommandService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand,System.Threading.CancellationToken)">
+            <summary>
+                Handle sign up command
+            </summary>
+            <param name="command">The sign-up command</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>A confirmation message on successful creation.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices.UserCommandService">
+            <summary>
+                The user command service
+            </summary>
+            <remarks>
+                This class is used to handle user commands
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices.UserCommandService.#ctor(SyncedHealth.Center.Platform.Iam.Domain.Repositories.IUserRepository,SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService,SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.IHashingService,SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork,Microsoft.Extensions.Localization.IStringLocalizer{SyncedHealth.Center.Platform.Shared.Resources.Errors.ErrorMessages})">
+            <summary>
+                The user command service
+            </summary>
+            <remarks>
+                This class is used to handle user commands
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignInCommand,System.Threading.CancellationToken)">
+            <summary>
+                Handle sign in command
+            </summary>
+            <param name="command">The sign in command</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The authenticated user and the JWT token</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices.UserCommandService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Commands.SignUpCommand,System.Threading.CancellationToken)">
+            <summary>
+                Handle sign up command
+            </summary>
+            <param name="command">The sign-up command</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>A confirmation message on successful creation.</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.IHashingService">
+            <summary>
+                The hashing service interface
+            </summary>
+            <remarks>
+                This interface is used to hash and verify passwords
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.IHashingService.HashPassword(System.String)">
+            <summary>
+                Hash a password
+            </summary>
+            <param name="password">The password to hash</param>
+            <returns>The hashed password</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.IHashingService.VerifyPassword(System.String,System.String)">
+            <summary>
+                Verify a password
+            </summary>
+            <param name="password">The password to verify</param>
+            <param name="passwordHash">The password hash to verify against</param>
+            <returns>True if the password is valid, false otherwise</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService">
+            <summary>
+                The token service interface
+            </summary>
+            <remarks>
+                This interface is used to generate and validate JWT tokens
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService.GenerateToken(SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User)">
+            <summary>
+                Generate a JWT token
+            </summary>
+            <param name="user">The user to generate the token for</param>
+            <returns>The generated token</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices.ITokenService.ValidateToken(System.String)">
+            <summary>
+                Validate a JWT token
+            </summary>
+            <param name="token">The token to validate</param>
+            <returns>The user id if the token is valid, null otherwise</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices.UserQueryService">
+            <summary>
+                The user query service implementation class
+            </summary>
+            <remarks>
+                This class is used to handle user queries
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices.UserQueryService.#ctor(SyncedHealth.Center.Platform.Iam.Domain.Repositories.IUserRepository)">
+            <summary>
+                The user query service implementation class
+            </summary>
+            <remarks>
+                This class is used to handle user queries
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices.UserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByIdQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get user by id query
+            </summary>
+            <param name="query">The query object containing the user id to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices.UserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetAllUsersQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get user by username query
+            </summary>
+            <param name="query">The query object for getting all users</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices.UserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByUsernameQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get user by username query
+            </summary>
+            <param name="query">The query object containing the username to search</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService">
+            <summary>
+                The user query service interface
+            </summary>
+            <remarks>
+                This service contract specifies handling behavior used to query users
+            </remarks>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByIdQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get user by id query
+            </summary>
+            <param name="query">The get user by id query</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user if found, null otherwise</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetAllUsersQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get all users query
+            </summary>
+            <param name="query">The get all users query</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The list of users</returns>
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Iam.Application.QueryServices.IUserQueryService.Handle(SyncedHealth.Center.Platform.Iam.Domain.Model.Queries.GetUserByUsernameQuery,System.Threading.CancellationToken)">
+            <summary>
+                Handle get user by username query
+            </summary>
+            <param name="query">The get user by username query</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>The user if found, null otherwise</returns>
+        </member>
+        <member name="T:SyncedHealth.Center.Platform.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SyncedHealth.Center.Platform.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:SyncedHealth.Center.Platform.Shared.Application.Model.Result`1">
             <summary>
@@ -419,43 +976,6 @@
             </summary>
             <param name="builder">The application builder</param>
             <returns>The application builder</returns>
-        </member>
-        <member name="T:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService">
-            <summary>
-                Service for handling Subscription-related commands.
-            </summary>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService.#ctor(SyncedHealth.Center.Platform.Subscription.Domain.Repositories.ISubscriptionPlanRepository,SyncedHealth.Center.Platform.Shared.Domain.Repositories.IUnitOfWork)">
-            <summary>
-                Initializes a new instance of the SubscriptionCommandService.
-            </summary>
-            <param name="planRepository">The subscription plan repository.</param>
-            <param name="unitOfWork">The unit of work.</param>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.SubscriptionCommandService.Handle(SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices.CreateSubscriptionPlanCommand)">
-            <summary>
-                Handles the creation of a new subscription plan.
-            </summary>
-            <param name="command">The command parameters to create the plan.</param>
-            <returns>The ID of the created plan.</returns>
-        </member>
-        <member name="T:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController">
-            <summary>
-                Controller for managing Subscription Plans.
-            </summary>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController.#ctor(SyncedHealth.Center.Platform.Subscription.Domain.Services.ISubscriptionCommandService)">
-            <summary>
-                Initializes a new instance of the SubscriptionPlansController.
-            </summary>
-            <param name="subscriptionCommandService">The subscription command service to handle operations.</param>
-        </member>
-        <member name="M:SyncedHealth.Center.Platform.Subscription.Interfaces.REST.SubscriptionPlansController.CreatePlan(SyncedHealth.Center.Platform.Subscription.Interfaces.REST.Resources.CreateSubscriptionPlanResource)">
-            <summary>
-                Creates a new subscription plan.
-            </summary>
-            <param name="resource">The plan details.</param>
-            <returns>The newly created subscription plan basic details.</returns>
         </member>
         <member name="T:Program">
             <summary>
