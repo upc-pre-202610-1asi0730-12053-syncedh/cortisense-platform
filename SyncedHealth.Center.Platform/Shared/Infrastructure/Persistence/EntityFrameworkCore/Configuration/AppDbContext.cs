@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
+using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 
@@ -37,6 +38,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         
         // IAM Context
         builder.ApplyIamConfiguration();
+        
+        // Clinical Risk Assessment Context
+        builder.ApplyClinicalRiskAssessmentConfiguration();
         
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();

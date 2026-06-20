@@ -1,0 +1,12 @@
+namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+
+public record CreateVitalSignReadingCommand(
+    int OrganizationId,
+    int UserId,
+    int HeartRate,
+    int Hrv,
+    int FatigueLevel,
+    decimal CortisolLevel,
+    string SensorStatus,
+    DateTimeOffset? RecordedAt
+);
