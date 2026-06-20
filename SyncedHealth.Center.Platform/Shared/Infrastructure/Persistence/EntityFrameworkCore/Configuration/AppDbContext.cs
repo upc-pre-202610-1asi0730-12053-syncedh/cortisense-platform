@@ -4,6 +4,7 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrame
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
+using SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 
@@ -45,6 +46,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         
         // Subscription Context
         builder.ApplySubscriptionConfiguration();
+        
+        // Shift Coordination Context
+        builder.ApplyShiftCoordinationConfiguration();
         
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();
