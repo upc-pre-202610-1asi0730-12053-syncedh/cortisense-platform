@@ -1,21 +1,16 @@
+using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 
-public static class SubscriptionResourceFromEntityAssembler
+public static class CreateSubscriptionCommandFromResourceAssembler
 {
-    public static SubscriptionResource ToResourceFromEntity(Domain.Model.Aggregates.Subscription entity)
+    public static CreateSubscriptionCommand ToCommandFromResource(CreateSubscriptionResource resource)
     {
-        return new SubscriptionResource
-        {
-            Id = entity.Id,
-            OrganizationId = entity.OrganizationId,
-            PlanId = entity.PlanId,
-            Status = entity.Status.ToString().ToUpperInvariant(),
-            StartedAt = entity.StartedAt,
-            CancelledAt = entity.CancelledAt,
-            StripeSubscriptionId = entity.StripeSubscriptionId,
-            StripeCustomerId = entity.StripeCustomerId
-        };
+        return new CreateSubscriptionCommand(
+            resource.OrganizationId,
+            resource.PlanId,
+            resource.StartedAt
+        );
     }
 }
