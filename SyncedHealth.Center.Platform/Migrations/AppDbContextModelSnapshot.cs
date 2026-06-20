@@ -19,6 +19,69 @@ namespace SyncedHealth.Center.Platform.Migrations
                 .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<int>("ActorUserId")
+                        .HasColumnType("int")
+                        .HasColumnName("actor_user_id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("description");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<int>("ResourceId")
+                        .HasColumnType("int")
+                        .HasColumnName("resource_id");
+
+                    b.Property<string>("ResourceType")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("resource_type");
+
+                    b.Property<string>("Severity")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("severity");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("source");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("type");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_audit_logs");
+
+                    b.ToTable("audit_logs", (string)null);
+                });
+
             modelBuilder.Entity("SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates.ClinicalAlert", b =>
                 {
                     b.Property<int>("Id")
@@ -287,6 +350,305 @@ namespace SyncedHealth.Center.Platform.Migrations
                         .HasName("p_k_users");
 
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.ShiftRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CheckInAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("check_in_at");
+
+                    b.Property<DateTimeOffset?>("CheckOutAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("check_out_at");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<DateTimeOffset>("ScheduledEnd")
+                        .HasColumnType("datetime")
+                        .HasColumnName("scheduled_end");
+
+                    b.Property<DateTimeOffset>("ScheduledStart")
+                        .HasColumnType("datetime")
+                        .HasColumnName("scheduled_start");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("type");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("WorkAreaId")
+                        .HasColumnType("int")
+                        .HasColumnName("work_area_id");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_shift_records");
+
+                    b.ToTable("shift_records", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.CheckoutSession", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<int>("AdministratorId")
+                        .HasColumnType("int")
+                        .HasColumnName("administrator_id");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("cancelled_at");
+
+                    b.Property<DateTimeOffset?>("CompletedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("completed_at");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("error_message");
+
+                    b.Property<DateTimeOffset?>("FailedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("failed_at");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<string>("PlanCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("plan_code");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int")
+                        .HasColumnName("plan_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("StripeCustomerId")
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("stripe_customer_id");
+
+                    b.Property<string>("StripeSessionId")
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("stripe_session_id");
+
+                    b.Property<string>("StripeSubscriptionId")
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("stripe_subscription_id");
+
+                    b.Property<string>("StripeUrl")
+                        .HasMaxLength(600)
+                        .HasColumnType("varchar(600)")
+                        .HasColumnName("stripe_url");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("int")
+                        .HasColumnName("subscription_id");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_checkout_sessions");
+
+                    b.ToTable("checkout_sessions", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.Plan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("BillingPeriod")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("billing_period");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("code");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("currency");
+
+                    b.Property<int>("DataHistoryDays")
+                        .HasColumnType("int")
+                        .HasColumnName("data_history_days");
+
+                    b.Property<string>("DisabledModules")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("disabled_modules");
+
+                    b.Property<string>("EnabledModules")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("enabled_modules");
+
+                    b.Property<string>("FeatureKeys")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("feature_keys");
+
+                    b.Property<int?>("MaxDoctors")
+                        .HasColumnType("int")
+                        .HasColumnName("max_doctors");
+
+                    b.Property<int>("MaxSupervisors")
+                        .HasColumnType("int")
+                        .HasColumnName("max_supervisors");
+
+                    b.Property<int>("MaxTeams")
+                        .HasColumnType("int")
+                        .HasColumnName("max_teams");
+
+                    b.Property<int>("MaxWorkAreas")
+                        .HasColumnType("int")
+                        .HasColumnName("max_work_areas");
+
+                    b.Property<int>("MonthlyInvitations")
+                        .HasColumnType("int")
+                        .HasColumnName("monthly_invitations");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("name");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)")
+                        .HasColumnName("price");
+
+                    b.Property<bool>("Recommended")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("recommended");
+
+                    b.Property<string>("SupportLevel")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("support_level");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_plans");
+
+                    b.ToTable("plans", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.Subscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("cancelled_at");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int")
+                        .HasColumnName("plan_id");
+
+                    b.Property<DateTimeOffset>("StartedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("started_at");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("StripeCustomerId")
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("stripe_customer_id");
+
+                    b.Property<string>("StripeSubscriptionId")
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("stripe_subscription_id");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_subscriptions");
+
+                    b.ToTable("subscriptions", (string)null);
                 });
 #pragma warning restore 612, 618
         }

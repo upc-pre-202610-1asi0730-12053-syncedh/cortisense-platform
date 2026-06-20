@@ -58,7 +58,6 @@ namespace SyncedHealth.Center.Platform.Migrations
                     table.PrimaryKey("p_k_risk_assessments", x => x.id);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
-            
 
             migrationBuilder.CreateTable(
                 name: "vital_sign_anomalies",
