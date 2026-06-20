@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Checkout;
@@ -8,6 +9,7 @@ using SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
 using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 using SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources.Billing;
+using SyncedHealth.Center.Platform.Subscription.Resources;
 
 namespace SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
 
@@ -16,32 +18,34 @@ public class StripeBillingService(
     ICheckoutSessionRepository checkoutSessionRepository,
     ISubscriptionRepository subscriptionRepository,
     IUnitOfWork unitOfWork,
-    IOptions<StripeSettings> stripeSettingsOptions)
+    IOptions<StripeSettings> stripeSettingsOptions,
+    IStringLocalizer<SubscriptionMessages> localizer)
     : IStripeBillingService
 {
     private readonly StripeSettings _stripeSettings = stripeSettingsOptions.Value;
+    private readonly IStringLocalizer<SubscriptionMessages> _localizer = localizer;
 
     public async Task<CreateStripeCheckoutSessionResponse> CreateCheckoutSessionAsync(
         CreateStripeCheckoutSessionResource resource,
         CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_stripeSettings.SecretKey))
-            throw new InvalidOperationException("Stripe:SecretKey is not configured.");
+            throw new InvalidOperationException(_localizer["StripeSecretKeyNotConfigured"]);
 
         if (string.IsNullOrWhiteSpace(resource.CustomerEmail))
-            throw new InvalidOperationException("CustomerEmail is required.");
+            throw new InvalidOperationException(_localizer["CustomerEmailRequired"]);
 
         var plan = await planRepository.FindByIdAsync(resource.PlanId, cancellationToken);
 
         if (plan is null)
-            throw new InvalidOperationException("Plan not found.");
+            throw new InvalidOperationException(_localizer["PlanNotFound"]);
 
         var subscription = await subscriptionRepository.FindByIdAsync(
             resource.SubscriptionId,
             cancellationToken);
 
         if (subscription is null)
-            throw new InvalidOperationException("Subscription not found.");
+            throw new InvalidOperationException(_localizer["SubscriptionNotFound"]);
 
         var checkoutSession = new Domain.Model.Aggregates.CheckoutSession(
             new CreateCheckoutSessionCommand(
@@ -138,7 +142,7 @@ public class StripeBillingService(
         CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_stripeSettings.SecretKey))
-            throw new InvalidOperationException("Stripe:SecretKey is not configured.");
+            throw new InvalidOperationException(_localizer["StripeSecretKeyNotConfigured"]);
 
         StripeConfiguration.ApiKey = _stripeSettings.SecretKey;
 

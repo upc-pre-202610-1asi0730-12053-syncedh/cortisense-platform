@@ -79,6 +79,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ShiftCoordinationMessages.es.resx</DependentUpon>
     </Compile>
+    <Compile Update="Subscription\Resources\SubscriptionMessages.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SubscriptionMessages.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Subscription\Resources\SubscriptionMessages.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SubscriptionMessages.es.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -118,6 +128,14 @@
     <EmbeddedResource Update="ShiftCoordination\Resources\ShiftCoordinationMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ShiftCoordinationMessages.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Subscription\Resources\SubscriptionMessages.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubscriptionMessages.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Subscription\Resources\SubscriptionMessages.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubscriptionMessages.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="StripeSecretKeyNotConfigured" xml:space="preserve">
+    <value>Stripe secret key is not configured.</value>
+  </data>
+
+    <data name="CustomerEmailRequired" xml:space="preserve">
+    <value>Customer email is required.</value>
+  </data>
+
+    <data name="PlanNotFound" xml:space="preserve">
+    <value>Plan not found.</value>
+  </data>
+
+    <data name="SubscriptionNotFound" xml:space="preserve">
+    <value>Subscription not found.</value>
+  </data>
+
+    <data name="SessionIdRequired" xml:space="preserve">
+    <value>session_id is required.</value>
+  </data>
+
+    <data name="CheckoutSessionNotFound" xml:space="preserve">
+    <value>Checkout session not found.</value>
+  </data>
+
+    <data name="CheckoutSessionAlreadyCompleted" xml:space="preserve">
+    <value>This checkout session is already completed.</value>
+  </data>
+
+    <data name="CheckoutSessionCreated" xml:space="preserve">
+    <value>Checkout session created successfully.</value>
+  </data>
+
+    <data name="CheckoutSessionCancelled" xml:space="preserve">
+    <value>Checkout session cancelled successfully.</value>
+  </data>
+
+    <data name="StripeSessionStatusRetrieved" xml:space="preserve">
+    <value>Stripe checkout session status retrieved successfully.</value>
+  </data>
+
+    <data name="StripeWebhookReceived" xml:space="preserve">
+    <value>Stripe webhook received successfully.</value>
+  </data>
+</root>
