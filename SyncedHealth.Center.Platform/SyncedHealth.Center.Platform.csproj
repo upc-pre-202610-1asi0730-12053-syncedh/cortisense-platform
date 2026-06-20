@@ -85,8 +85,6 @@
   <ItemGroup>
     <Folder Include="ClinicalRiskAssessment\Application\CommandServices\" />
     <Folder Include="ClinicalRiskAssessment\Application\Internal\CommandServices\" />
-    <Folder Include="ClinicalRiskAssessment\Application\Internal\QueryServices\" />
-    <Folder Include="ClinicalRiskAssessment\Application\QueryServices\" />
     <Folder Include="ClinicalRiskAssessment\Domain\Model\Errors\" />
     <Folder Include="ClinicalRiskAssessment\Domain\Model\ValueObjects\" />
     <Folder Include="ClinicalRiskAssessment\Interfaces\Rest\Resources\" />
