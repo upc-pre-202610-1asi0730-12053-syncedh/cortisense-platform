@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="InvalidOrganizationOrUser" xml:space="preserve">
+    <value>OrganizationId and UserId must be valid.</value>
+  </data>
+    <data name="InvalidFatigueLevel" xml:space="preserve">
+    <value>FatigueLevel must be between 0 and 100.</value>
+  </data>
+    <data name="InvalidRiskLevel" xml:space="preserve">
+    <value>RiskLevel must be LOW, MEDIUM, HIGH or CRITICAL.</value>
+  </data>
+    <data name="InvalidHeartRateOrHrv" xml:space="preserve">
+    <value>HeartRate and Hrv must be greater than zero.</value>
+  </data>
+    <data name="InvalidSeverity" xml:space="preserve">
+    <value>Severity must be LOW, MEDIUM, HIGH or CRITICAL.</value>
+  </data>
+    <data name="InvalidClinicalAlertStatus" xml:space="preserve">
+    <value>Status must be OPEN, ACKNOWLEDGED or RESOLVED.</value>
+  </data>
+    <data name="InvalidAnomalyStatus" xml:space="preserve">
+    <value>Status must be OPEN, REVIEWED or RESOLVED.</value>
+  </data>
+    <data name="MessageRequired" xml:space="preserve">
+    <value>Message is required.</value>
+  </data>
+    <data name="TypeRequired" xml:space="preserve">
+    <value>Type is required.</value>
+  </data>
+    <data name="ValueAndThresholdRequired" xml:space="preserve">
+    <value>Value and Threshold are required.</value>
+  </data>
+    <data name="ClinicalAlertNotFound" xml:space="preserve">
+    <value>Clinical alert not found.</value>
+  </data>
+    <data name="VitalSignAnomalyNotFound" xml:space="preserve">
+    <value>Vital sign anomaly not found.</value>
+  </data>
+    <data name="InvalidCortisolLevel" xml:space="preserve">
+    <value>CortisolLevel cannot be negative.</value>
+  </data>
+    <data name="InvalidSensorStatus" xml:space="preserve">
+    <value>SensorStatus must be ACTIVE, DISCONNECTED or ERROR.</value>
+  </data>
+    <data name="OperationCancelled" xml:space="preserve">
+    <value>The operation was cancelled.</value>
+  </data>
+    <data name="CreateRiskAssessmentDatabaseError" xml:space="preserve">
+    <value>A database error occurred while creating the risk assessment.</value>
+  </data>
+    <data name="CreateClinicalAlertDatabaseError" xml:space="preserve">
+    <value>A database error occurred while creating the clinical alert.</value>
+  </data>
+    <data name="UpdateClinicalAlertDatabaseError" xml:space="preserve">
+    <value>A database error occurred while updating the clinical alert.</value>
+  </data>
+    <data name="CreateVitalSignAnomalyDatabaseError" xml:space="preserve">
+    <value>A database error occurred while creating the vital sign anomaly.</value>
+  </data>
+    <data name="UpdateVitalSignAnomalyDatabaseError" xml:space="preserve">
+    <value>A database error occurred while updating the vital sign anomaly.</value>
+  </data>
+    <data name="CreateVitalSignReadingDatabaseError" xml:space="preserve">
+    <value>A database error occurred while creating the vital sign reading.</value>
+  </data>
+    <data name="UnexpectedRiskAssessmentError" xml:space="preserve">
+    <value>An unexpected error occurred while creating the risk assessment.</value>
+  </data>
+    <data name="UnexpectedClinicalAlertCreateError" xml:space="preserve">
+    <value>An unexpected error occurred while creating the clinical alert.</value>
+  </data>
+    <data name="UnexpectedClinicalAlertUpdateError" xml:space="preserve">
+    <value>An unexpected error occurred while updating the clinical alert.</value>
+  </data>
+    <data name="UnexpectedVitalSignAnomalyCreateError" xml:space="preserve">
+    <value>An unexpected error occurred while creating the vital sign anomaly.</value>
+  </data>
+    <data name="UnexpectedVitalSignAnomalyUpdateError" xml:space="preserve">
+    <value>An unexpected error occurred while updating the vital sign anomaly.</value>
+  </data>
+    <data name="UnexpectedVitalSignReadingCreateError" xml:space="preserve">
+    <value>An unexpected error occurred while creating the vital sign reading.</value>
+  </data>
+</root>

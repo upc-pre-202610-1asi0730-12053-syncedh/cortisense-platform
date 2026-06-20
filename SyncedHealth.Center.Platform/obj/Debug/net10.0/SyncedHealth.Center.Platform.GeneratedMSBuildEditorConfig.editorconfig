@@ -30,12 +30,26 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Shared/Resources/CommonMessages.en.resx]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Shared\Resources\CommonMessages.en.resx
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Domain/Model/Errors/Resources/IamErrors.resx]
 build_metadata.AdditionalFiles.TargetPath = Iam\Domain\Model\Errors\Resources\IamErrors.resx
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Shared/CommonMessages.en.resx]
-build_metadata.AdditionalFiles.TargetPath = Shared\CommonMessages.en.resx
+[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Domain/Model/Errors/Resources/IamErrors.es.resx]
+build_metadata.AdditionalFiles.TargetPath = Iam\Domain\Model\Errors\Resources\IamErrors.es.resx
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.en.resx]
+build_metadata.AdditionalFiles.TargetPath = Iam\Resources\IamMessages.en.resx
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.es.resx]
+build_metadata.AdditionalFiles.TargetPath = Iam\Resources\IamMessages.es.resx
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/marsr/cortisense-platform/SyncedHealth.Center.Platform/Shared/Resources/Errors/ErrorMessages.en.resx]

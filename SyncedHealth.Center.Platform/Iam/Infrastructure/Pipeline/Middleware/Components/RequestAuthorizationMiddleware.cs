@@ -22,14 +22,16 @@ public class RequestAuthorizationMiddleware(RequestDelegate next)
     public async Task InvokeAsync(
         HttpContext context,
         IUserQueryService userQueryService,
-        ITokenService tokenService,
-        CancellationToken cancellationToken)
+        ITokenService tokenService)
     {
+        var cancellationToken = context.RequestAborted;
+
         Console.WriteLine("Entering InvokeAsync");
         // skip authorization if endpoint is decorated with [AllowAnonymous] attribute
-        var allowAnonymous = context.Request.HttpContext.GetEndpoint()!.Metadata
-            .Any(m => m.GetType() == typeof(AllowAnonymousAttribute));
+        var allowAnonymous = context.GetEndpoint()?.Metadata
+            .Any(m => m.GetType() == typeof(AllowAnonymousAttribute)) ?? false;
         Console.WriteLine($"Allow Anonymous is {allowAnonymous}");
+        
         if (allowAnonymous)
         {
             Console.WriteLine("Skipping authorization");
@@ -44,13 +46,21 @@ public class RequestAuthorizationMiddleware(RequestDelegate next)
 
 
         // if token is null then throw exception
-        if (token == null) throw new Exception("Null or invalid token");
+        if (token == null){
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsJsonAsync(new { title = "Unauthorized", status = 401, detail = "Null or invalid token" });
+            return;
+        }
 
         // validate token
         var userId = await tokenService.ValidateToken(token);
 
         // if token is invalid then throw exception
-        if (userId == null) throw new Exception("Invalid token");
+        if (userId == null){
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsJsonAsync(new { title = "Unauthorized", status = 401, detail = "Invalid token" });
+            return;
+        }
 
         // get user by id
         var getUserByIdQuery = new GetUserByIdQuery(userId.Value);

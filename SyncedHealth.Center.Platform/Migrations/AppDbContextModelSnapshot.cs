@@ -7,7 +7,7 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrame
 
 #nullable disable
 
-namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Migrations
+namespace SyncedHealth.Center.Platform.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -19,67 +19,35 @@ namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityF
                 .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog", b =>
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    b.Property<int>("ActorUserId")
-                        .HasColumnType("int")
-                        .HasColumnName("actor_user_id");
-
                     b.Property<DateTimeOffset?>("CreatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("created_at");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
-                        .HasColumnName("description");
-
-                    b.Property<int>("OrganizationId")
-                        .HasColumnType("int")
-                        .HasColumnName("organization_id");
-
-                    b.Property<int>("ResourceId")
-                        .HasColumnType("int")
-                        .HasColumnName("resource_id");
-
-                    b.Property<string>("ResourceType")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)")
-                        .HasColumnName("resource_type");
-
-                    b.Property<string>("Severity")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("severity");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)")
-                        .HasColumnName("source");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)")
-                        .HasColumnName("type");
+                        .HasColumnType("longtext")
+                        .HasColumnName("password_hash");
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("p_k_audit_logs");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("username");
 
-                    b.ToTable("audit_logs", (string)null);
+                    b.HasKey("Id")
+                        .HasName("p_k_users");
+
+                    b.ToTable("users");
                 });
 #pragma warning restore 612, 618
         }

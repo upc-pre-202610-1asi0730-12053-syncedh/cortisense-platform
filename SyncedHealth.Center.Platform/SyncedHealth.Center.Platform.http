@@ -1,6 +1,6 @@
 @SyncedHealth.Center.Platform_HostAddress = http://localhost:5019
 
-GET {{SyncedHealth.Center.Platform_HostAddress}}/weatherforecast/
+GET {{SyncedHealth.Center.Platform_HostAddress}}
 Accept: application/json
 
 ###
