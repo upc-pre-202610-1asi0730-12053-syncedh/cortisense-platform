@@ -1,0 +1,3 @@
+namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Queries;
+
+public record GetVitalSignAnomaliesByOrganizationIdQuery(int OrganizationId);

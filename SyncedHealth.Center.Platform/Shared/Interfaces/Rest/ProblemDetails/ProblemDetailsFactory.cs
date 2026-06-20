@@ -12,7 +12,7 @@ using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
 
 
-namespace SyncedHealth.Center.Platform.Shared.Interfaces.REST.ProblemDetails;
+namespace SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 
 public class ProblemDetailsFactory
