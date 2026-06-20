@@ -13,5 +13,7 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SyncedHealth_002ECenter_002EPlatform_002FShared_002FCommonMessages/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SyncedHealth_002ECenter_002EPlatform_002FShared_002FCommonMessages/@EntryIndexRemoved">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SyncedHealth_002ECenter_002EPlatform_002FShared_002FResources_002FCommonMessages/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SyncedHealth_002ECenter_002EPlatform_002FShared_002FResources_002FErrors_002FErrorMessages/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>

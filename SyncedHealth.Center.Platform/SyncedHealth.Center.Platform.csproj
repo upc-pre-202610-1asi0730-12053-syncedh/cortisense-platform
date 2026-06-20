@@ -82,4 +82,8 @@
     <None Remove="IAM\Application\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Shared\Resources\CommonMessages.en.resx" />
+  </ItemGroup>
+
 </Project>
