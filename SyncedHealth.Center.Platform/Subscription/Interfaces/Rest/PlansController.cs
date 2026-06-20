@@ -8,7 +8,7 @@ using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/plans")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Plan Endpoints.")]
 public class PlansController(IPlanQueryService planQueryService) : ControllerBase

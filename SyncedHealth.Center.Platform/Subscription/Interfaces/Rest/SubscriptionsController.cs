@@ -11,7 +11,7 @@ using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/subscriptions")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Subscription Endpoints.")]
 public class SubscriptionsController(
@@ -21,36 +21,61 @@ public class SubscriptionsController(
 {
     [HttpGet]
     [SwaggerOperation("Get Subscriptions", "Get all subscriptions or filter by organizationId.")]
-    public async Task<IActionResult> GetSubscriptions([FromQuery] int? organizationId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetSubscriptions(
+        [FromQuery] int? organizationId,
+        CancellationToken cancellationToken)
     {
         if (organizationId.HasValue)
-            return Ok((await subscriptionQueryService.Handle(new GetSubscriptionByOrganizationIdQuery(organizationId.Value), cancellationToken)).Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity));
+        {
+            var result = await subscriptionQueryService.Handle(
+                new GetSubscriptionByOrganizationIdQuery(organizationId.Value),
+                cancellationToken);
 
-        return Ok((await subscriptionQueryService.Handle(new GetAllSubscriptionsQuery(), cancellationToken)).Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity));
+            return Ok(result.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity));
+        }
+
+        var subscriptions = await subscriptionQueryService.Handle(
+            new GetAllSubscriptionsQuery(),
+            cancellationToken);
+
+        return Ok(subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity));
     }
 
     [HttpPost]
     [SwaggerOperation("Create Subscription", "Create a new subscription.")]
-    public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionResource resource, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateSubscription(
+        [FromBody] CreateSubscriptionResource resource,
+        CancellationToken cancellationToken)
     {
         var command = CreateSubscriptionCommandFromResourceAssembler.ToCommandFromResource(resource);
         var result = await subscriptionCommandService.Handle(command, cancellationToken);
-        
+
         return SubscriptionActionResultAssembler.ToActionResultFromCreateSubscriptionResult(
-            this, result, problemDetailsFactory,
-            subscription => CreatedAtAction(nameof(GetSubscriptions), new { organizationId = subscription.OrganizationId }, SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription))
+            this,
+            result,
+            problemDetailsFactory,
+            subscription => CreatedAtAction(
+                nameof(GetSubscriptions),
+                new { organizationId = subscription.OrganizationId },
+                SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription)
+            )
         );
     }
 
     [HttpPatch("{id:int}")]
-    [SwaggerOperation("Update Subscription Plan", "Update a subscription to a new plan.")]
-    public async Task<IActionResult> UpdateSubscription(int id, [FromBody] UpdateSubscriptionResource resource, CancellationToken cancellationToken)
+    [SwaggerOperation("Update Subscription", "Update the plan of an existing subscription.")]
+    public async Task<IActionResult> UpdateSubscription(
+        int id,
+        [FromBody] UpdateSubscriptionResource resource,
+        CancellationToken cancellationToken)
     {
         var command = UpdateSubscriptionCommandFromResourceAssembler.ToCommandFromResource(id, resource);
         var result = await subscriptionCommandService.Handle(command, cancellationToken);
-        
+
         return SubscriptionActionResultAssembler.ToActionResultFromUpdateSubscriptionResult(
-            this, result, problemDetailsFactory,
+            this,
+            result,
+            problemDetailsFactory,
             subscription => Ok(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription))
         );
     }

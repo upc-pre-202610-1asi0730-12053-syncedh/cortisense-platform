@@ -11,7 +11,7 @@ using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 
 [ApiController]
-[Route("api/v1/checkout-sessions")]
+[Route("api/v1/checkoutSessions")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Checkout Session Endpoints.")]
 public class CheckoutSessionsController(
