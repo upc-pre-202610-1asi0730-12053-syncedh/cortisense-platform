@@ -137,9 +137,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SubscriptionMessages.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Update="Shared\Resources\CommonMessages.en.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+=======
+>>>>>>> bebfded202425e943be5877aaeaea1ec830cdf45
   </ItemGroup>
 
   <ItemGroup>
