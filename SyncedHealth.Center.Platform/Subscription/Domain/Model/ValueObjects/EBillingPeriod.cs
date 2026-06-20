@@ -1,9 +1,7 @@
 namespace SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
 
-public enum ESubscriptionStatus
+public enum EBillingPeriod
 {
-    Active,
-    Cancelled,
-    Expired,
-    PastDue
+    Monthly,
+    Yearly
 }
