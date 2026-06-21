@@ -99,10 +99,35 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 {
     var connectionStringTemplate = builder.Configuration.GetConnectionString("DefaultConnection");
+
     if (string.IsNullOrWhiteSpace(connectionStringTemplate))
         throw new InvalidOperationException("Database connection string is not set in the configuration.");
 
     var connectionString = Environment.ExpandEnvironmentVariables(connectionStringTemplate);
+
+    if (connectionString.Contains('%'))
+    {
+        var missingVariables = new List<string>();
+
+        if (connectionString.Contains("%DATABASE_URL%"))
+            missingVariables.Add("DATABASE_URL");
+
+        if (connectionString.Contains("%DATABASE_PORT%"))
+            missingVariables.Add("DATABASE_PORT");
+
+        if (connectionString.Contains("%DATABASE_SCHEMA%"))
+            missingVariables.Add("DATABASE_SCHEMA");
+
+        if (connectionString.Contains("%DATABASE_USER%"))
+            missingVariables.Add("DATABASE_USER");
+
+        if (connectionString.Contains("%DATABASE_PASSWORD%"))
+            missingVariables.Add("DATABASE_PASSWORD");
+
+        throw new InvalidOperationException(
+            $"Database connection string contains unresolved environment variables: {string.Join(", ", missingVariables)}");
+    }
+
     if (string.IsNullOrWhiteSpace(connectionString))
         throw new InvalidOperationException("Database connection string is not set in the configuration.");
 
