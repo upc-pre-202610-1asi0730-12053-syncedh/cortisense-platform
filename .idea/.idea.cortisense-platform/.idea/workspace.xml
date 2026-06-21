@@ -14,7 +14,9 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="" />
+    <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -281,7 +283,7 @@
       <workItem from="1781937778880" duration="5789000" />
       <workItem from="1781991516333" duration="3978000" />
       <workItem from="1782000797112" duration="7716000" />
-      <workItem from="1782013036048" duration="316000" />
+      <workItem from="1782013036048" duration="756000" />
     </task>
     <servers />
   </component>
