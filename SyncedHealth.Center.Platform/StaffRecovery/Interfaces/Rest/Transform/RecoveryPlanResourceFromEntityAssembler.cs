@@ -8,10 +8,19 @@ public static class RecoveryPlanResourceFromEntityAssembler
     public static RecoveryPlanResource ToResourceFromEntity(RecoveryPlan entity)
     {
         return new RecoveryPlanResource(
-            entity.Id, 
-            entity.MedicalStaffId, 
-            entity.Description, 
-            entity.SuggestedRestDays, 
-            entity.Status);
+            entity.Id,
+            entity.MedicalStaffId,
+            entity.Description,
+            entity.SuggestedRestDays,
+            entity.Status,
+            entity.CreatedAt,
+            entity.UpdatedAt
+        );
+    }
+
+    public static IEnumerable<RecoveryPlanResource> ToResourceFromEntityCollection(
+        IEnumerable<RecoveryPlan> entities)
+    {
+        return entities.Select(ToResourceFromEntity);
     }
 }
