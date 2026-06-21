@@ -7,6 +7,7 @@ using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes;
 
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 
@@ -40,7 +41,8 @@ public class SubscriptionsController(
 
         return Ok(subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity));
     }
-
+    
+    [AllowAnonymous]
     [HttpPost]
     [SwaggerOperation("Create Subscription", "Create a new subscription.")]
     public async Task<IActionResult> CreateSubscription(
