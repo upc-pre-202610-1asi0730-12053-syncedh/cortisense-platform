@@ -1,0 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
+using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
+using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
+
+namespace SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+
+public class WorkAreaRepository(AppDbContext context)
+    : BaseRepository<WorkArea>(context), IWorkAreaRepository
+{
+    public async Task<IEnumerable<WorkArea>> FindByOrganizationIdAsync(
+        int organizationId,
+        CancellationToken cancellationToken = default)
+    {
+        return await Context.Set<WorkArea>()
+            .Where(workArea => workArea.OrganizationId == organizationId)
+            .ToListAsync(cancellationToken);
+    }
+}
