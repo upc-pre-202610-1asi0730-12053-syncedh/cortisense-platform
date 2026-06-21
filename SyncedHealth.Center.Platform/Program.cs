@@ -182,6 +182,9 @@ builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>(
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddHttpClient<IInvitationEmailService, ResendInvitationEmailService>();
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+builder.Services.AddScoped<IInvitationCommandService, InvitationCommandService>();
+builder.Services.AddScoped<IInvitationQueryService, InvitationQueryService>();
 
 // Clinical Risk Assessment Bounded Context Injection Configuration
 builder.Services.AddScoped<IRiskAssessmentRepository, RiskAssessmentRepository>();
@@ -201,9 +204,7 @@ builder.Services.AddScoped<IVitalSignReadingCommandService, VitalSignReadingComm
 
 // Shift Coordination Bounded Context Injection Configuration
 builder.Services.AddScoped<IShiftRecordRepository, ShiftRecordRepository>();
-
 builder.Services.AddScoped<IShiftRecordQueryService, ShiftRecordQueryService>();
-
 builder.Services.AddScoped<IShiftRecordCommandService, ShiftRecordCommandService>();
 
 // Subscription Bounded Context Injection Configuration

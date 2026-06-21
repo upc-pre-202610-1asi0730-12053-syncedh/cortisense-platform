@@ -61,10 +61,23 @@ public partial class Invitation
             Role = command.Role.Trim().ToUpperInvariant();
 
         if (!string.IsNullOrWhiteSpace(command.Status))
+        {
             Status = command.Status.Trim().ToUpperInvariant();
 
+            if (Status == "ACCEPTED" && AcceptedAt is null)
+                AcceptedAt = DateTimeOffset.UtcNow;
+
+            if (Status == "CANCELLED" && CancelledAt is null)
+                CancelledAt = DateTimeOffset.UtcNow;
+        }
+
         if (!string.IsNullOrWhiteSpace(command.EmailStatus))
+        {
             EmailStatus = command.EmailStatus.Trim().ToUpperInvariant();
+
+            if (EmailStatus == "SENT" && SentAt is null)
+                SentAt = DateTimeOffset.UtcNow;
+        }
 
         if (!string.IsNullOrWhiteSpace(command.ResendEmailId))
             ResendEmailId = command.ResendEmailId.Trim();
