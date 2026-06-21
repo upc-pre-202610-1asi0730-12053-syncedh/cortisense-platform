@@ -108,37 +108,69 @@
     <EmbeddedResource Update="Iam\Resources\IamMessages.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamMessages.en.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Iam\Resources\IamMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IamMessages.es.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="AuditCompliance\Resources\AuditComplianceMessages.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AuditComplianceMessages.en.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="AuditCompliance\Resources\AuditComplianceMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AuditComplianceMessages.es.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="ShiftCoordination\Resources\ShiftCoordinationMessages.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ShiftCoordinationMessages.en.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="ShiftCoordination\Resources\ShiftCoordinationMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ShiftCoordinationMessages.es.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Subscription\Resources\SubscriptionMessages.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SubscriptionMessages.en.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Subscription\Resources\SubscriptionMessages.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SubscriptionMessages.es.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
 
     <EmbeddedResource Update="Shared\Resources\CommonMessages.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="StaffRecovery\Resources\StaffRecoveryMessages.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="StaffRecovery\Resources\StaffRecoveryMessages.es.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="ClinicalRiskAssessment\Resources\ClinicalRiskAssessmentMessages.es.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="Shared\Resources\Errors\ErrorMessages.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="Shared\Resources\Errors\ErrorMessages.es.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
