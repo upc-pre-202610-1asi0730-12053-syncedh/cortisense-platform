@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="AuditLogCreatedSuccessfully" xml:space="preserve">
+    <value>Audit log created successfully.</value>
+  </data>
+
+    <data name="AuditLogsRetrievedSuccessfully" xml:space="preserve">
+    <value>Audit logs retrieved successfully.</value>
+  </data>
+
+    <data name="AuditLogRetrievedSuccessfully" xml:space="preserve">
+    <value>Audit log retrieved successfully.</value>
+  </data>
+</root>

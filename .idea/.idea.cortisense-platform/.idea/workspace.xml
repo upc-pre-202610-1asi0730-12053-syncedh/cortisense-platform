@@ -15,42 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.en.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.en.resx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.es.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Infrastructure/Pipeline/Middleware/Components/RequestAuthorizationMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Infrastructure/Pipeline/Middleware/Components/RequestAuthorizationMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/AuthenticationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Interfaces/Rest/AuthenticationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Resources/IamMessages.resx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Interfaces/REST/ProblemDetails/ProblemDetailsFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Interfaces/Rest/ProblemDetails/ProblemDetailsFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/bin/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.Iam.Resources.IamMessages.resources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/en/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/es/SyncedHealth.Center.Platform.resources.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/ref/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/refint/SyncedHealth.Center.Platform.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rjsmrazor.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/rider.project.model.nuget.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +28,26 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="7" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Msa-ware&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/upc-pre-202610-1asi0730-12053-syncedh/cortisense-platform.git&quot;,
+    &quot;accountId&quot;: &quot;1303471a-8d22-4a5e-94b1-57c09371f33d&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Acl/IamContextFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Internal/CommandServices/UserCommandService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Iam/Application/Internal/OutboundServices/IHashingService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -122,12 +105,90 @@
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Persistence/EntityFrameworkCore/Repositories/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Components/GlobalExceptionHandlerMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Shared/Infrastructure/Pipeline/Middleware/Extensions/MiddlewareExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/CommandServices/IRecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Application/Internal/CommandServices/RecoveryPlanCommandService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Aggregates/RecoveryPlan.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Model/Commands/IssueRecoveryRecommendationCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Domain/Repositories/IRecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Configuration/Extensions/ModelBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Infrastructure/Persistence/EntityFrameworkCore/Repositories/RecoveryPlanRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/RecoveryPlansController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Resources/CreateRecoveryPlanResource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Resources/RecoveryPlanResource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Transform/CreateRecoveryPlanCommandFromResourceAssembler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/StaffRecovery/Interfaces/Rest/Transform/RecoveryPlanResourceFromEntityAssembler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/Aggregates/SubscriptionPlan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/Subscription/Domain/Model/ValueObjects/ESubscriptionStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/SyncedHealth.Center.Platform.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SyncedHealth.Center.Platform/obj/Debug/net10.0/rpswa.dswa.cache.json" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.6551967019291816" />
+      <entry key="MS500" value="1.9189128834791074" />
+      <entry key="S2" value="1.9807139688820452" />
+      <entry key="S5" value="2.1931796009742195" />
+      <entry key="S10" value="2.9997385043004963" />
+      <entry key="S30" value="4.926623252610135" />
+      <entry key="S60" value="5.869884652286822" />
+      <entry key="M2" value="7.154888525377123" />
+      <entry key="M5" value="12.195429371782154" />
+      <entry key="M10" value="21.58471540641103" />
+      <entry key="M15" value="31.13836695727924" />
+      <entry key="M30" value="55.87255062140585" />
+      <entry key="H1" value="86.15117962076825" />
+      <entry key="H2" value="112.33187259579262" />
+      <entry key="H4" value="130.0450338658065" />
+      <entry key="D1" value="147.9990999260777" />
+      <entry key="W1" value="151.41937333712573" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="1.3138277390716802E-170" />
+      <entry key="S10" value="1.1462232501008159E-85" />
+      <entry key="S30" value="4.857614778649196E-29" />
+      <entry key="S60" value="6.9696900075936E-15" />
+      <entry key="M2" value="8.373292183424308E-8" />
+      <entry key="M5" value="0.001692565342393371" />
+      <entry key="M10" value="0.05928243803593589" />
+      <entry key="M15" value="0.2093634036854959" />
+      <entry key="M30" value="0.7745060178721702" />
+      <entry key="H1" value="1.5158596479044575" />
+      <entry key="H2" value="2.129622329232288" />
+      <entry key="H4" value="2.5267794917854376" />
+      <entry key="D1" value="2.915249506703617" />
+      <entry key="W1" value="2.987740256862089" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.6235130181529902" />
+      <entry key="MS500" value="1.9110627015815271" />
+      <entry key="S2" value="1.9786626722826355" />
+      <entry key="S5" value="2.1922521117578944" />
+      <entry key="S10" value="2.999073362266092" />
+      <entry key="S30" value="4.9262411807167314" />
+      <entry key="S60" value="5.869648123338347" />
+      <entry key="M2" value="7.154678541334637" />
+      <entry key="M5" value="12.196763915672637" />
+      <entry key="M10" value="21.643395254209434" />
+      <entry key="M15" value="31.34687837817878" />
+      <entry key="M30" value="56.645852233795665" />
+      <entry key="H1" value="87.6658994058361" />
+      <entry key="H2" value="114.46068673738203" />
+      <entry key="H4" value="132.5713285001452" />
+      <entry key="D1" value="150.91425501011972" />
+      <entry key="W1" value="154.40709973532861" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="SWEA" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4,
   &quot;fromUser&quot;: false
@@ -137,33 +198,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.SyncedHealth.Center.Platform: http.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "develop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.SyncedHealth.Center.Platform: http.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SyncedHealth.Center.Platform: http">
     <configuration name="SyncedHealth.Center.Platform: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SyncedHealth.Center.Platform/SyncedHealth.Center.Platform.csproj" />
@@ -208,6 +270,8 @@
       <workItem from="1781448557451" duration="1430000" />
       <workItem from="1781450133008" duration="4848000" />
       <workItem from="1781885703597" duration="21983000" />
+      <workItem from="1781937778880" duration="5789000" />
+      <workItem from="1781991516333" duration="3978000" />
     </task>
     <servers />
   </component>
@@ -216,6 +280,29 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

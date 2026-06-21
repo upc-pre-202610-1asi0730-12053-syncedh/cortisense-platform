@@ -1,0 +1,30 @@
+using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
+using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
+
+namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
+
+public static class CheckoutSessionResourceFromEntityAssembler
+{
+    public static CheckoutSessionResource ToResourceFromEntity(CheckoutSession entity)
+    {
+        return new CheckoutSessionResource
+        {
+            Id = entity.Id,
+            OrganizationId = entity.OrganizationId,
+            AdministratorId = entity.AdministratorId,
+            SubscriptionId = entity.SubscriptionId,
+            PlanId = entity.PlanId,
+            PlanCode = entity.PlanCode,
+            Status = entity.Status.ToString().ToUpperInvariant(),
+            StripeSessionId = entity.StripeSessionId,
+            StripeUrl = entity.StripeUrl,
+            StripeSubscriptionId = entity.StripeSubscriptionId,
+            StripeCustomerId = entity.StripeCustomerId,
+            CreatedAt = entity.CreatedAt,
+            CompletedAt = entity.CompletedAt,
+            FailedAt = entity.FailedAt,
+            CancelledAt = entity.CancelledAt,
+            ErrorMessage = entity.ErrorMessage
+        };
+    }
+}
