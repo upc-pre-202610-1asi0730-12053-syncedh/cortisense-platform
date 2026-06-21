@@ -16,9 +16,6 @@ public class AuditLogsController(
     IAuditLogCommandService auditLogCommandService,
     IAuditLogQueryService auditLogQueryService) : ControllerBase
 {
-    /// <summary>
-    /// Gets all audit logs or filters them by organizationId / actorUserId.
-    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAuditLogs(
         [FromQuery] int? organizationId,
@@ -27,33 +24,26 @@ public class AuditLogsController(
     {
         if (organizationId.HasValue)
         {
-            var byOrganizationQuery = new GetAuditLogsByOrganizationIdQuery(organizationId.Value);
-            var byOrganizationLogs = await auditLogQueryService.Handle(
-                byOrganizationQuery,
-                cancellationToken);
+            var query = new GetAuditLogsByOrganizationIdQuery(organizationId.Value);
+            var auditLogs = await auditLogQueryService.Handle(query, cancellationToken);
 
-            return Ok(byOrganizationLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
+            return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
         }
 
         if (actorUserId.HasValue)
         {
-            var byActorQuery = new GetAuditLogsByActorUserIdQuery(actorUserId.Value);
-            var byActorLogs = await auditLogQueryService.Handle(
-                byActorQuery,
-                cancellationToken);
+            var query = new GetAuditLogsByActorUserIdQuery(actorUserId.Value);
+            var auditLogs = await auditLogQueryService.Handle(query, cancellationToken);
 
-            return Ok(byActorLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
+            return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
         }
 
-        var query = new GetAllAuditLogsQuery();
-        var auditLogs = await auditLogQueryService.Handle(query, cancellationToken);
+        var allQuery = new GetAllAuditLogsQuery();
+        var allAuditLogs = await auditLogQueryService.Handle(allQuery, cancellationToken);
 
-        return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
+        return Ok(allAuditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
     }
 
-    /// <summary>
-    /// Gets an audit log by identifier.
-    /// </summary>
     [HttpGet("{auditLogId:int}")]
     public async Task<IActionResult> GetAuditLogById(
         int auditLogId,
@@ -70,9 +60,6 @@ public class AuditLogsController(
         return Ok(resource);
     }
 
-    /// <summary>
-    /// Gets audit logs by organization identifier.
-    /// </summary>
     [HttpGet("organizations/{organizationId:int}")]
     public async Task<IActionResult> GetAuditLogsByOrganizationId(
         int organizationId,
@@ -84,9 +71,6 @@ public class AuditLogsController(
         return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
     }
 
-    /// <summary>
-    /// Gets audit logs by actor user identifier.
-    /// </summary>
     [HttpGet("actors/{actorUserId:int}")]
     public async Task<IActionResult> GetAuditLogsByActorUserId(
         int actorUserId,
@@ -98,9 +82,6 @@ public class AuditLogsController(
         return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
     }
 
-    /// <summary>
-    /// Creates an audit log.
-    /// </summary>
     [HttpPost]
     public async Task<IActionResult> CreateAuditLog(
         [FromBody] CreateAuditLogResource resource,
