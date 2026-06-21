@@ -15,7 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cortisense-platform/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,7 @@
       <list>
         <option value="HTTP Public Environment File" />
         <option value="JSON File" />
+        <option value="GitHub Workflow" />
       </list>
     </option>
   </component>
@@ -219,6 +222,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -280,6 +284,7 @@
       <workItem from="1781885703597" duration="21983000" />
       <workItem from="1781937778880" duration="5789000" />
       <workItem from="1781991516333" duration="3978000" />
+      <workItem from="1782000797112" duration="7716000" />
     </task>
     <servers />
   </component>

@@ -213,6 +213,13 @@ builder.Services.AddScoped<ITeamMemberCommandService, TeamMemberCommandService>(
 // Subscription Bounded Context Injection Configuration
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
+builder.Services.PostConfigure<StripeSettings>(settings =>
+{
+    var envKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+    if (!string.IsNullOrWhiteSpace(envKey))
+        settings.SecretKey = envKey;
+});
+
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<ICheckoutSessionRepository, CheckoutSessionRepository>();
