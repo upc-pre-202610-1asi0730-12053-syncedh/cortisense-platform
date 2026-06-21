@@ -6,16 +6,26 @@ using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
-public class RecoveryPlanRepository : BaseRepository<RecoveryPlan>, IRecoveryPlanRepository
+public class RecoveryPlanRepository(AppDbContext context) : BaseRepository<RecoveryPlan>(context), IRecoveryPlanRepository
 {
-    public RecoveryPlanRepository(AppDbContext context) : base(context)
-    {
-    }
-    
     public async Task<IEnumerable<RecoveryPlan>> FindByMedicalStaffIdAsync(int medicalStaffId)
     {
         return await Context.Set<RecoveryPlan>()
-            .Where(rp => rp.MedicalStaffId == medicalStaffId)
+            .Where(p => p.MedicalStaffId == medicalStaffId)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<RecoveryPlan>> FindByStatusAsync(string status)
+    {
+        return await Context.Set<RecoveryPlan>()
+            .Where(p => p.Status == status)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<RecoveryPlan>> FindBySuggestedRestDaysAsync(int suggestedRestDays)
+    {
+        return await Context.Set<RecoveryPlan>()
+            .Where(p => p.SuggestedRestDays == suggestedRestDays)
             .ToListAsync();
     }
 }

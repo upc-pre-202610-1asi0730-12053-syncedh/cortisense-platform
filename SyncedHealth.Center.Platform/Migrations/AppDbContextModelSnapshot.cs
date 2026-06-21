@@ -352,6 +352,60 @@ namespace SyncedHealth.Center.Platform.Migrations
                     b.ToTable("users");
                 });
 
+            modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.CareTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("name");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<int>("SupervisorId")
+                        .HasColumnType("int")
+                        .HasColumnName("supervisor_id");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.Property<int>("WorkAreaId")
+                        .HasColumnType("int")
+                        .HasColumnName("work_area_id");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_care_teams");
+
+                    b.HasIndex("OrganizationId")
+                        .HasDatabaseName("i_x_care_teams_organization_id");
+
+                    b.HasIndex("SupervisorId")
+                        .HasDatabaseName("i_x_care_teams_supervisor_id");
+
+                    b.HasIndex("WorkAreaId")
+                        .HasDatabaseName("i_x_care_teams_work_area_id");
+
+                    b.ToTable("care_teams", (string)null);
+                });
+
             modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.ShiftRecord", b =>
                 {
                     b.Property<int>("Id")
@@ -410,7 +464,160 @@ namespace SyncedHealth.Center.Platform.Migrations
                     b.HasKey("Id")
                         .HasName("p_k_shift_records");
 
+                    b.HasIndex("OrganizationId")
+                        .HasDatabaseName("i_x_shift_records_organization_id");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("i_x_shift_records_user_id");
+
+                    b.HasIndex("WorkAreaId")
+                        .HasDatabaseName("i_x_shift_records_work_area_id");
+
                     b.ToTable("shift_records", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.Specialty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("name");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_specialties");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("i_x_specialties_name");
+
+                    b.ToTable("specialties", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.TeamMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int")
+                        .HasColumnName("team_id");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_team_members");
+
+                    b.HasIndex("TeamId")
+                        .HasDatabaseName("i_x_team_members_team_id");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("i_x_team_members_user_id");
+
+                    b.HasIndex("TeamId", "UserId")
+                        .IsUnique()
+                        .HasDatabaseName("i_x_team_members_team_id_user_id");
+
+                    b.ToTable("team_members", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.WorkArea", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("name");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_work_areas");
+
+                    b.HasIndex("OrganizationId")
+                        .HasDatabaseName("i_x_work_areas_organization_id");
+
+                    b.ToTable("work_areas", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Aggregates.RecoveryPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("description");
+
+                    b.Property<int>("MedicalStaffId")
+                        .HasColumnType("int")
+                        .HasColumnName("medical_staff_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("status");
+
+                    b.Property<int>("SuggestedRestDays")
+                        .HasColumnType("int")
+                        .HasColumnName("suggested_rest_days");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_recovery_plans");
+
+                    b.ToTable("recovery_plans", (string)null);
                 });
 
             modelBuilder.Entity("SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.CheckoutSession", b =>
