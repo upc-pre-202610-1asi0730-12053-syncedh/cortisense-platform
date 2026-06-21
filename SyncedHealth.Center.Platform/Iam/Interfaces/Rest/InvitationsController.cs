@@ -11,6 +11,7 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attrib
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 using SyncedHealth.Center.Platform.Iam.Resources;
+using IamMessagesResource = SyncedHealth.Center.Platform.Iam.Resources.IamMessages;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 
@@ -22,7 +23,8 @@ public class InvitationsController(
     IInvitationCommandService invitationCommandService,
     IInvitationQueryService invitationQueryService,
     IInvitationEmailService invitationEmailService,
-    IStringLocalizer<IamMessages> iamLocalizer)
+    IOrganizationQueryService organizationQueryService,
+    IStringLocalizer<IamMessagesResource> iamLocalizer)
     : ControllerBase
 {
     [HttpGet]
@@ -126,9 +128,18 @@ public class InvitationsController(
 
         var invitation = createResult.Value!;
 
+        var organization = await organizationQueryService.Handle(
+            new GetOrganizationByIdQuery(invitation.OrganizationId),
+            cancellationToken);
+
+        var organizationName = organization?.Name ??
+                               iamLocalizer["InvitationDefaultOrganizationName"].Value;
+
         var emailResult = await invitationEmailService.SendInvitationAsync(
             invitation.Email,
             invitation.Token,
+            invitation.Role,
+            organizationName,
             cancellationToken);
 
         var nextStatus = emailResult.EmailStatus == "SENT"
