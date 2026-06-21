@@ -14,14 +14,43 @@ public static class ShiftCoordinationActionResultAssembler
         return error switch
         {
             ShiftCoordinationError.ShiftRecordNotFound => StatusCodes.Status404NotFound,
+            ShiftCoordinationError.WorkAreaNotFound => StatusCodes.Status404NotFound,
+            ShiftCoordinationError.SpecialtyNotFound => StatusCodes.Status404NotFound,
+            ShiftCoordinationError.CareTeamNotFound => StatusCodes.Status404NotFound,
+            ShiftCoordinationError.TeamMemberNotFound => StatusCodes.Status404NotFound,
+
             ShiftCoordinationError.InvalidShiftRecordData => StatusCodes.Status400BadRequest,
             ShiftCoordinationError.InvalidShiftType => StatusCodes.Status400BadRequest,
             ShiftCoordinationError.InvalidShiftStatus => StatusCodes.Status400BadRequest,
             ShiftCoordinationError.InvalidShiftSchedule => StatusCodes.Status400BadRequest,
+
+            ShiftCoordinationError.UserAlreadyAssignedToTeam => StatusCodes.Status409Conflict,
+            ShiftCoordinationError.SupervisorAlreadyAssignedToActiveTeam => StatusCodes.Status409Conflict,
+            ShiftCoordinationError.InactiveCareTeam => StatusCodes.Status409Conflict,
             ShiftCoordinationError.OperationCancelled => StatusCodes.Status409Conflict,
+
             ShiftCoordinationError.DatabaseError => StatusCodes.Status500InternalServerError,
             ShiftCoordinationError.InternalServerError => StatusCodes.Status500InternalServerError,
+
             _ => StatusCodes.Status400BadRequest
+        };
+    }
+
+    public static IActionResult ToActionResult<T>(Result<T> result)
+    {
+        var error = result.Error is ShiftCoordinationError shiftCoordinationError
+            ? shiftCoordinationError
+            : ShiftCoordinationError.InternalServerError;
+
+        var statusCode = ToStatusCodeFromShiftCoordinationError(error);
+
+        return new ObjectResult(new
+        {
+            error = result.Error?.ToString(),
+            message = result.Message
+        })
+        {
+            StatusCode = statusCode
         };
     }
 
