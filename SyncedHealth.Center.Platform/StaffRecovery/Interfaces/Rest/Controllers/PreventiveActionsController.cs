@@ -5,6 +5,7 @@ using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
+using SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Transform;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Controllers;
 
@@ -37,21 +38,17 @@ public class PreventiveActionsController(
                     cancellationToken);
 
         if (!result.IsSuccess)
-            return BadRequest(new
-            {
-                error = result.Error?.ToString(),
-                message = result.Message
-            });
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
 
-        var resources = result.Value!
-            .Select(plan => ToPreventiveActionResource(
+        var resources = result.Value!.Select(plan =>
+            ToPreventiveActionResource(
                 plan.Id,
                 organizationId ?? 0,
                 supervisorId ?? 0,
                 plan.MedicalStaffId,
-                GuessTypeFromDescription(plan.Description),
+                GetTypeFromDescription(plan.Description),
                 plan.Status,
-                plan.Description,
+                GetNotesFromDescription(plan.Description),
                 plan.CreatedAt,
                 null));
 
@@ -68,11 +65,7 @@ public class PreventiveActionsController(
             cancellationToken);
 
         if (!result.IsSuccess)
-            return NotFound(new
-            {
-                error = result.Error?.ToString(),
-                message = result.Message
-            });
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
 
         var plan = result.Value!;
 
@@ -81,9 +74,9 @@ public class PreventiveActionsController(
             0,
             0,
             plan.MedicalStaffId,
-            GuessTypeFromDescription(plan.Description),
+            GetTypeFromDescription(plan.Description),
             plan.Status,
-            plan.Description,
+            GetNotesFromDescription(plan.Description),
             plan.CreatedAt,
             null));
     }
@@ -93,6 +86,12 @@ public class PreventiveActionsController(
         [FromBody] CreatePreventiveActionResource resource,
         CancellationToken cancellationToken)
     {
+        if (resource.UserId <= 0)
+            return BadRequest(new { message = "UserId must be greater than zero." });
+
+        if (string.IsNullOrWhiteSpace(resource.Notes))
+            return BadRequest(new { message = "Notes are required." });
+
         var command = new IssueRecoveryRecommendationCommand(
             resource.UserId,
             BuildRecoveryDescription(resource.Type, resource.Notes),
@@ -101,11 +100,7 @@ public class PreventiveActionsController(
         var result = await recoveryPlanCommandService.Handle(command, cancellationToken);
 
         if (!result.IsSuccess)
-            return BadRequest(new
-            {
-                error = result.Error?.ToString(),
-                message = result.Message
-            });
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
 
         var plan = result.Value!;
 
@@ -132,7 +127,12 @@ public class PreventiveActionsController(
         [FromBody] UpdatePreventiveActionStatusResource resource,
         CancellationToken cancellationToken)
     {
-        var recoveryPlan = await recoveryPlanRepository.FindByIdAsync(id, cancellationToken);
+        if (string.IsNullOrWhiteSpace(resource.Status))
+            return BadRequest(new { message = "Status is required." });
+
+        var recoveryPlan = await recoveryPlanRepository.FindByIdAsync(
+            id,
+            cancellationToken);
 
         if (recoveryPlan is null)
             return NotFound(new { message = "Preventive action not found." });
@@ -147,9 +147,9 @@ public class PreventiveActionsController(
             0,
             0,
             recoveryPlan.MedicalStaffId,
-            GuessTypeFromDescription(recoveryPlan.Description),
+            GetTypeFromDescription(recoveryPlan.Description),
             recoveryPlan.Status,
-            recoveryPlan.Description,
+            GetNotesFromDescription(recoveryPlan.Description),
             recoveryPlan.CreatedAt,
             resource.CompletedAt);
 
@@ -182,32 +182,49 @@ public class PreventiveActionsController(
     private static string BuildRecoveryDescription(string type, string notes)
     {
         var normalizedType = string.IsNullOrWhiteSpace(type)
-            ? "REST"
+            ? "RECOVERY_BREAK"
             : type.Trim().ToUpperInvariant();
 
-        return $"[{normalizedType}] {notes?.Trim()}";
+        return $"[{normalizedType}] {notes.Trim()}";
     }
 
-    private static string GuessTypeFromDescription(string description)
+    private static string GetTypeFromDescription(string description)
     {
+        if (string.IsNullOrWhiteSpace(description))
+            return "RECOVERY_BREAK";
+
         if (description.StartsWith("[") && description.Contains(']'))
             return description[1..description.IndexOf(']')];
 
-        return "REST";
+        return "RECOVERY_BREAK";
+    }
+
+    private static string GetNotesFromDescription(string description)
+    {
+        if (string.IsNullOrWhiteSpace(description))
+            return string.Empty;
+
+        if (description.StartsWith("[") && description.Contains(']'))
+        {
+            var endIndex = description.IndexOf(']');
+            return description[(endIndex + 1)..].Trim();
+        }
+
+        return description;
     }
 
     private static int SuggestedRestDaysFromType(string type)
     {
         var normalizedType = string.IsNullOrWhiteSpace(type)
-            ? "REST"
+            ? "RECOVERY_BREAK"
             : type.Trim().ToUpperInvariant();
 
         return normalizedType switch
         {
             "MEDICAL_EVALUATION" => 2,
-            "SHIFT_REASSIGNMENT" => 1,
-            "BREAK" => 1,
-            "REST" => 1,
+            "SHIFT_ADJUSTMENT" => 1,
+            "SUPERVISOR_CHECK_IN" => 1,
+            "RECOVERY_BREAK" => 1,
             _ => 1
         };
     }
