@@ -35,7 +35,6 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFramewor
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Extensions;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
-using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Resources;
 
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
@@ -55,6 +54,14 @@ using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Resources;
+
+using SyncedHealth.Center.Platform.StaffRecovery.Application.CommandServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
+using SyncedHealth.Center.Platform.StaffRecovery.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.StaffRecovery.Resources;
 
 using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
 using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
@@ -115,6 +122,7 @@ builder.Services.AddSingleton<IStringLocalizer<CommonMessages>, StringLocalizer<
 builder.Services.AddSingleton<IStringLocalizer<IamMessages>, StringLocalizer<IamMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ClinicalRiskAssessmentMessages>, StringLocalizer<ClinicalRiskAssessmentMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ShiftCoordinationMessages>, StringLocalizer<ShiftCoordinationMessages>>();
+builder.Services.AddSingleton<IStringLocalizer<StaffRecoveryMessages>, StringLocalizer<StaffRecoveryMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<SubscriptionMessages>, StringLocalizer<SubscriptionMessages>>();
 
 // Register the custom ProblemDetailsFactory
@@ -227,6 +235,13 @@ builder.Services.AddScoped<IWorkAreaCommandService, WorkAreaCommandService>();
 builder.Services.AddScoped<ISpecialtyCommandService, SpecialtyCommandService>();
 builder.Services.AddScoped<ICareTeamCommandService, CareTeamCommandService>();
 builder.Services.AddScoped<ITeamMemberCommandService, TeamMemberCommandService>();
+
+// Staff Recovery Bounded Context Injection Configuration
+builder.Services.AddScoped<IRecoveryPlanRepository, RecoveryPlanRepository>();
+
+builder.Services.AddScoped<IRecoveryPlanQueryService, RecoveryPlanQueryService>();
+
+builder.Services.AddScoped<IRecoveryPlanCommandService, RecoveryPlanCommandService>();
 
 // Subscription Bounded Context Injection Configuration
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
