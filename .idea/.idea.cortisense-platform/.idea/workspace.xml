@@ -14,11 +14,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyncedHealth.Center.Platform/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SyncedHealth.Center.Platform/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-    </list>
+    <list default="true" id="9af17c34-d9d0-4339-9d36-d9c9a7487372" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -285,6 +281,7 @@
       <workItem from="1781937778880" duration="5789000" />
       <workItem from="1781991516333" duration="3978000" />
       <workItem from="1782000797112" duration="7716000" />
+      <workItem from="1782013036048" duration="316000" />
     </task>
     <servers />
   </component>
