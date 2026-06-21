@@ -127,10 +127,12 @@ public class BillingController(
     public async Task<IActionResult> HandleWebhook(CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_stripeSettings.WebhookSecret))
+        {
             return StatusCode(StatusCodes.Status500InternalServerError, new
             {
                 message = "STRIPE_WEBHOOK_SECRET is not configured."
             });
+        }
 
         var signature = Request.Headers["Stripe-Signature"].ToString();
 
@@ -144,7 +146,7 @@ public class BillingController(
             json = await reader.ReadToEndAsync(cancellationToken);
         }
 
-        Event stripeEvent;
+        Stripe.Event stripeEvent;
 
         try
         {
