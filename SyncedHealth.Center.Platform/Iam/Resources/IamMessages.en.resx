@@ -39,4 +39,44 @@
     <data name="UserUpdatedSuccessfully" xml:space="preserve">
   <value>User updated successfully.</value>
 </data>
+
+    <data name="OrganizationNameRequired" xml:space="preserve">
+  <value>Organization name is required.</value>
+</data>
+
+    <data name="OrganizationRucRequired" xml:space="preserve">
+  <value>Organization RUC is required.</value>
+</data>
+
+    <data name="OrganizationEmailRequired" xml:space="preserve">
+  <value>Organization email is required.</value>
+</data>
+
+    <data name="OrganizationPhoneRequired" xml:space="preserve">
+  <value>Organization phone is required.</value>
+</data>
+
+    <data name="OrganizationAddressRequired" xml:space="preserve">
+  <value>Organization address is required.</value>
+</data>
+
+    <data name="OrganizationEmailAlreadyExists" xml:space="preserve">
+  <value>An organization with this email already exists.</value>
+</data>
+
+    <data name="OrganizationRucAlreadyExists" xml:space="preserve">
+  <value>An organization with this RUC already exists.</value>
+</data>
+
+    <data name="OrganizationNotFound" xml:space="preserve">
+  <value>Organization not found.</value>
+</data>
+
+    <data name="InvalidOrganizationStatus" xml:space="preserve">
+  <value>Invalid organization status.</value>
+</data>
+
+    <data name="InvalidRegistrationStatus" xml:space="preserve">
+  <value>Invalid registration status.</value>
+</data>
 </root>

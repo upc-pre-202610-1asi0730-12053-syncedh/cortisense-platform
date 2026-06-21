@@ -39,4 +39,44 @@
     <data name="UserUpdatedSuccessfully" xml:space="preserve">
   <value>Usuario actualizado correctamente.</value>
 </data>
+
+    <data name="OrganizationNameRequired" xml:space="preserve">
+  <value>El nombre de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationRucRequired" xml:space="preserve">
+  <value>El RUC de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationEmailRequired" xml:space="preserve">
+  <value>El correo de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationPhoneRequired" xml:space="preserve">
+  <value>El teléfono de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationAddressRequired" xml:space="preserve">
+  <value>La dirección de la organización es obligatoria.</value>
+</data>
+
+    <data name="OrganizationEmailAlreadyExists" xml:space="preserve">
+  <value>Ya existe una organización con este correo.</value>
+</data>
+
+    <data name="OrganizationRucAlreadyExists" xml:space="preserve">
+  <value>Ya existe una organización con este RUC.</value>
+</data>
+
+    <data name="OrganizationNotFound" xml:space="preserve">
+  <value>Organización no encontrada.</value>
+</data>
+
+    <data name="InvalidOrganizationStatus" xml:space="preserve">
+  <value>Estado de organización inválido.</value>
+</data>
+
+    <data name="InvalidRegistrationStatus" xml:space="preserve">
+  <value>Estado de registro inválido.</value>
+</data>
 </root>
