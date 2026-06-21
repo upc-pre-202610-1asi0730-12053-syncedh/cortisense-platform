@@ -6,6 +6,7 @@ using SyncedHealth.Center.Platform.Iam.Domain.Model;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
+using SyncedHealth.Center.Platform.Iam.Resources;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
@@ -17,10 +18,12 @@ public class UserCommandService(
     ITokenService tokenService,
     IHashingService hashingService,
     IUnitOfWork unitOfWork,
-    IStringLocalizer<ErrorMessages> localizer)
+    IStringLocalizer<ErrorMessages> errorLocalizer,
+    IStringLocalizer<IamMessages> iamLocalizer)
     : IUserCommandService
 {
-    private readonly IStringLocalizer<ErrorMessages> _localizer = localizer;
+    private readonly IStringLocalizer<ErrorMessages> _errorLocalizer = errorLocalizer;
+    private readonly IStringLocalizer<IamMessages> _iamLocalizer = iamLocalizer;
 
     private static readonly string[] ValidRoles =
     [
@@ -50,13 +53,13 @@ public class UserCommandService(
         if (user is null || !hashingService.VerifyPassword(command.Password, user.PasswordHash))
             return Result<(User user, string token)>.Failure(
                 IamError.InvalidCredentials,
-                _localizer[nameof(IamError.InvalidCredentials)]
+                GetErrorMessage(IamError.InvalidCredentials)
             );
 
         if (user.Status != "ACTIVE")
             return Result<(User user, string token)>.Failure(
                 IamError.InvalidCredentials,
-                _localizer[nameof(IamError.InvalidCredentials)]
+                GetErrorMessage(IamError.InvalidCredentials)
             );
 
         var token = tokenService.GenerateToken(user);
@@ -76,7 +79,7 @@ public class UserCommandService(
         if (await userRepository.ExistsByEmailAsync(email, cancellationToken))
             return Result<User>.Failure(
                 IamError.UsernameAlreadyTaken,
-                _localizer[nameof(IamError.UsernameAlreadyTaken), email]
+                GetErrorMessage(IamError.UsernameAlreadyTaken, email)
             );
 
         var hashedPassword = hashingService.HashPassword(command.Password);
@@ -93,21 +96,21 @@ public class UserCommandService(
         {
             return Result<User>.Failure(
                 IamError.OperationCancelled,
-                _localizer[nameof(IamError.OperationCancelled)]
+                GetErrorMessage(IamError.OperationCancelled)
             );
         }
         catch (DbUpdateException)
         {
             return Result<User>.Failure(
                 IamError.DatabaseError,
-                _localizer[nameof(IamError.DatabaseError)]
+                GetErrorMessage(IamError.DatabaseError)
             );
         }
         catch (Exception)
         {
             return Result<User>.Failure(
                 IamError.InternalServerError,
-                _localizer[nameof(IamError.InternalServerError)]
+                GetErrorMessage(IamError.InternalServerError)
             );
         }
     }
@@ -121,7 +124,7 @@ public class UserCommandService(
         if (user is null)
             return Result<User>.Failure(
                 IamError.UserNotFound,
-                _localizer[nameof(IamError.UserNotFound)]
+                GetErrorMessage(IamError.UserNotFound)
             );
 
         if (!string.IsNullOrWhiteSpace(command.Email))
@@ -132,7 +135,7 @@ public class UserCommandService(
             if (existing is not null && existing.Id != command.Id)
                 return Result<User>.Failure(
                     IamError.UsernameAlreadyTaken,
-                    _localizer[nameof(IamError.UsernameAlreadyTaken), normalizedEmail]
+                    GetErrorMessage(IamError.UsernameAlreadyTaken, normalizedEmail)
                 );
         }
 
@@ -140,14 +143,14 @@ public class UserCommandService(
             !ValidRoles.Contains(command.Role.ToUpperInvariant()))
             return Result<User>.Failure(
                 IamError.InternalServerError,
-                "Invalid user role."
+                _iamLocalizer["InvalidUserRole"].Value
             );
 
         if (!string.IsNullOrWhiteSpace(command.Status) &&
             !ValidStatuses.Contains(command.Status.ToUpperInvariant()))
             return Result<User>.Failure(
                 IamError.InternalServerError,
-                "Invalid user status."
+                _iamLocalizer["InvalidUserStatus"].Value
             );
 
         var passwordHash = string.IsNullOrWhiteSpace(command.Password)
@@ -167,21 +170,21 @@ public class UserCommandService(
         {
             return Result<User>.Failure(
                 IamError.OperationCancelled,
-                _localizer[nameof(IamError.OperationCancelled)]
+                GetErrorMessage(IamError.OperationCancelled)
             );
         }
         catch (DbUpdateException)
         {
             return Result<User>.Failure(
                 IamError.DatabaseError,
-                _localizer[nameof(IamError.DatabaseError)]
+                GetErrorMessage(IamError.DatabaseError)
             );
         }
         catch (Exception)
         {
             return Result<User>.Failure(
                 IamError.InternalServerError,
-                _localizer[nameof(IamError.InternalServerError)]
+                GetErrorMessage(IamError.InternalServerError)
             );
         }
     }
@@ -189,26 +192,59 @@ public class UserCommandService(
     private Result<User>? ValidateSignUp(SignUpCommand command)
     {
         if (command.OrganizationId <= 0)
-            return Result<User>.Failure(IamError.InternalServerError, "OrganizationId must be valid.");
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["OrganizationIdMustBeValid"].Value
+            );
 
         if (string.IsNullOrWhiteSpace(command.FirstName))
-            return Result<User>.Failure(IamError.InternalServerError, "FirstName is required.");
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["FirstNameRequired"].Value
+            );
 
         if (string.IsNullOrWhiteSpace(command.LastName))
-            return Result<User>.Failure(IamError.InternalServerError, "LastName is required.");
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["LastNameRequired"].Value
+            );
 
         if (string.IsNullOrWhiteSpace(command.Email))
-            return Result<User>.Failure(IamError.InternalServerError, "Email is required.");
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["EmailRequired"].Value
+            );
 
         if (string.IsNullOrWhiteSpace(command.Password))
-            return Result<User>.Failure(IamError.InternalServerError, "Password is required.");
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["PasswordRequired"].Value
+            );
 
-        if (!ValidRoles.Contains(command.Role.ToUpperInvariant()))
-            return Result<User>.Failure(IamError.InternalServerError, "Invalid user role.");
+        if (string.IsNullOrWhiteSpace(command.Role) ||
+            !ValidRoles.Contains(command.Role.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserRole"].Value
+            );
 
-        if (!ValidStatuses.Contains(command.Status.ToUpperInvariant()))
-            return Result<User>.Failure(IamError.InternalServerError, "Invalid user status.");
+        if (string.IsNullOrWhiteSpace(command.Status) ||
+            !ValidStatuses.Contains(command.Status.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserStatus"].Value
+            );
 
         return null;
+    }
+
+    private string GetErrorMessage(IamError error)
+    {
+        return _errorLocalizer[$"{nameof(IamError)}.{error}"].Value;
+    }
+
+    private string GetErrorMessage(IamError error, params object[] arguments)
+    {
+        return _errorLocalizer[$"{nameof(IamError)}.{error}", arguments].Value;
     }
 }

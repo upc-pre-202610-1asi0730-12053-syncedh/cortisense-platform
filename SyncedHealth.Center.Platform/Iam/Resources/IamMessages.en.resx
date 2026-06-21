@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
     <data name="WelcomeMessage" xml:space="preserve">
-    <value>Welcome to IAM module!</value>
-  </data>
+  <value>Welcome to IAM module!</value>
+</data>
+    
     <data name="UserCreatedSuccessfully" xml:space="preserve">
-        <value>User created successfully.</value>
-    </data>
+  <value>User created successfully.</value>
+</data>
+    
+    <data name="InvalidUserRole" xml:space="preserve">
+  <value>Invalid user role.</value>
+</data>
+
+    <data name="InvalidUserStatus" xml:space="preserve">
+  <value>Invalid user status.</value>
+</data>
+
+    <data name="OrganizationIdMustBeValid" xml:space="preserve">
+  <value>OrganizationId must be valid.</value>
+</data>
+
+    <data name="FirstNameRequired" xml:space="preserve">
+  <value>FirstName is required.</value>
+</data>
+
+    <data name="LastNameRequired" xml:space="preserve">
+  <value>LastName is required.</value>
+</data>
+
+    <data name="EmailRequired" xml:space="preserve">
+  <value>Email is required.</value>
+</data>
+
+    <data name="PasswordRequired" xml:space="preserve">
+  <value>Password is required.</value>
+</data>
+
+    <data name="UserUpdatedSuccessfully" xml:space="preserve">
+  <value>User updated successfully.</value>
+</data>
 </root>
