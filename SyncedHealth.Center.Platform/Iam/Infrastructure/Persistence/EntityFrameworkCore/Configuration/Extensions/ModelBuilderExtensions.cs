@@ -9,6 +9,7 @@ public static class ModelBuilderExtensions
     {
         ApplyUserConfiguration(builder);
         ApplyOrganizationConfiguration(builder);
+        ApplyInvitationConfiguration(builder);
     }
 
     private static void ApplyUserConfiguration(ModelBuilder builder)
@@ -121,5 +122,60 @@ public static class ModelBuilderExtensions
         builder.Entity<Organization>().Property(organization => organization.CreatedAt);
 
         builder.Entity<Organization>().Property(organization => organization.UpdatedAt);
+    }
+
+    private static void ApplyInvitationConfiguration(ModelBuilder builder)
+    {
+        builder.Entity<Invitation>().ToTable("invitations");
+
+        builder.Entity<Invitation>().HasKey(invitation => invitation.Id);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.Id)
+            .IsRequired()
+            .ValueGeneratedOnAdd();
+
+        builder.Entity<Invitation>().Property(invitation => invitation.OrganizationId)
+            .IsRequired();
+
+        builder.Entity<Invitation>().Property(invitation => invitation.Email)
+            .IsRequired()
+            .HasMaxLength(160);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.Role)
+            .IsRequired()
+            .HasMaxLength(40);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.Status)
+            .IsRequired()
+            .HasMaxLength(30);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.Token)
+            .IsRequired()
+            .HasMaxLength(120);
+
+        builder.Entity<Invitation>().HasIndex(invitation => invitation.Token)
+            .IsUnique();
+
+        builder.Entity<Invitation>().Property(invitation => invitation.EmailStatus)
+            .IsRequired()
+            .HasMaxLength(30);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.ResendEmailId)
+            .HasMaxLength(160);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.EmailError)
+            .HasMaxLength(500);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.ExpiresAt);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.SentAt);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.AcceptedAt);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.CancelledAt);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.CreatedAt);
+
+        builder.Entity<Invitation>().Property(invitation => invitation.UpdatedAt);
     }
 }
