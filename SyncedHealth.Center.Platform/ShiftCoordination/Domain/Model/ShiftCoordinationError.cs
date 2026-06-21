@@ -4,10 +4,17 @@ public enum ShiftCoordinationError
 {
     None,
     ShiftRecordNotFound,
-    InvalidShiftRecordData,
-    InvalidShiftType,
-    InvalidShiftStatus,
-    InvalidShiftSchedule,
+    InvalidShiftRecord,
+
+    WorkAreaNotFound,
+    SpecialtyNotFound,
+    CareTeamNotFound,
+    TeamMemberNotFound,
+
+    UserAlreadyAssignedToTeam,
+    SupervisorAlreadyAssignedToActiveTeam,
+    InactiveCareTeam,
+
     OperationCancelled,
     DatabaseError,
     InternalServerError
