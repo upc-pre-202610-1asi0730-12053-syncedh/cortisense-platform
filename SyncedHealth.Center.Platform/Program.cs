@@ -26,6 +26,7 @@ using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.QuerySer
 using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Repositories;
 using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
@@ -39,6 +40,9 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Resources;
+using SyncedHealth.Center.Platform.Iam.Application.OutboundServices;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Services;
 
 using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
 using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
@@ -167,6 +171,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // IAM Bounded Context Injection Configuration
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.Configure<ResendSettings>(builder.Configuration.GetSection("Resend"));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
@@ -176,6 +181,7 @@ builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandServi
 builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddHttpClient<IInvitationEmailService, ResendInvitationEmailService>();
 
 // Clinical Risk Assessment Bounded Context Injection Configuration
 builder.Services.AddScoped<IRiskAssessmentRepository, RiskAssessmentRepository>();

@@ -54,6 +54,8 @@
     <Compile Include="Iam\Application\Internal\QueryServices\InvitationQueryService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\OrganizationQueryService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
+    <Compile Include="Iam\Application\OutboundServices\IInvitationEmailService.cs" />
+    <Compile Include="Iam\Application\OutboundServices\InvitationEmailResult.cs" />
     <Compile Include="Iam\Application\QueryServices\IInvitationQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IOrganizationQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />

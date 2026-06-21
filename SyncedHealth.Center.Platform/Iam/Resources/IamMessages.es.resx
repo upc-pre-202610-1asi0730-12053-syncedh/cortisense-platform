@@ -131,4 +131,36 @@
     <data name="InvitationPasswordRequired" xml:space="preserve">
   <value>La contraseña es obligatoria para aceptar la invitación.</value>
 </data>
+
+    <data name="InvitationEmailSubject" xml:space="preserve">
+  <value>Has sido invitado a CortiSense</value>
+</data>
+
+    <data name="InvitationEmailTitle" xml:space="preserve">
+  <value>Bienvenido a CortiSense</value>
+</data>
+
+    <data name="InvitationEmailIntro" xml:space="preserve">
+  <value>Has sido invitado a unirte a tu espacio clínico en CortiSense.</value>
+</data>
+
+    <data name="InvitationEmailButton" xml:space="preserve">
+  <value>Aceptar invitación</value>
+</data>
+
+    <data name="InvitationEmailFallback" xml:space="preserve">
+  <value>Si el botón no funciona, copia y pega este enlace en tu navegador:</value>
+</data>
+
+    <data name="InvitationEmailRegards" xml:space="preserve">
+  <value>Equipo CortiSense</value>
+</data>
+
+    <data name="ResendConfigurationIncomplete" xml:space="preserve">
+  <value>La configuración de Resend está incompleta.</value>
+</data>
+
+    <data name="ResendRequestFailed" xml:space="preserve">
+  <value>La solicitud a Resend falló.</value>
+</data>
 </root>
