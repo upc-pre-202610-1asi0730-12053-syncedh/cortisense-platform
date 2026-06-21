@@ -3,21 +3,21 @@ using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
-public static class SignUpCommandFromResourceAssembler
+public static class UpdateUserCommandFromResourceAssembler
 {
-    public static SignUpCommand ToCommandFromResource(SignUpResource resource)
+    public static UpdateUserCommand ToCommandFromResource(int id, UpdateUserResource resource)
     {
-        return new SignUpCommand(
-            resource.OrganizationId,
+        return new UpdateUserCommand(
+            id,
             resource.FirstName,
             resource.LastName,
             resource.Email,
             resource.Password,
-            resource.Role,
-            resource.Status,
             resource.Phone,
             resource.WorkAreaId,
             resource.SpecialtyId,
+            resource.Role,
+            resource.Status,
             resource.RegistrationStatus
         );
     }

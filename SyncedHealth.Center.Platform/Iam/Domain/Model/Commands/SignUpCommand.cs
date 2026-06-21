@@ -1,11 +1,15 @@
 namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
-/**
- * <summary>
- *     The sign up command
- * </summary>
- * <remarks>
- *     This command object includes the username and password to sign up
- * </remarks>
- */
-public record SignUpCommand(string Username, string Password);
+public record SignUpCommand(
+    int OrganizationId,
+    string FirstName,
+    string LastName,
+    string Email,
+    string Password,
+    string Role,
+    string Status,
+    string? Phone,
+    int? WorkAreaId,
+    int? SpecialtyId,
+    string? RegistrationStatus
+);
