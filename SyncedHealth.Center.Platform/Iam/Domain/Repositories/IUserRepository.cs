@@ -3,35 +3,31 @@ using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 
-/**
- * <summary>
- *     The user repository
- * </summary>
- * <remarks>
- *     This repository is used to manage users
- * </remarks>
- */
-
 public interface IUserRepository : IBaseRepository<User>
 {
-    /**
-     * <summary>
-     *     Find a user by id
-     * </summary>
-     * <param name="username">The username to search</param>
-     * <param name="cancellationToken">The cancellation token</param>
-     * <returns>The user</returns>
-     */
-    
-    Task<User?> FindByUsernameAsync(string username, CancellationToken cancellationToken);
-    
-    /**
-     * <summary>
-     *     Check if a user exists by username
-     * </summary>
-     * <param name="username">The username to search</param>
-     * <param name="cancellationToken">The cancellation token</param>
-     * <returns>True if the user exists, false otherwise</returns>
-     */
-    Task<bool> ExistsByUsernameAsync(string username, CancellationToken cancellationToken);
+    Task<User?> FindByEmailAsync(
+        string email,
+        CancellationToken cancellationToken = default
+    );
+
+    Task<IEnumerable<User>> FindByOrganizationIdAsync(
+        int organizationId,
+        CancellationToken cancellationToken = default
+    );
+
+    Task<bool> ExistsByEmailAsync(
+        string email,
+        CancellationToken cancellationToken = default
+    );
+
+    // Temporary compatibility with old IAM names.
+    Task<User?> FindByUsernameAsync(
+        string username,
+        CancellationToken cancellationToken = default
+    );
+
+    Task<bool> ExistsByUsernameAsync(
+        string username,
+        CancellationToken cancellationToken = default
+    );
 }

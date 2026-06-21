@@ -9,42 +9,27 @@ using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 using SyncedHealth.Center.Platform.Iam.Resources;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
-// For IamError enum
-// Corrected using directive
-// For ProblemDetailsFactory
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 
-
 [Authorize]
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/authentication")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Authentication endpoints")]
 public class AuthenticationController(
     IUserCommandService userCommandService,
-    IStringLocalizer<ErrorMessages> errorLocalizer, // Renamed for clarity
-    IStringLocalizer<IamMessages> iamLocalizer, // Inject IamMessages localizer
-    ProblemDetailsFactory problemDetailsFactory) // Inject ProblemDetailsFactory
+    IStringLocalizer<ErrorMessages> errorLocalizer,
+    IStringLocalizer<IamMessages> iamLocalizer,
+    ProblemDetailsFactory problemDetailsFactory)
     : ControllerBase
 {
-    /**
-     * <summary>
-     *     Sign in endpoint. It allows authenticating a user
-     * </summary>
-     * <param name="signInResource">The sign-in resource containing username and password.</param>
-     * <param name="cancellationToken">The cancellation token.</param>
-     * <returns>The authenticated user resource, including a JWT token</returns>
-     */
     [HttpPost("sign-in")]
     [AllowAnonymous]
-    [SwaggerOperation(
-        Summary = "Sign in",
-        Description = "Sign in a user",
-        OperationId = "SignIn")]
+    [SwaggerOperation("Sign in", "Sign in a user using email and password.")]
     [SwaggerResponse(StatusCodes.Status200OK, "The user was authenticated", typeof(AuthenticatedUserResource))]
-    [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid username or password")]
-    public async Task<IActionResult> SignIn([FromBody] SignInResource signInResource,
+    public async Task<IActionResult> SignIn(
+        [FromBody] SignInResource signInResource,
         CancellationToken cancellationToken)
     {
         var signInCommand = SignInCommandFromResourceAssembler.ToCommandFromResource(signInResource);
@@ -55,40 +40,32 @@ public class AuthenticationController(
             result,
             errorLocalizer,
             problemDetailsFactory,
-            userAndToken =>
-                Ok(AuthenticatedUserResourceFromEntityAssembler.ToResourceFromEntity(userAndToken.user,
-                    userAndToken.token))
+            userAndToken => Ok(
+                AuthenticatedUserResourceFromEntityAssembler.ToResourceFromEntity(
+                    userAndToken.user,
+                    userAndToken.token
+                )
+            )
         );
     }
 
-    /**
-     * <summary>
-     *     Sign up endpoint. It allows creating a new user
-     * </summary>
-     * <param name="signUpResource">The sign-up resource containing username and password.</param>
-     * <param name="cancellationToken">The cancellation token.</param>
-     * <returns>A confirmation message on successful creation.</returns>
-     */
     [HttpPost("sign-up")]
     [AllowAnonymous]
-    [SwaggerOperation(
-        Summary = "Sign-up",
-        Description = "Sign up a new user",
-        OperationId = "SignUp")]
-    [SwaggerResponse(StatusCodes.Status200OK, "The user was created successfully")]
-    [SwaggerResponse(StatusCodes.Status400BadRequest, "The user was not created")]
-    public async Task<IActionResult> SignUp([FromBody] SignUpResource signUpResource,
+    [SwaggerOperation("Sign up", "Create a new user.")]
+    public async Task<IActionResult> SignUp(
+        [FromBody] SignUpResource signUpResource,
         CancellationToken cancellationToken)
     {
         var signUpCommand = SignUpCommandFromResourceAssembler.ToCommandFromResource(signUpResource);
         var result = await userCommandService.Handle(signUpCommand, cancellationToken);
 
-        return IamActionResultAssembler.ToActionResultFromSignUpResult(
-            this,
-            result,
-            errorLocalizer,
-            problemDetailsFactory,
-            () => Ok(new { message = iamLocalizer["UserCreatedSuccessfully"].Value })
-        );
+        if (result.IsFailure)
+            return BadRequest(new { message = result.Message });
+
+        return Ok(new
+        {
+            message = iamLocalizer["UserCreatedSuccessfully"].Value,
+            user = UserResourceFromEntityAssembler.ToResourceFromEntity(result.Value!)
+        });
     }
 }
