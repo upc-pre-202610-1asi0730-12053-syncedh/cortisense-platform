@@ -240,13 +240,16 @@ builder.Services.AddCortexMediator(
 
 var app = builder.Build();
 
-// Apply pending migrations on startup
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<AppDbContext>();
-    context.Database.Migrate();
-}
+// Automatic migrations are disabled.
+// Database schema changes should be applied manually with:
+// dotnet ef database update
+//
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//     var context = services.GetRequiredService<AppDbContext>();
+//     context.Database.Migrate();
+// }
 
 // Configure the HTTP request pipeline.
 app.UseGlobalExceptionHandler();
