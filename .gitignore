@@ -1,5 +1,32 @@
-.idea/
-.ai/
+# .NET build outputs
 bin/
 obj/
+**/bin/
+**/obj/
+
+# AI local files
+.ai/
+
+# Rider / JetBrains
+.idea/
 *.DotSettings.user
+*.sln.DotSettings.user
+workspace.xml
+modules.xml
+projectSettingsUpdater.xml
+contentModel.xml
+*.iml
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Local env files
+.env
+.env.*
+!.env.example
+appsettings.Development.local.json
