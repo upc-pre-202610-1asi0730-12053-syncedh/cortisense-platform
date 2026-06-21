@@ -1,10 +1,16 @@
-using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
-using SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.CommandServices;
-using SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.QueryServices;
-using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
-using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
-using SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
-using SyncedHealth.Center.Platform.ShiftCoordination.Resources;
+using System.Reflection;
+using Cortex.Mediator.Commands;
+using Cortex.Mediator.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
+using Microsoft.OpenApi;
+
+using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
+using SyncedHealth.Center.Platform.AuditCompliance.Domain.Repositories;
+using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.CommandServices;
@@ -14,25 +20,16 @@ using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources;
 
-using System.Reflection;
-using Cortex.Mediator.Commands;
-using Cortex.Mediator.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
-using Microsoft.OpenApi;
-using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
-using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.CommandServices;
-using SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.QueryServices;
-using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
-using SyncedHealth.Center.Platform.AuditCompliance.Domain.Repositories;
-using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
-
+using SyncedHealth.Center.Platform.Iam.Application.Acl;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.Iam.Application.OutboundServices;
 using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Services;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Extensions;
@@ -40,20 +37,6 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Resources;
-using SyncedHealth.Center.Platform.Iam.Application.OutboundServices;
-using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
-using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Services;
-
-using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
-using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
-using SyncedHealth.Center.Platform.Subscription.Application.Internal.QueryServices;
-using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
-using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
-using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
-using SyncedHealth.Center.Platform.Subscription.Resources;
-using SyncedHealth.Center.Platform.Subscription.Application.OutboundServices;
-using SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
-using SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
 
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Interfaces.AspNetCore.Configuration;
@@ -64,6 +47,25 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Ext
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Shared.Resources;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
+
+using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
+using SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
+using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
+using SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.ShiftCoordination.Resources;
+
+using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
+using SyncedHealth.Center.Platform.Subscription.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.Subscription.Application.OutboundServices;
+using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
+using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
+using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
+using SyncedHealth.Center.Platform.Subscription.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -170,21 +172,26 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // IAM Bounded Context Injection Configuration
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
-builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 builder.Services.Configure<ResendSettings>(builder.Configuration.GetSection("Resend"));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+
 builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandService>();
 builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IHashingService, HashingService>();
-builder.Services.AddHttpClient<IInvitationEmailService, ResendInvitationEmailService>();
-builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+
 builder.Services.AddScoped<IInvitationCommandService, InvitationCommandService>();
 builder.Services.AddScoped<IInvitationQueryService, InvitationQueryService>();
+
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+builder.Services.AddHttpClient<IInvitationEmailService, ResendInvitationEmailService>();
 
 // Clinical Risk Assessment Bounded Context Injection Configuration
 builder.Services.AddScoped<IRiskAssessmentRepository, RiskAssessmentRepository>();
@@ -204,10 +211,33 @@ builder.Services.AddScoped<IVitalSignReadingCommandService, VitalSignReadingComm
 
 // Shift Coordination Bounded Context Injection Configuration
 builder.Services.AddScoped<IShiftRecordRepository, ShiftRecordRepository>();
+builder.Services.AddScoped<IWorkAreaRepository, WorkAreaRepository>();
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<ICareTeamRepository, CareTeamRepository>();
+builder.Services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
+
 builder.Services.AddScoped<IShiftRecordQueryService, ShiftRecordQueryService>();
+builder.Services.AddScoped<IWorkAreaQueryService, WorkAreaQueryService>();
+builder.Services.AddScoped<ISpecialtyQueryService, SpecialtyQueryService>();
+builder.Services.AddScoped<ICareTeamQueryService, CareTeamQueryService>();
+builder.Services.AddScoped<ITeamMemberQueryService, TeamMemberQueryService>();
+
 builder.Services.AddScoped<IShiftRecordCommandService, ShiftRecordCommandService>();
+builder.Services.AddScoped<IWorkAreaCommandService, WorkAreaCommandService>();
+builder.Services.AddScoped<ISpecialtyCommandService, SpecialtyCommandService>();
+builder.Services.AddScoped<ICareTeamCommandService, CareTeamCommandService>();
+builder.Services.AddScoped<ITeamMemberCommandService, TeamMemberCommandService>();
 
 // Subscription Bounded Context Injection Configuration
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
+builder.Services.PostConfigure<StripeSettings>(settings =>
+{
+    var envKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+    if (!string.IsNullOrWhiteSpace(envKey))
+        settings.SecretKey = envKey;
+});
+
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<ICheckoutSessionRepository, CheckoutSessionRepository>();
@@ -235,13 +265,16 @@ builder.Services.AddCortexMediator(
 
 var app = builder.Build();
 
-// Apply pending migrations on startup
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<AppDbContext>();
-    context.Database.Migrate();
-}
+// Automatic migrations are disabled.
+// Database schema changes should be applied manually with:
+// dotnet ef database update
+//
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//     var context = services.GetRequiredService<AppDbContext>();
+//     context.Database.Migrate();
+// }
 
 // Configure the HTTP request pipeline.
 app.UseGlobalExceptionHandler();
@@ -254,12 +287,13 @@ var localizationOptions = new RequestLocalizationOptions()
 
 app.UseRequestLocalization(localizationOptions);
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.MapGet("/", () => Results.Redirect("/swagger"));
-}
+// Swagger enabled for current hosted environment.
+// if (app.Environment.IsDevelopment())
+// {
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapGet("/", () => Results.Redirect("/swagger"));
+// }
 
 app.UseHttpsRedirection();
 
