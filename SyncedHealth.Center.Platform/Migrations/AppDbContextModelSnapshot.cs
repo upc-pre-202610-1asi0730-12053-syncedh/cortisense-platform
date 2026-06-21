@@ -321,6 +321,170 @@ namespace SyncedHealth.Center.Platform.Migrations
                     b.ToTable("vital_sign_readings");
                 });
 
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.Invitation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("AcceptedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("accepted_at");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("cancelled_at");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("EmailError")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("email_error");
+
+                    b.Property<string>("EmailStatus")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("email_status");
+
+                    b.Property<DateTimeOffset?>("ExpiresAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("expires_at");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
+
+                    b.Property<string>("ResendEmailId")
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)")
+                        .HasColumnName("resend_email_id");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("role");
+
+                    b.Property<DateTimeOffset?>("SentAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("sent_at");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("token");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_invitations");
+
+                    b.HasIndex("Token")
+                        .IsUnique()
+                        .HasDatabaseName("i_x_invitations_token");
+
+                    b.ToTable("invitations", (string)null);
+                });
+
+            modelBuilder.Entity("SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.Organization", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset?>("ActivatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("activated_at");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnName("address");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("cancelled_at");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("RegistrationStatus")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("registration_status");
+
+                    b.Property<string>("Ruc")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("ruc");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("p_k_organizations");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("i_x_organizations_email");
+
+                    b.HasIndex("Ruc")
+                        .IsUnique()
+                        .HasDatabaseName("i_x_organizations_ruc");
+
+                    b.ToTable("organizations", (string)null);
+                });
+
             modelBuilder.Entity("SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates.User", b =>
                 {
                     b.Property<int>("Id")
@@ -328,28 +492,88 @@ namespace SyncedHealth.Center.Platform.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<DateTimeOffset?>("ActivatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("activated_at");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("cancelled_at");
+
                     b.Property<DateTimeOffset?>("CreatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("created_at");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)")
+                        .HasColumnName("last_name");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int")
+                        .HasColumnName("organization_id");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("password_hash");
 
+                    b.Property<string>("Phone")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("RegistrationStatus")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("registration_status");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("role");
+
+                    b.Property<int?>("SpecialtyId")
+                        .HasColumnType("int")
+                        .HasColumnName("specialty_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("status");
+
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("updated_at");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("username");
+                    b.Property<int?>("WorkAreaId")
+                        .HasColumnType("int")
+                        .HasColumnName("work_area_id");
 
                     b.HasKey("Id")
                         .HasName("p_k_users");
 
-                    b.ToTable("users");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("i_x_users_email");
+
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates.CareTeam", b =>
@@ -616,6 +840,15 @@ namespace SyncedHealth.Center.Platform.Migrations
 
                     b.HasKey("Id")
                         .HasName("p_k_recovery_plans");
+
+                    b.HasIndex("MedicalStaffId")
+                        .HasDatabaseName("i_x_recovery_plans_medical_staff_id");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("i_x_recovery_plans_status");
+
+                    b.HasIndex("SuggestedRestDays")
+                        .HasDatabaseName("i_x_recovery_plans_suggested_rest_days");
 
                     b.ToTable("recovery_plans", (string)null);
                 });

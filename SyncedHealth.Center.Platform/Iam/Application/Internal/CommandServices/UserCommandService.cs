@@ -6,87 +6,245 @@ using SyncedHealth.Center.Platform.Iam.Domain.Model;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
+using SyncedHealth.Center.Platform.Iam.Resources;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 
-/**
- * <summary>
- *     The user command service
- * </summary>
- * <remarks>
- *     This class is used to handle user commands
- * </remarks>
- */
 public class UserCommandService(
     IUserRepository userRepository,
     ITokenService tokenService,
     IHashingService hashingService,
     IUnitOfWork unitOfWork,
-    IStringLocalizer<ErrorMessages> localizer) // Inject IStringLocalizer
+    IStringLocalizer<ErrorMessages> errorLocalizer,
+    IStringLocalizer<IamMessages> iamLocalizer)
     : IUserCommandService
 {
-    private readonly IStringLocalizer<ErrorMessages> _localizer = localizer;
+    private readonly IStringLocalizer<ErrorMessages> _errorLocalizer = errorLocalizer;
+    private readonly IStringLocalizer<IamMessages> _iamLocalizer = iamLocalizer;
 
-    /**
-     * <summary>
-     *     Handle sign in command
-     * </summary>
-     * <param name="command">The sign in command</param>
-     * <param name="cancellationToken">The cancellation token</param>
-     * <returns>The authenticated user and the JWT token</returns>
-     */
-    public async Task<Result<(User user, string token)>> Handle(SignInCommand command,
+    private static readonly string[] ValidRoles =
+    [
+        "ADMIN",
+        "HOSPITAL_ADMIN",
+        "SUPERVISOR",
+        "CLINICAL_SUPERVISOR",
+        "DOCTOR",
+        "MEDICAL_STAFF"
+    ];
+
+    private static readonly string[] ValidStatuses =
+    [
+        "ACTIVE",
+        "INACTIVE",
+        "PENDING",
+        "CANCELLED"
+    ];
+
+    public async Task<Result<(User user, string token)>> Handle(
+        SignInCommand command,
         CancellationToken cancellationToken)
     {
-        var user = await userRepository.FindByUsernameAsync(command.Username, cancellationToken);
+        var email = command.Email.Trim().ToLowerInvariant();
+        var user = await userRepository.FindByEmailAsync(email, cancellationToken);
 
-        if (user == null || !hashingService.VerifyPassword(command.Password, user.PasswordHash))
-            return Result<(User user, string token)>.Failure(IamError.InvalidCredentials,
-                _localizer[nameof(IamError.InvalidCredentials)]);
+        if (user is null || !hashingService.VerifyPassword(command.Password, user.PasswordHash))
+            return Result<(User user, string token)>.Failure(
+                IamError.InvalidCredentials,
+                GetErrorMessage(IamError.InvalidCredentials)
+            );
+
+        if (user.Status != "ACTIVE")
+            return Result<(User user, string token)>.Failure(
+                IamError.InvalidCredentials,
+                GetErrorMessage(IamError.InvalidCredentials)
+            );
 
         var token = tokenService.GenerateToken(user);
 
         return Result<(User user, string token)>.Success((user, token));
     }
 
-    /**
-     * <summary>
-     *     Handle sign up command
-     * </summary>
-     * <param name="command">The sign-up command</param>
-     * <param name="cancellationToken">The cancellation token</param>
-     * <returns>A confirmation message on successful creation.</returns>
-     */
-    public async Task<Result> Handle(SignUpCommand command, CancellationToken cancellationToken)
+    public async Task<Result<User>> Handle(
+        SignUpCommand command,
+        CancellationToken cancellationToken)
     {
-        if (await userRepository.ExistsByUsernameAsync(command.Username, cancellationToken))
-            return Result.Failure(IamError.UsernameAlreadyTaken,
-                _localizer[nameof(IamError.UsernameAlreadyTaken), command.Username]);
+        var validation = ValidateSignUp(command);
+        if (validation is not null) return validation;
+
+        var email = command.Email.Trim().ToLowerInvariant();
+
+        if (await userRepository.ExistsByEmailAsync(email, cancellationToken))
+            return Result<User>.Failure(
+                IamError.UsernameAlreadyTaken,
+                GetErrorMessage(IamError.UsernameAlreadyTaken, email)
+            );
 
         var hashedPassword = hashingService.HashPassword(command.Password);
-        var user = new User(command.Username, hashedPassword);
+        var user = new User(command, hashedPassword);
+
         try
         {
             await userRepository.AddAsync(user, cancellationToken);
             await unitOfWork.CompleteAsync(cancellationToken);
-            return Result.Success();
+
+            return Result<User>.Success(user);
         }
         catch (OperationCanceledException)
         {
-            return Result.Failure(IamError.OperationCancelled, _localizer[nameof(IamError.OperationCancelled)]);
+            return Result<User>.Failure(
+                IamError.OperationCancelled,
+                GetErrorMessage(IamError.OperationCancelled)
+            );
         }
         catch (DbUpdateException)
         {
-            // Log the exception details here if an ILogger is injected
-            return Result.Failure(IamError.DatabaseError, _localizer[nameof(IamError.DatabaseError)]);
+            return Result<User>.Failure(
+                IamError.DatabaseError,
+                GetErrorMessage(IamError.DatabaseError)
+            );
         }
         catch (Exception)
         {
-            // Log the exception details here if an ILogger is injected
-            return Result.Failure(IamError.InternalServerError, _localizer[nameof(IamError.InternalServerError)]);
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                GetErrorMessage(IamError.InternalServerError)
+            );
         }
+    }
+
+    public async Task<Result<User>> Handle(
+        UpdateUserCommand command,
+        CancellationToken cancellationToken)
+    {
+        var user = await userRepository.FindByIdAsync(command.Id, cancellationToken);
+
+        if (user is null)
+            return Result<User>.Failure(
+                IamError.UserNotFound,
+                GetErrorMessage(IamError.UserNotFound)
+            );
+
+        if (!string.IsNullOrWhiteSpace(command.Email))
+        {
+            var normalizedEmail = command.Email.Trim().ToLowerInvariant();
+            var existing = await userRepository.FindByEmailAsync(normalizedEmail, cancellationToken);
+
+            if (existing is not null && existing.Id != command.Id)
+                return Result<User>.Failure(
+                    IamError.UsernameAlreadyTaken,
+                    GetErrorMessage(IamError.UsernameAlreadyTaken, normalizedEmail)
+                );
+        }
+
+        if (!string.IsNullOrWhiteSpace(command.Role) &&
+            !ValidRoles.Contains(command.Role.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserRole"].Value
+            );
+
+        if (!string.IsNullOrWhiteSpace(command.Status) &&
+            !ValidStatuses.Contains(command.Status.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserStatus"].Value
+            );
+
+        var passwordHash = string.IsNullOrWhiteSpace(command.Password)
+            ? null
+            : hashingService.HashPassword(command.Password);
+
+        user.Update(command, passwordHash);
+
+        try
+        {
+            userRepository.Update(user);
+            await unitOfWork.CompleteAsync(cancellationToken);
+
+            return Result<User>.Success(user);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<User>.Failure(
+                IamError.OperationCancelled,
+                GetErrorMessage(IamError.OperationCancelled)
+            );
+        }
+        catch (DbUpdateException)
+        {
+            return Result<User>.Failure(
+                IamError.DatabaseError,
+                GetErrorMessage(IamError.DatabaseError)
+            );
+        }
+        catch (Exception)
+        {
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                GetErrorMessage(IamError.InternalServerError)
+            );
+        }
+    }
+
+    private Result<User>? ValidateSignUp(SignUpCommand command)
+    {
+        if (command.OrganizationId <= 0)
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["OrganizationIdMustBeValid"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.FirstName))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["FirstNameRequired"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.LastName))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["LastNameRequired"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.Email))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["EmailRequired"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.Password))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["PasswordRequired"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.Role) ||
+            !ValidRoles.Contains(command.Role.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserRole"].Value
+            );
+
+        if (string.IsNullOrWhiteSpace(command.Status) ||
+            !ValidStatuses.Contains(command.Status.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserStatus"].Value
+            );
+
+        return null;
+    }
+
+    private string GetErrorMessage(IamError error)
+    {
+        return _errorLocalizer[$"{nameof(IamError)}.{error}"].Value;
+    }
+
+    private string GetErrorMessage(IamError error, params object[] arguments)
+    {
+        return _errorLocalizer[$"{nameof(IamError)}.{error}", arguments].Value;
     }
 }

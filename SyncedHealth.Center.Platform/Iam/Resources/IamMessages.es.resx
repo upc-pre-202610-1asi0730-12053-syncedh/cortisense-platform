@@ -1,10 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
     <data name="WelcomeMessage" xml:space="preserve">
-    <value>¡Bienvenido al módulo IAM!</value>
-  </data>
+  <value>¡Bienvenido al módulo IAM!</value>
+</data>
+    
     <data name="UserCreatedSuccessfully" xml:space="preserve">
-        <value>Usuario creado satisfactoriamente.</value>
-        <comment>UserCreatedSuccessfully</comment>
-    </data>
+   <value>Usuario creado satisfactoriamente.</value>
+</data>
+
+    <data name="InvalidUserRole" xml:space="preserve">
+  <value>Rol de usuario inválido.</value>
+</data>
+
+    <data name="InvalidUserStatus" xml:space="preserve">
+  <value>Estado de usuario inválido.</value>
+</data>
+
+    <data name="OrganizationIdMustBeValid" xml:space="preserve">
+  <value>OrganizationId debe ser válido.</value>
+</data>
+
+    <data name="FirstNameRequired" xml:space="preserve">
+  <value>FirstName es obligatorio.</value>
+</data>
+
+    <data name="LastNameRequired" xml:space="preserve">
+  <value>LastName es obligatorio.</value>
+</data>
+
+    <data name="EmailRequired" xml:space="preserve">
+  <value>Email es obligatorio.</value>
+</data>
+
+    <data name="PasswordRequired" xml:space="preserve">
+  <value>Password es obligatorio.</value>
+</data>
+
+    <data name="UserUpdatedSuccessfully" xml:space="preserve">
+  <value>Usuario actualizado correctamente.</value>
+</data>
+
+    <data name="OrganizationNameRequired" xml:space="preserve">
+  <value>El nombre de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationRucRequired" xml:space="preserve">
+  <value>El RUC de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationEmailRequired" xml:space="preserve">
+  <value>El correo de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationPhoneRequired" xml:space="preserve">
+  <value>El teléfono de la organización es obligatorio.</value>
+</data>
+
+    <data name="OrganizationAddressRequired" xml:space="preserve">
+  <value>La dirección de la organización es obligatoria.</value>
+</data>
+
+    <data name="OrganizationEmailAlreadyExists" xml:space="preserve">
+  <value>Ya existe una organización con este correo.</value>
+</data>
+
+    <data name="OrganizationRucAlreadyExists" xml:space="preserve">
+  <value>Ya existe una organización con este RUC.</value>
+</data>
+
+    <data name="OrganizationNotFound" xml:space="preserve">
+  <value>Organización no encontrada.</value>
+</data>
+
+    <data name="InvalidOrganizationStatus" xml:space="preserve">
+  <value>Estado de organización inválido.</value>
+</data>
+
+    <data name="InvalidRegistrationStatus" xml:space="preserve">
+  <value>Estado de registro inválido.</value>
+</data>
+
+    <data name="InvitationEmailRequired" xml:space="preserve">
+  <value>El correo de la invitación es obligatorio.</value>
+</data>
+
+    <data name="InvitationRoleRequired" xml:space="preserve">
+  <value>El rol de la invitación es obligatorio.</value>
+</data>
+
+    <data name="InvitationAlreadyExists" xml:space="preserve">
+  <value>Ya existe una invitación activa para este correo.</value>
+</data>
+
+    <data name="InvitationNotFound" xml:space="preserve">
+  <value>Invitación no encontrada.</value>
+</data>
+
+    <data name="InvitationTokenRequired" xml:space="preserve">
+  <value>El token de invitación es obligatorio.</value>
+</data>
+
+    <data name="InvitationExpired" xml:space="preserve">
+  <value>Esta invitación ha expirado.</value>
+</data>
+
+    <data name="InvitationAlreadyAccepted" xml:space="preserve">
+  <value>Esta invitación ya fue aceptada.</value>
+</data>
+
+    <data name="InvitationCancelled" xml:space="preserve">
+  <value>Esta invitación fue cancelada.</value>
+</data>
+
+    <data name="InvalidInvitationStatus" xml:space="preserve">
+  <value>Estado de invitación inválido.</value>
+</data>
+
+    <data name="InvalidInvitationEmailStatus" xml:space="preserve">
+  <value>Estado de correo de invitación inválido.</value>
+</data>
+
+    <data name="InvitationFirstNameRequired" xml:space="preserve">
+  <value>El nombre es obligatorio para aceptar la invitación.</value>
+</data>
+
+    <data name="InvitationLastNameRequired" xml:space="preserve">
+  <value>El apellido es obligatorio para aceptar la invitación.</value>
+</data>
+
+    <data name="InvitationPasswordRequired" xml:space="preserve">
+  <value>La contraseña es obligatoria para aceptar la invitación.</value>
+</data>
+
+    <data name="InvitationEmailSubject" xml:space="preserve">
+  <value>Has sido invitado a CortiSense</value>
+</data>
+
+    <data name="InvitationEmailTitle" xml:space="preserve">
+  <value>Bienvenido a CortiSense</value>
+</data>
+
+    <data name="InvitationEmailIntro" xml:space="preserve">
+  <value>Has sido invitado a unirte a tu espacio clínico en CortiSense.</value>
+</data>
+
+    <data name="InvitationEmailButton" xml:space="preserve">
+  <value>Aceptar invitación</value>
+</data>
+
+    <data name="InvitationEmailFallback" xml:space="preserve">
+  <value>Si el botón no funciona, copia y pega este enlace en tu navegador:</value>
+</data>
+
+    <data name="InvitationEmailRegards" xml:space="preserve">
+  <value>Equipo CortiSense</value>
+</data>
+
+    <data name="ResendConfigurationIncomplete" xml:space="preserve">
+  <value>La configuración de Resend está incompleta.</value>
+</data>
+
+    <data name="ResendRequestFailed" xml:space="preserve">
+  <value>La solicitud a Resend falló.</value>
+</data>
 </root>

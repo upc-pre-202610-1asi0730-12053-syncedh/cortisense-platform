@@ -3,6 +3,8 @@ bin/
 obj/
 **/bin/
 **/obj/
+
+# AI local files
 .ai/
 
 # Rider / JetBrains
@@ -19,21 +21,12 @@ contentModel.xml
 .vs/
 *.user
 *.suo
-
-# Local env files
-.env
-.env.*
-appsettings.Development.local.json
-
-# IDE settings
-.idea/
-*.suo
 *.ntvs*
 *.njsproj
 *.sln.docstates
 
-# Build outputs
-**/bin/
-**/obj/
+# Local env files
+.env
+.env.*
+!.env.example
 appsettings.Development.local.json
-

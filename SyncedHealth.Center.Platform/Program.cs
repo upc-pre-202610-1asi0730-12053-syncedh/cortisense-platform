@@ -20,18 +20,22 @@ using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources;
 
+using SyncedHealth.Center.Platform.Iam.Application.Acl;
+using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.Iam.Application.OutboundServices;
 using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
+using SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Services;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Extensions;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
-using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Resources;
 
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
@@ -51,6 +55,14 @@ using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Resources;
+
+using SyncedHealth.Center.Platform.StaffRecovery.Application.CommandServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.CommandServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.QueryServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
+using SyncedHealth.Center.Platform.StaffRecovery.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using SyncedHealth.Center.Platform.StaffRecovery.Resources;
 
 using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
 using SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
@@ -111,6 +123,7 @@ builder.Services.AddSingleton<IStringLocalizer<CommonMessages>, StringLocalizer<
 builder.Services.AddSingleton<IStringLocalizer<IamMessages>, StringLocalizer<IamMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ClinicalRiskAssessmentMessages>, StringLocalizer<ClinicalRiskAssessmentMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<ShiftCoordinationMessages>, StringLocalizer<ShiftCoordinationMessages>>();
+builder.Services.AddSingleton<IStringLocalizer<StaffRecoveryMessages>, StringLocalizer<StaffRecoveryMessages>>();
 builder.Services.AddSingleton<IStringLocalizer<SubscriptionMessages>, StringLocalizer<SubscriptionMessages>>();
 
 // Register the custom ProblemDetailsFactory
@@ -168,12 +181,26 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // IAM Bounded Context Injection Configuration
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+builder.Services.Configure<ResendSettings>(builder.Configuration.GetSection("Resend"));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+
+builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandService>();
+builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
+
+builder.Services.AddScoped<IInvitationCommandService, InvitationCommandService>();
+builder.Services.AddScoped<IInvitationQueryService, InvitationQueryService>();
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+builder.Services.AddHttpClient<IInvitationEmailService, ResendInvitationEmailService>();
 
 // Clinical Risk Assessment Bounded Context Injection Configuration
 builder.Services.AddScoped<IRiskAssessmentRepository, RiskAssessmentRepository>();
@@ -209,6 +236,13 @@ builder.Services.AddScoped<IWorkAreaCommandService, WorkAreaCommandService>();
 builder.Services.AddScoped<ISpecialtyCommandService, SpecialtyCommandService>();
 builder.Services.AddScoped<ICareTeamCommandService, CareTeamCommandService>();
 builder.Services.AddScoped<ITeamMemberCommandService, TeamMemberCommandService>();
+
+// Staff Recovery Bounded Context Injection Configuration
+builder.Services.AddScoped<IRecoveryPlanRepository, RecoveryPlanRepository>();
+
+builder.Services.AddScoped<IRecoveryPlanQueryService, RecoveryPlanQueryService>();
+
+builder.Services.AddScoped<IRecoveryPlanCommandService, RecoveryPlanCommandService>();
 
 // Subscription Bounded Context Injection Configuration
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
@@ -269,6 +303,7 @@ var localizationOptions = new RequestLocalizationOptions()
 
 app.UseRequestLocalization(localizationOptions);
 
+// Swagger enabled for current hosted environment.
 // if (app.Environment.IsDevelopment())
 // {
 app.UseSwagger();

@@ -7,9 +7,27 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_SCHEMA=${DATABASE_SCHEMA}
-      - DATABASE_USER=${DATABASE_USER}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
+
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_PORT: ${DATABASE_PORT:-3306}
+      DATABASE_SCHEMA: ${DATABASE_SCHEMA}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+
+      TokenSettings__Secret: ${TOKEN_SECRET}
+
+      Stripe__SecretKey: ${STRIPE_SECRET_KEY}
+      Stripe__WebhookSecret: ${STRIPE_WEBHOOK_SECRET}
+      Stripe__SuccessUrl: ${STRIPE_SUCCESS_URL}
+      Stripe__CancelUrl: ${STRIPE_CANCEL_URL}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+
+      Resend__ApiToken: ${RESEND_APITOKEN}
+      Resend__FromEmail: ${RESEND_FROM_EMAIL}
+      Resend__FrontendUrl: ${APP_PUBLIC_URL}
+      Resend__ApiUrl: ${RESEND_API_URL:-https://api.resend.com/emails}
+
+      RESEND_APITOKEN: ${RESEND_APITOKEN}
+      RESEND_FROM_EMAIL: ${RESEND_FROM_EMAIL}
+      APP_PUBLIC_URL: ${APP_PUBLIC_URL}
