@@ -43,11 +43,15 @@
       <DependentUpon>IamErrors.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Iam\Application\Acl\IamContextFacade.cs" />
+    <Compile Include="Iam\Application\CommandServices\IOrganizationCommandService.cs" />
     <Compile Include="Iam\Application\CommandServices\IUserCommandService.cs" />
+    <Compile Include="Iam\Application\Internal\CommandServices\OrganizationCommandService.cs" />
     <Compile Include="Iam\Application\Internal\CommandServices\UserCommandService.cs" />
     <Compile Include="Iam\Application\Internal\OutboundServices\IHashingService.cs" />
     <Compile Include="Iam\Application\Internal\OutboundServices\ITokenService.cs" />
+    <Compile Include="Iam\Application\Internal\QueryServices\OrganizationQueryService.cs" />
     <Compile Include="Iam\Application\Internal\QueryServices\UserQueryService.cs" />
+    <Compile Include="Iam\Application\QueryServices\IOrganizationQueryService.cs" />
     <Compile Include="Iam\Application\QueryServices\IUserQueryService.cs" />
     <Compile Update="Iam\Resources\IamMessages.en.Designer.cs">
       <DesignTime>True</DesignTime>
