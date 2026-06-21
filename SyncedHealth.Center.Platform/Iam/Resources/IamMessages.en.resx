@@ -79,4 +79,56 @@
     <data name="InvalidRegistrationStatus" xml:space="preserve">
   <value>Invalid registration status.</value>
 </data>
+
+    <data name="InvitationEmailRequired" xml:space="preserve">
+  <value>Invitation email is required.</value>
+</data>
+
+    <data name="InvitationRoleRequired" xml:space="preserve">
+  <value>Invitation role is required.</value>
+</data>
+
+    <data name="InvitationAlreadyExists" xml:space="preserve">
+  <value>An active invitation already exists for this email.</value>
+</data>
+
+    <data name="InvitationNotFound" xml:space="preserve">
+  <value>Invitation not found.</value>
+</data>
+
+    <data name="InvitationTokenRequired" xml:space="preserve">
+  <value>Invitation token is required.</value>
+</data>
+
+    <data name="InvitationExpired" xml:space="preserve">
+  <value>This invitation has expired.</value>
+</data>
+
+    <data name="InvitationAlreadyAccepted" xml:space="preserve">
+  <value>This invitation has already been accepted.</value>
+</data>
+
+    <data name="InvitationCancelled" xml:space="preserve">
+  <value>This invitation has been cancelled.</value>
+</data>
+
+    <data name="InvalidInvitationStatus" xml:space="preserve">
+  <value>Invalid invitation status.</value>
+</data>
+
+    <data name="InvalidInvitationEmailStatus" xml:space="preserve">
+  <value>Invalid invitation email status.</value>
+</data>
+
+    <data name="InvitationFirstNameRequired" xml:space="preserve">
+  <value>First name is required to accept the invitation.</value>
+</data>
+
+    <data name="InvitationLastNameRequired" xml:space="preserve">
+  <value>Last name is required to accept the invitation.</value>
+</data>
+
+    <data name="InvitationPasswordRequired" xml:space="preserve">
+  <value>Password is required to accept the invitation.</value>
+</data>
 </root>

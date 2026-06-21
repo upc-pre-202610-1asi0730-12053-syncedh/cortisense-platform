@@ -1,6 +1,3 @@
 namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 
-public class GetInvitationByIdQuery
-{
-    
-}
+public record GetInvitationByIdQuery(int Id);
