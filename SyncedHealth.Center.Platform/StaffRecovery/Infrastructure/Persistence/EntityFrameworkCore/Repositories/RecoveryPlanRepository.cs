@@ -6,26 +6,35 @@ using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
-public class RecoveryPlanRepository(AppDbContext context) : BaseRepository<RecoveryPlan>(context), IRecoveryPlanRepository
+public class RecoveryPlanRepository(AppDbContext context)
+    : BaseRepository<RecoveryPlan>(context), IRecoveryPlanRepository
 {
-    public async Task<IEnumerable<RecoveryPlan>> FindByMedicalStaffIdAsync(int medicalStaffId)
+    public async Task<IEnumerable<RecoveryPlan>> FindByMedicalStaffIdAsync(
+        int medicalStaffId,
+        CancellationToken cancellationToken = default)
     {
         return await Context.Set<RecoveryPlan>()
-            .Where(p => p.MedicalStaffId == medicalStaffId)
-            .ToListAsync();
+            .Where(recoveryPlan => recoveryPlan.MedicalStaffId == medicalStaffId)
+            .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<RecoveryPlan>> FindByStatusAsync(string status)
+    public async Task<IEnumerable<RecoveryPlan>> FindByStatusAsync(
+        string status,
+        CancellationToken cancellationToken = default)
     {
+        var normalizedStatus = status.Trim().ToUpperInvariant();
+
         return await Context.Set<RecoveryPlan>()
-            .Where(p => p.Status == status)
-            .ToListAsync();
+            .Where(recoveryPlan => recoveryPlan.Status == normalizedStatus)
+            .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<RecoveryPlan>> FindBySuggestedRestDaysAsync(int suggestedRestDays)
+    public async Task<IEnumerable<RecoveryPlan>> FindBySuggestedRestDaysAsync(
+        int suggestedRestDays,
+        CancellationToken cancellationToken = default)
     {
         return await Context.Set<RecoveryPlan>()
-            .Where(p => p.SuggestedRestDays == suggestedRestDays)
-            .ToListAsync();
+            .Where(recoveryPlan => recoveryPlan.SuggestedRestDays == suggestedRestDays)
+            .ToListAsync(cancellationToken);
     }
 }
