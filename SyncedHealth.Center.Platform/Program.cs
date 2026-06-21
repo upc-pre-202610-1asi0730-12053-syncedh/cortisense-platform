@@ -21,6 +21,7 @@ using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persist
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Resources;
 
 using SyncedHealth.Center.Platform.Iam.Application.Acl;
+using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
