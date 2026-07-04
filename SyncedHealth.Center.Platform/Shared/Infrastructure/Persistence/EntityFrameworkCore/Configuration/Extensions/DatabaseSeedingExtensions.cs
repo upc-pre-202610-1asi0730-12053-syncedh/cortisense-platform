@@ -20,36 +20,38 @@ public static class DatabaseSeedingExtensions
             new { Id = 101, OrganizationId = 101, FirstName = "Admin", LastName = "User", Email = "admin101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Admin", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
             new { Id = 102, OrganizationId = 101, FirstName = "Carlos", LastName = "Supervisor", Email = "supervisor101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Clinical Supervisor", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
             new { Id = 103, OrganizationId = 101, FirstName = "Laura", LastName = "Gomez", Email = "lgomez101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Medical Staff", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
-            new { Id = 104, OrganizationId = 101, FirstName = "Juan", LastName = "Perez", Email = "jperez101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Medical Staff", Status = "ACTIVE", RegistrationStatus = "COMPLETED" }
+            new { Id = 104, OrganizationId = 101, FirstName = "Juan", LastName = "Perez", Email = "jperez101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Medical Staff", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
+            new { Id = 205, OrganizationId = 101, FirstName = "Ana", LastName = "Torres", Email = "atorres101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Medical Staff", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
+            new { Id = 206, OrganizationId = 101, FirstName = "Luis", LastName = "Ramirez", Email = "lramirez101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Medical Staff", Status = "ACTIVE", RegistrationStatus = "COMPLETED" },
+            new { Id = 207, OrganizationId = 101, FirstName = "Maria", LastName = "Lopez", Email = "mlopez101@hospitalcentral.com", PasswordHash = "dummyhash", Role = "Clinical Supervisor", Status = "ACTIVE", RegistrationStatus = "COMPLETED" }
         );
 
         // 2. Subscription Billing Seeding
-        builder.Entity<Plan>().HasData(
-            new { Id = 101, Code = "FREE_101", Name = "Free Trial Seed", Price = 0m, Currency = "USD", BillingPeriod = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.EBillingPeriod.Monthly, MaxSupervisors = 1, MaxTeams = 1, MaxWorkAreas = 1, MonthlyInvitations = 5, DataHistoryDays = 7, SupportLevel = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESupportLevel.Standard, Recommended = false, FeatureKeys = Array.Empty<string>(), EnabledModules = Array.Empty<string>(), DisabledModules = Array.Empty<string>() },
-            new { Id = 102, Code = "PREMIUM_101", Name = "Premium Enterprise Seed", Price = 999.99m, Currency = "USD", BillingPeriod = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.EBillingPeriod.Yearly, MaxSupervisors = 50, MaxTeams = 100, MaxWorkAreas = 50, MonthlyInvitations = 500, DataHistoryDays = 365, SupportLevel = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESupportLevel.Priority, Recommended = true, FeatureKeys = Array.Empty<string>(), EnabledModules = Array.Empty<string>(), DisabledModules = Array.Empty<string>() }
-        );
-
         builder.Entity<SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.Subscription>().HasData(
-            new { Id = 101, OrganizationId = 101, PlanId = 102, Status = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESubscriptionStatus.Active, StartedAt = DateTimeOffset.UtcNow }
+            new { Id = 101, OrganizationId = 101, PlanId = 3, Status = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESubscriptionStatus.Active, StartedAt = DateTimeOffset.UtcNow }
         );
 
         // 3. Shift Coordination Seeding
         builder.Entity<ShiftRecord>().HasData(
-            new { Id = 101, OrganizationId = 101, UserId = 103, WorkAreaId = 101, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(1).AddHours(8) },
-            new { Id = 102, OrganizationId = 101, UserId = 104, WorkAreaId = 101, Type = "NIGHT", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1).AddHours(20), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(4) },
-            // Turno actual in-progress para generar riesgo
-            new { Id = 103, OrganizationId = 101, UserId = 103, WorkAreaId = 102, Type = "EMERGENCY", Status = "IN_PROGRESS", ScheduledStart = DateTimeOffset.UtcNow.AddHours(-10), ScheduledEnd = DateTimeOffset.UtcNow.AddHours(2), CheckInAt = DateTimeOffset.UtcNow.AddHours(-10) }
+            new { Id = 101, OrganizationId = 101, UserId = 103, WorkAreaId = 2, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(1).AddHours(8) },
+            new { Id = 102, OrganizationId = 101, UserId = 104, WorkAreaId = 1, Type = "NIGHT", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1).AddHours(20), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(4) },
+            new { Id = 103, OrganizationId = 101, UserId = 103, WorkAreaId = 3, Type = "EMERGENCY", Status = "IN_PROGRESS", ScheduledStart = DateTimeOffset.UtcNow.AddHours(-10), ScheduledEnd = DateTimeOffset.UtcNow.AddHours(2), CheckInAt = DateTimeOffset.UtcNow.AddHours(-10) },
+            new { Id = 204, OrganizationId = 101, UserId = 205, WorkAreaId = 2, Type = "DAY", Status = "COMPLETED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(-1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(-1).AddHours(8), CheckInAt = DateTimeOffset.UtcNow.AddDays(-1), CheckOutAt = DateTimeOffset.UtcNow.AddDays(-1).AddHours(8) },
+            new { Id = 205, OrganizationId = 101, UserId = 206, WorkAreaId = 1, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(2), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(8) }
         );
 
         // 4. Clinical Risk Assessment Seeding
         builder.Entity<RiskAssessment>().HasData(
             new { Id = 101, OrganizationId = 101, UserId = 103, FatigueLevel = 85, RiskLevel = "HIGH", HeartRate = 120, Hrv = 20, LastUpdatedAt = DateTimeOffset.UtcNow },
-            new { Id = 102, OrganizationId = 101, UserId = 104, FatigueLevel = 20, RiskLevel = "LOW", HeartRate = 70, Hrv = 60, LastUpdatedAt = DateTimeOffset.UtcNow }
+            new { Id = 102, OrganizationId = 101, UserId = 104, FatigueLevel = 20, RiskLevel = "LOW", HeartRate = 70, Hrv = 60, LastUpdatedAt = DateTimeOffset.UtcNow },
+            new { Id = 203, OrganizationId = 101, UserId = 205, FatigueLevel = 45, RiskLevel = "MEDIUM", HeartRate = 95, Hrv = 40, LastUpdatedAt = DateTimeOffset.UtcNow },
+            new { Id = 204, OrganizationId = 101, UserId = 206, FatigueLevel = 10, RiskLevel = "LOW", HeartRate = 65, Hrv = 70, LastUpdatedAt = DateTimeOffset.UtcNow }
         );
 
         // 5. Staff Recovery Seeding
         builder.Entity<RecoveryPlan>().HasData(
-            new { Id = 101, MedicalStaffId = 103, Description = "Alta Fatiga", SuggestedRestDays = 1, Status = "PENDING" }
+            new { Id = 101, MedicalStaffId = 103, Description = "Alta Fatiga", SuggestedRestDays = 1, Status = "PENDING" },
+            new { Id = 202, MedicalStaffId = 205, Description = "Fatiga media detectada", SuggestedRestDays = 1, Status = "COMPLETED" }
         );
     }
 }
