@@ -19,4 +19,9 @@ public interface IClinicalAlertRepository : IBaseRepository<ClinicalAlert>
         string status,
         CancellationToken cancellationToken = default
     );
+
+    Task<IEnumerable<ClinicalAlert>> FindBySeverityAsync(
+        string severity,
+        CancellationToken cancellationToken = default
+    );
 }

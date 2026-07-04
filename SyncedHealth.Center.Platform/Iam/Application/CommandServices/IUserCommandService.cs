@@ -20,4 +20,9 @@ public interface IUserCommandService
         UpdateUserCommand command,
         CancellationToken cancellationToken
     );
+
+    Task<Result<User>> Handle(
+        AssignRoleCommand command,
+        CancellationToken cancellationToken
+    );
 }

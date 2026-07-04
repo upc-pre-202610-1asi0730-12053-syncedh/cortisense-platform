@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
@@ -15,6 +16,7 @@ public class WorkAreasController(
     : ControllerBase
 {
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllWorkAreas(
         [FromQuery] int? organizationId,
         CancellationToken cancellationToken)

@@ -42,4 +42,11 @@ public class ClinicalAlertQueryService(IClinicalAlertRepository clinicalAlertRep
     {
         return await clinicalAlertRepository.FindByStatusAsync(query.Status, cancellationToken);
     }
+
+    public async Task<IEnumerable<ClinicalAlert>> Handle(
+        GetClinicalAlertsBySeverityQuery query,
+        CancellationToken cancellationToken)
+    {
+        return await clinicalAlertRepository.FindBySeverityAsync(query.Severity, cancellationToken);
+    }
 }

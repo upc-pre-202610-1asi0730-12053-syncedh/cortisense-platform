@@ -4,6 +4,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 using SyncedHealth.Center.Platform.Subscription.Application.CommandServices;
 using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
+using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
@@ -80,5 +81,58 @@ public class SubscriptionsController(
             problemDetailsFactory,
             subscription => Ok(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription))
         );
+    }
+
+    [HttpDelete("{id:int}")]
+    [SwaggerOperation("Cancel Subscription", "Cancel an existing subscription.")]
+    public async Task<IActionResult> CancelSubscription(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var command = new CancelSubscriptionCommand(id);
+        var result = await subscriptionCommandService.Handle(command, cancellationToken);
+
+        return SubscriptionActionResultAssembler.ToActionResultFromUpdateSubscriptionResult(
+            this,
+            result,
+            problemDetailsFactory,
+            subscription => Ok(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription))
+        );
+    }
+
+    [HttpGet("{id:int}/access-status")]
+    [SwaggerOperation("Get Subscription Access Status", "Check if a subscription is active and grants platform access.")]
+    public async Task<IActionResult> GetSubscriptionAccessStatus(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var subscription = await subscriptionQueryService.Handle(
+            new GetSubscriptionByIdQuery(id), cancellationToken);
+
+        if (subscription is null)
+            return NotFound(new { Message = "Subscription not found." });
+
+        return Ok(new
+        {
+            SubscriptionId = subscription.Id,
+            OrganizationId = subscription.OrganizationId,
+            Status = subscription.Status.ToString(),
+            HasAccess = subscription.Status.ToString() == "Active"
+        });
+    }
+
+    [HttpGet("{id:int}/summary")]
+    [SwaggerOperation("Get Subscription Summary", "Get a summary of the subscription including plan and status details.")]
+    public async Task<IActionResult> GetSubscriptionSummary(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var subscription = await subscriptionQueryService.Handle(
+            new GetSubscriptionByIdQuery(id), cancellationToken);
+
+        if (subscription is null)
+            return NotFound(new { Message = "Subscription not found." });
+
+        return Ok(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription));
     }
 }

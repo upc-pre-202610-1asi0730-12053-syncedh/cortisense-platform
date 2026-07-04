@@ -20,6 +20,7 @@ public class AuditLogsController(
     public async Task<IActionResult> GetAuditLogs(
         [FromQuery] int? organizationId,
         [FromQuery] int? actorUserId,
+        [FromQuery] int? medicalStaffId,
         CancellationToken cancellationToken)
     {
         if (organizationId.HasValue)
@@ -30,9 +31,12 @@ public class AuditLogsController(
             return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));
         }
 
-        if (actorUserId.HasValue)
+        // medicalStaffId is a semantic alias for actorUserId (medical staff perform actions)
+        var resolvedActorUserId = actorUserId ?? medicalStaffId;
+
+        if (resolvedActorUserId.HasValue)
         {
-            var query = new GetAuditLogsByActorUserIdQuery(actorUserId.Value);
+            var query = new GetAuditLogsByActorUserIdQuery(resolvedActorUserId.Value);
             var auditLogs = await auditLogQueryService.Handle(query, cancellationToken);
 
             return Ok(auditLogs.Select(AuditLogResourceFromEntityAssembler.ToResourceFromEntity));

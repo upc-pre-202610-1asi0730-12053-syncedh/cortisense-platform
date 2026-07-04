@@ -43,6 +43,23 @@ public class UsersController(
         );
     }
 
+    [HttpPost("{id:int}/roles")]
+    [SwaggerOperation("Assign Role", "Assign a role to a user.")]
+    public async Task<IActionResult> AssignRole(
+        [FromRoute] int id,
+        [FromBody] AssignRoleResource resource,
+        CancellationToken cancellationToken)
+    {
+        var command = AssignRoleCommandFromResourceAssembler.ToCommandFromResource(id, resource);
+        var result = await userCommandService.Handle(command, cancellationToken);
+
+        if (!result.IsSuccess)
+            return BadRequest(result.Error);
+
+        var userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(result.Value);
+        return Ok(userResource);
+    }
+
     [HttpGet]
     [SwaggerOperation("Get Users", "Get all users or filter by organizationId/email.")]
     public async Task<IActionResult> GetUsers(

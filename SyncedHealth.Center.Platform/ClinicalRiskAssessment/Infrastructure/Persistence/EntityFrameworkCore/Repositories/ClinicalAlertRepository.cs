@@ -37,4 +37,15 @@ public class ClinicalAlertRepository(AppDbContext context)
             .Where(alert => alert.Status == normalizedStatus)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<ClinicalAlert>> FindBySeverityAsync(
+        string severity,
+        CancellationToken cancellationToken = default)
+    {
+        var normalizedSeverity = severity.ToUpperInvariant();
+
+        return await Context.Set<ClinicalAlert>()
+            .Where(alert => alert.Severity == normalizedSeverity)
+            .ToListAsync(cancellationToken);
+    }
 }

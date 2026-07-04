@@ -53,4 +53,15 @@ public partial class ShiftRecord
         if (checkOutAt.HasValue)
             CheckOutAt = checkOutAt;
     }
+
+    public void Block()
+    {
+        Status = "BLOCKED";
+    }
+
+    public void Reassign(int newUserId)
+    {
+        UserId = newUserId;
+        Status = "SCHEDULED"; // Reset status to scheduled for the new assignee
+    }
 }

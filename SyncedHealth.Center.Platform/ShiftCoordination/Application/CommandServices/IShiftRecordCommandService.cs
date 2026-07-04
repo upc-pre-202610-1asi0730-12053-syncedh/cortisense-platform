@@ -9,4 +9,14 @@ public interface IShiftRecordCommandService
     Task<Result<ShiftRecord>> Handle(CreateShiftRecordCommand command, CancellationToken cancellationToken);
 
     Task<Result<ShiftRecord>> Handle(UpdateShiftRecordStatusCommand command, CancellationToken cancellationToken);
+
+    Task<Result<ShiftRecord>> Handle(CheckInShiftRecordCommand command, CancellationToken cancellationToken);
+
+    Task<Result<ShiftRecord>> Handle(CheckOutShiftRecordCommand command, CancellationToken cancellationToken);
+
+    Task<Result<ShiftRecord>> Handle(EvaluateCriticalShiftCommand command, CancellationToken cancellationToken);
+
+    Task<Result<ShiftRecord>> Handle(BlockShiftCommand command, CancellationToken cancellationToken);
+
+    Task<Result<ShiftRecord>> Handle(ReassignShiftCommand command, CancellationToken cancellationToken);
 }

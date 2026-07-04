@@ -140,7 +140,7 @@ builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 });
 
 // Localization
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddLocalization();
 
 // Explicitly register IStringLocalizer
 builder.Services.AddSingleton<IStringLocalizer<ErrorMessages>, StringLocalizer<ErrorMessages>>();
@@ -338,16 +338,20 @@ app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.UseHttpsRedirection();
 
+// UseRouting makes the endpoint available via context.GetEndpoint()
 app.UseRouting();
 
 // Apply CORS Policy
 app.UseCors("AllowAllPolicy");
 
-// Add Authorization Middleware to Pipeline
-app.UseRequestAuthorization();
-
+// UseAuthorization must come before the custom middleware
 app.UseAuthorization();
 
+// Custom middleware runs AFTER UseRouting so GetEndpoint() is populated
+// and [AllowAnonymous] attributes are correctly detected
+app.UseRequestAuthorization();
+
+// Map controllers last — they are the terminal handler
 app.MapControllers();
 
 app.Run();

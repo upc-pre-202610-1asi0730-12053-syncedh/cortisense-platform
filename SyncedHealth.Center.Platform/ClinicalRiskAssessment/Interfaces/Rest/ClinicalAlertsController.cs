@@ -25,6 +25,7 @@ public class ClinicalAlertsController(
     public async Task<IActionResult> GetClinicalAlerts(
         [FromQuery] int? organizationId,
         [FromQuery] int? userId,
+        [FromQuery] string? severity,
         [FromQuery] string? status,
         CancellationToken cancellationToken)
     {
@@ -41,6 +42,16 @@ public class ClinicalAlertsController(
         {
             var result = await clinicalAlertQueryService.Handle(
                 new GetClinicalAlertsByUserIdQuery(userId.Value),
+                cancellationToken);
+
+            return Ok(result.Select(ClinicalAlertResourceFromEntityAssembler.ToResourceFromEntity));
+        }
+
+        if (!string.IsNullOrWhiteSpace(severity))
+        {
+            // Note: We use GetClinicalAlertsBySeverityQuery to filter by priority/severity
+            var result = await clinicalAlertQueryService.Handle(
+                new GetClinicalAlertsBySeverityQuery(severity),
                 cancellationToken);
 
             return Ok(result.Select(ClinicalAlertResourceFromEntityAssembler.ToResourceFromEntity));

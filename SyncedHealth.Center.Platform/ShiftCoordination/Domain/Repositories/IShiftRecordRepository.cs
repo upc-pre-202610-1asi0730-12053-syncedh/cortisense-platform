@@ -24,4 +24,13 @@ public interface IShiftRecordRepository : IBaseRepository<ShiftRecord>
         string status,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Finds SCHEDULED shift records in a work area (available for replacement).
+    /// </summary>
+    Task<IEnumerable<ShiftRecord>> FindAvailableByWorkAreaAsync(
+        int workAreaId,
+        int organizationId,
+        CancellationToken cancellationToken = default
+    );
 }

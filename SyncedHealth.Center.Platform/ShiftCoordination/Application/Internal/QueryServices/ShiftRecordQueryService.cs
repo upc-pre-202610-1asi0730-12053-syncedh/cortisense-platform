@@ -49,4 +49,14 @@ public class ShiftRecordQueryService(IShiftRecordRepository shiftRecordRepositor
     {
         return await shiftRecordRepository.FindByStatusAsync(query.Status, cancellationToken);
     }
+
+    public async Task<IEnumerable<ShiftRecord>> Handle(
+        GetReplacementSuggestionsQuery query,
+        CancellationToken cancellationToken)
+    {
+        return await shiftRecordRepository.FindAvailableByWorkAreaAsync(
+            query.WorkAreaId,
+            query.OrganizationId,
+            cancellationToken);
+    }
 }

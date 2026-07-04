@@ -46,5 +46,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();
+
+        // Database Seeding
+        builder.ApplyDatabaseSeeding();
     }
 }

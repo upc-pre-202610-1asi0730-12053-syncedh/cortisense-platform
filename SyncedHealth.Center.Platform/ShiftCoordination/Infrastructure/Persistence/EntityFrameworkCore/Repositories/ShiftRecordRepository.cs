@@ -46,4 +46,17 @@ public class ShiftRecordRepository(AppDbContext context)
             .Where(shiftRecord => shiftRecord.Status == normalizedStatus)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<ShiftRecord>> FindAvailableByWorkAreaAsync(
+        int workAreaId,
+        int organizationId,
+        CancellationToken cancellationToken = default)
+    {
+        return await Context.Set<ShiftRecord>()
+            .Where(sr =>
+                sr.WorkAreaId == workAreaId &&
+                sr.OrganizationId == organizationId &&
+                sr.Status == "SCHEDULED")
+            .ToListAsync(cancellationToken);
+    }
 }

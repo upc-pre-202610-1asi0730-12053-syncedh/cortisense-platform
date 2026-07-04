@@ -16,4 +16,6 @@ public interface IShiftRecordQueryService
     Task<IEnumerable<ShiftRecord>> Handle(GetShiftRecordsByWorkAreaIdQuery query, CancellationToken cancellationToken);
 
     Task<IEnumerable<ShiftRecord>> Handle(GetShiftRecordsByStatusQuery query, CancellationToken cancellationToken);
+
+    Task<IEnumerable<ShiftRecord>> Handle(GetReplacementSuggestionsQuery query, CancellationToken cancellationToken);
 }

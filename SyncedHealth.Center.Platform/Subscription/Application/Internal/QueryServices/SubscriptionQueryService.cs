@@ -15,4 +15,9 @@ public class SubscriptionQueryService(ISubscriptionRepository subscriptionReposi
     {
         return await subscriptionRepository.FindByOrganizationIdAsync(query.OrganizationId, cancellationToken);
     }
+
+    public async Task<Domain.Model.Aggregates.Subscription?> Handle(GetSubscriptionByIdQuery query, CancellationToken cancellationToken)
+    {
+        return await subscriptionRepository.FindByIdAsync(query.SubscriptionId, cancellationToken);
+    }
 }

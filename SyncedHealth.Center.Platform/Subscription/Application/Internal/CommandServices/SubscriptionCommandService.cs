@@ -77,4 +77,32 @@ public class SubscriptionCommandService(
             return Result<Domain.Model.Aggregates.Subscription>.Failure(SubscriptionError.InternalServerError, _localizer[nameof(SubscriptionError.InternalServerError)]);
         }
     }
+
+    public async Task<Result<Domain.Model.Aggregates.Subscription>> Handle(CancelSubscriptionCommand command, CancellationToken cancellationToken)
+    {
+        var subscription = await subscriptionRepository.FindByIdAsync(command.SubscriptionId, cancellationToken);
+        if (subscription == null)
+            return Result<Domain.Model.Aggregates.Subscription>.Failure(SubscriptionError.SubscriptionNotFound, _localizer[nameof(SubscriptionError.SubscriptionNotFound)]);
+
+        subscription.Cancel();
+
+        try
+        {
+            subscriptionRepository.Update(subscription);
+            await unitOfWork.CompleteAsync(cancellationToken);
+            return Result<Domain.Model.Aggregates.Subscription>.Success(subscription);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<Domain.Model.Aggregates.Subscription>.Failure(SubscriptionError.OperationCancelled, _localizer[nameof(SubscriptionError.OperationCancelled)]);
+        }
+        catch (DbUpdateException)
+        {
+            return Result<Domain.Model.Aggregates.Subscription>.Failure(SubscriptionError.DatabaseError, _localizer[nameof(SubscriptionError.DatabaseError)]);
+        }
+        catch (Exception)
+        {
+            return Result<Domain.Model.Aggregates.Subscription>.Failure(SubscriptionError.InternalServerError, _localizer[nameof(SubscriptionError.InternalServerError)]);
+        }
+    }
 }

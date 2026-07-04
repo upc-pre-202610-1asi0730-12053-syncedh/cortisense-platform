@@ -13,6 +13,21 @@ namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Co
  */
 public class RequestAuthorizationMiddleware(RequestDelegate next)
 {
+    // Public paths that do not require authentication
+    private static readonly HashSet<string> PublicPaths = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "/api/v1/authentication/sign-in",
+        "/api/v1/authentication/sign-up",
+        "/api/v1/invitations/validate",
+        "/api/v1/invitations/accept",
+        "/api/v1/plans",
+        "/api/v1/specialties",
+        "/api/v1/workAreas",
+        "/api/v1/organizations",
+        "/api/v1/subscriptions",
+        "/api/v1/checkoutSessions",
+    };
+
     /**
      * InvokeAsync is called by the ASP.NET Core runtime.
      */
@@ -23,21 +38,22 @@ public class RequestAuthorizationMiddleware(RequestDelegate next)
     {
         var cancellationToken = context.RequestAborted;
 
-        Console.WriteLine("Entering InvokeAsync");
-
+        // Check [AllowAnonymous] attribute on endpoint (works if routing already ran)
         var allowAnonymous = context.GetEndpoint()?.Metadata
             .Any(m => m.GetType() == typeof(AllowAnonymousAttribute)) ?? false;
 
-        Console.WriteLine($"Allow Anonymous is {allowAnonymous}");
+        // Also check our explicit public-paths whitelist
+        if (!allowAnonymous)
+        {
+            var path = context.Request.Path.Value ?? string.Empty;
+            allowAnonymous = PublicPaths.Any(p => path.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+        }
 
         if (allowAnonymous)
         {
-            Console.WriteLine("Skipping authorization");
             await next(context);
             return;
         }
-
-        Console.WriteLine("Entering authorization");
 
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
@@ -74,8 +90,6 @@ public class RequestAuthorizationMiddleware(RequestDelegate next)
 
         context.Items["User"] = user;
 
-        Console.WriteLine("Continuing with Middleware Pipeline");
-
         await next(context);
     }
-}
+}

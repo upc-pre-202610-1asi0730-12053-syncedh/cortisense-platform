@@ -9,5 +9,11 @@ public interface IClinicalAlertQueryService
     Task<ClinicalAlert?> Handle(GetClinicalAlertByIdQuery query, CancellationToken cancellationToken);
     Task<IEnumerable<ClinicalAlert>> Handle(GetClinicalAlertsByOrganizationIdQuery query, CancellationToken cancellationToken);
     Task<IEnumerable<ClinicalAlert>> Handle(GetClinicalAlertsByUserIdQuery query, CancellationToken cancellationToken);
-    Task<IEnumerable<ClinicalAlert>> Handle(GetClinicalAlertsByStatusQuery query, CancellationToken cancellationToken);
+    Task<IEnumerable<ClinicalAlert>> Handle(
+        GetClinicalAlertsByStatusQuery query,
+        CancellationToken cancellationToken);
+
+    Task<IEnumerable<ClinicalAlert>> Handle(
+        GetClinicalAlertsBySeverityQuery query,
+        CancellationToken cancellationToken);
 }

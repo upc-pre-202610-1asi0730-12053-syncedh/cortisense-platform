@@ -189,6 +189,70 @@ public class UserCommandService(
         }
     }
 
+    public async Task<Result<User>> Handle(
+        AssignRoleCommand command,
+        CancellationToken cancellationToken)
+    {
+        var user = await userRepository.FindByIdAsync(command.UserId, cancellationToken);
+
+        if (user is null)
+            return Result<User>.Failure(
+                IamError.UserNotFound,
+                GetErrorMessage(IamError.UserNotFound)
+            );
+
+        if (string.IsNullOrWhiteSpace(command.Role) ||
+            !ValidRoles.Contains(command.Role.ToUpperInvariant()))
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                _iamLocalizer["InvalidUserRole"].Value
+            );
+
+        // Update the role
+        user.Update(new UpdateUserCommand(
+            user.Id,
+            user.FirstName,
+            user.LastName,
+            user.Email,
+            null,
+            user.Phone,
+            user.WorkAreaId,
+            user.SpecialtyId,
+            command.Role.ToUpperInvariant(),
+            user.Status,
+            user.RegistrationStatus
+        ), null);
+
+        try
+        {
+            userRepository.Update(user);
+            await unitOfWork.CompleteAsync(cancellationToken);
+
+            return Result<User>.Success(user);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<User>.Failure(
+                IamError.OperationCancelled,
+                GetErrorMessage(IamError.OperationCancelled)
+            );
+        }
+        catch (DbUpdateException)
+        {
+            return Result<User>.Failure(
+                IamError.DatabaseError,
+                GetErrorMessage(IamError.DatabaseError)
+            );
+        }
+        catch (Exception)
+        {
+            return Result<User>.Failure(
+                IamError.InternalServerError,
+                GetErrorMessage(IamError.InternalServerError)
+            );
+        }
+    }
+
     private Result<User>? ValidateSignUp(SignUpCommand command)
     {
         if (command.OrganizationId <= 0)

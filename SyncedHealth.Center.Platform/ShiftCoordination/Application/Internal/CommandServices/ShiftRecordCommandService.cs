@@ -111,6 +111,145 @@ public class ShiftRecordCommandService(
         }
     }
 
+    public async Task<Result<ShiftRecord>> Handle(
+        CheckInShiftRecordCommand command,
+        CancellationToken cancellationToken)
+    {
+        var shiftRecord = await shiftRecordRepository.FindByIdAsync(command.Id, cancellationToken);
+
+        if (shiftRecord is null)
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.ShiftRecordNotFound,
+                _localizer["ShiftRecordNotFound"]);
+
+        shiftRecord.UpdateStatus("IN_PROGRESS", command.CheckInAt, null);
+
+        try
+        {
+            shiftRecordRepository.Update(shiftRecord);
+            await unitOfWork.CompleteAsync(cancellationToken);
+            return Result<ShiftRecord>.Success(shiftRecord);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.OperationCancelled,
+                _localizer["OperationCancelled"]);
+        }
+        catch (DbUpdateException)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.DatabaseError,
+                _localizer["UpdateShiftRecordDatabaseError"]);
+        }
+        catch (Exception)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.InternalServerError,
+                _localizer["UnexpectedShiftRecordUpdateError"]);
+        }
+    }
+
+    public async Task<Result<ShiftRecord>> Handle(
+        CheckOutShiftRecordCommand command,
+        CancellationToken cancellationToken)
+    {
+        var shiftRecord = await shiftRecordRepository.FindByIdAsync(command.Id, cancellationToken);
+
+        if (shiftRecord is null)
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.ShiftRecordNotFound,
+                _localizer["ShiftRecordNotFound"]);
+
+        if (shiftRecord.CheckInAt is null)
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.InvalidShiftRecordData,
+                _localizer["CheckInRequiredBeforeCheckout"]);
+
+        shiftRecord.UpdateStatus("COMPLETED", null, command.CheckOutAt);
+
+        try
+        {
+            shiftRecordRepository.Update(shiftRecord);
+            await unitOfWork.CompleteAsync(cancellationToken);
+            return Result<ShiftRecord>.Success(shiftRecord);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.OperationCancelled,
+                _localizer["OperationCancelled"]);
+        }
+        catch (DbUpdateException)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.DatabaseError,
+                _localizer["UpdateShiftRecordDatabaseError"]);
+        }
+        catch (Exception)
+        {
+            return Result<ShiftRecord>.Failure(
+                ShiftCoordinationError.InternalServerError,
+                _localizer["UnexpectedShiftRecordUpdateError"]);
+        }
+    }
+    public async Task<Result<ShiftRecord>> Handle(
+        EvaluateCriticalShiftCommand command,
+        CancellationToken cancellationToken)
+    {
+        var shiftRecord = await shiftRecordRepository.FindByIdAsync(command.ShiftRecordId, cancellationToken);
+        if (shiftRecord is null)
+            return Result<ShiftRecord>.Failure(ShiftCoordinationError.ShiftRecordNotFound, _localizer["ShiftRecordNotFound"]);
+
+        // Logic for evaluating shift risk goes here (calls external service or applies policy)
+        // For MVP, we return success (evaluation passed)
+        return Result<ShiftRecord>.Success(shiftRecord);
+    }
+
+    public async Task<Result<ShiftRecord>> Handle(
+        BlockShiftCommand command,
+        CancellationToken cancellationToken)
+    {
+        var shiftRecord = await shiftRecordRepository.FindByIdAsync(command.ShiftRecordId, cancellationToken);
+        if (shiftRecord is null)
+            return Result<ShiftRecord>.Failure(ShiftCoordinationError.ShiftRecordNotFound, _localizer["ShiftRecordNotFound"]);
+
+        shiftRecord.Block();
+        
+        try
+        {
+            shiftRecordRepository.Update(shiftRecord);
+            await unitOfWork.CompleteAsync(cancellationToken);
+            return Result<ShiftRecord>.Success(shiftRecord);
+        }
+        catch (Exception)
+        {
+            return Result<ShiftRecord>.Failure(ShiftCoordinationError.InternalServerError, _localizer["UnexpectedShiftRecordUpdateError"]);
+        }
+    }
+
+    public async Task<Result<ShiftRecord>> Handle(
+        ReassignShiftCommand command,
+        CancellationToken cancellationToken)
+    {
+        var shiftRecord = await shiftRecordRepository.FindByIdAsync(command.ShiftRecordId, cancellationToken);
+        if (shiftRecord is null)
+            return Result<ShiftRecord>.Failure(ShiftCoordinationError.ShiftRecordNotFound, _localizer["ShiftRecordNotFound"]);
+
+        shiftRecord.Reassign(command.NewUserId);
+        
+        try
+        {
+            shiftRecordRepository.Update(shiftRecord);
+            await unitOfWork.CompleteAsync(cancellationToken);
+            return Result<ShiftRecord>.Success(shiftRecord);
+        }
+        catch (Exception)
+        {
+            return Result<ShiftRecord>.Failure(ShiftCoordinationError.InternalServerError, _localizer["UnexpectedShiftRecordUpdateError"]);
+        }
+    }
+
     private Result<ShiftRecord>? ValidateCreateCommand(CreateShiftRecordCommand command)
     {
         if (command.OrganizationId <= 0 || command.UserId <= 0 || command.WorkAreaId <= 0)

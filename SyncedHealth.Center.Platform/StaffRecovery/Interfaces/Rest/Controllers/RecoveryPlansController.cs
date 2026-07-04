@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.CommandServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
+using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Resources;
 using SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Transform;
@@ -83,5 +84,47 @@ public class RecoveryPlansController(
             nameof(GetRecoveryPlanById),
             new { id = recoveryPlanResource.Id },
             recoveryPlanResource);
+    }
+
+    [HttpPatch("{id:int}/accept")]
+    public async Task<IActionResult> AcceptRecoveryPlan(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var result = await recoveryPlanCommandService.Handle(
+            new AcceptRecoveryPlanCommand(id), cancellationToken);
+
+        if (!result.IsSuccess)
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
+
+        return Ok(RecoveryPlanResourceFromEntityAssembler.ToResourceFromEntity(result.Value!));
+    }
+
+    [HttpPatch("{id:int}/reject")]
+    public async Task<IActionResult> RejectRecoveryPlan(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var result = await recoveryPlanCommandService.Handle(
+            new RejectRecoveryPlanCommand(id), cancellationToken);
+
+        if (!result.IsSuccess)
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
+
+        return Ok(RecoveryPlanResourceFromEntityAssembler.ToResourceFromEntity(result.Value!));
+    }
+
+    [HttpPatch("{id:int}/confirm")]
+    public async Task<IActionResult> ConfirmRecovery(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var result = await recoveryPlanCommandService.Handle(
+            new ConfirmRecoveryCommand(id), cancellationToken);
+
+        if (!result.IsSuccess)
+            return StaffRecoveryActionResultAssembler.ToActionResult(result);
+
+        return Ok(RecoveryPlanResourceFromEntityAssembler.ToResourceFromEntity(result.Value!));
     }
 }
