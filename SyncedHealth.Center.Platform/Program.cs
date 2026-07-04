@@ -310,12 +310,12 @@ var app = builder.Build();
 // Database schema changes should be applied manually with:
 // dotnet ef database update
 //
-// using (var scope = app.Services.CreateScope())
-// {
-//     var services = scope.ServiceProvider;
-//     var context = services.GetRequiredService<AppDbContext>();
-//     context.Database.Migrate();
-// }
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext>();
+    context.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 app.UseGlobalExceptionHandler();
