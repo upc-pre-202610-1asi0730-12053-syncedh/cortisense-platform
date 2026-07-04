@@ -62,9 +62,6 @@ public static class ModelBuilderExtensions
             .IsRequired()
             .ValueGeneratedOnAdd();
 
-        builder.Entity<WorkArea>().Property(workArea => workArea.OrganizationId)
-            .IsRequired();
-
         builder.Entity<WorkArea>().Property(workArea => workArea.Name)
             .IsRequired()
             .HasMaxLength(120);
@@ -72,8 +69,6 @@ public static class ModelBuilderExtensions
         builder.Entity<WorkArea>().Property(workArea => workArea.CreatedAt);
 
         builder.Entity<WorkArea>().Property(workArea => workArea.UpdatedAt);
-
-        builder.Entity<WorkArea>().HasIndex(workArea => workArea.OrganizationId);
 
         // Specialty Aggregate
         builder.Entity<Specialty>().ToTable("specialties");

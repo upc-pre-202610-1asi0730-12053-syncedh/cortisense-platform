@@ -9,12 +9,4 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Infrastructure.Persiste
 public class WorkAreaRepository(AppDbContext context)
     : BaseRepository<WorkArea>(context), IWorkAreaRepository
 {
-    public async Task<IEnumerable<WorkArea>> FindByOrganizationIdAsync(
-        int organizationId,
-        CancellationToken cancellationToken = default)
-    {
-        return await Context.Set<WorkArea>()
-            .Where(workArea => workArea.OrganizationId == organizationId)
-            .ToListAsync(cancellationToken);
-    }
 }

@@ -11,13 +11,10 @@ public partial class WorkArea
 
     public WorkArea(CreateWorkAreaCommand command)
     {
-        OrganizationId = command.OrganizationId;
         Name = command.Name.Trim();
     }
 
     public int Id { get; set; }
-
-    public int OrganizationId { get; set; }
 
     public string Name { get; set; }
 }

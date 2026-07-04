@@ -15,8 +15,4 @@ public interface IWorkAreaQueryService
         CancellationToken cancellationToken = default
     );
 
-    Task<IEnumerable<WorkArea>> Handle(
-        GetWorkAreasByOrganizationIdQuery query,
-        CancellationToken cancellationToken = default
-    );
 }

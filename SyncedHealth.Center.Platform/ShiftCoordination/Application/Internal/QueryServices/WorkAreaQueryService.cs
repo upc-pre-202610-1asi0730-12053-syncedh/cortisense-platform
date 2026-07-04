@@ -22,12 +22,4 @@ public class WorkAreaQueryService(IWorkAreaRepository workAreaRepository)
         return await workAreaRepository.FindByIdAsync(query.Id, cancellationToken);
     }
 
-    public async Task<IEnumerable<WorkArea>> Handle(
-        GetWorkAreasByOrganizationIdQuery query,
-        CancellationToken cancellationToken = default)
-    {
-        return await workAreaRepository.FindByOrganizationIdAsync(
-            query.OrganizationId,
-            cancellationToken);
-    }
 }

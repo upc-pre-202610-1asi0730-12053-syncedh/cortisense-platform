@@ -10,7 +10,6 @@ public static class WorkAreaResourceFromEntityAssembler
         return new WorkAreaResource
         {
             Id = entity.Id,
-            OrganizationId = entity.OrganizationId,
             Name = entity.Name,
             CreatedAt = entity.CreatedAt,
             UpdatedAt = entity.UpdatedAt

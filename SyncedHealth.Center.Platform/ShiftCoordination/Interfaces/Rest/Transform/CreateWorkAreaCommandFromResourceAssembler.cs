@@ -8,7 +8,6 @@ public static class CreateWorkAreaCommandFromResourceAssembler
     public static CreateWorkAreaCommand ToCommandFromResource(CreateWorkAreaResource resource)
     {
         return new CreateWorkAreaCommand(
-            resource.OrganizationId,
             resource.Name
         );
     }

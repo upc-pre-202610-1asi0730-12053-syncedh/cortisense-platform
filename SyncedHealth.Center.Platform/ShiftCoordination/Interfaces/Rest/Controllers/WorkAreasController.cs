@@ -18,16 +18,11 @@ public class WorkAreasController(
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAllWorkAreas(
-        [FromQuery] int? organizationId,
         CancellationToken cancellationToken)
     {
-        var workAreas = organizationId.HasValue
-            ? await workAreaQueryService.Handle(
-                new GetWorkAreasByOrganizationIdQuery(organizationId.Value),
-                cancellationToken)
-            : await workAreaQueryService.Handle(
-                new GetAllWorkAreasQuery(),
-                cancellationToken);
+        var workAreas = await workAreaQueryService.Handle(
+            new GetAllWorkAreasQuery(),
+            cancellationToken);
 
         var resources = workAreas
             .Select(WorkAreaResourceFromEntityAssembler.ToResourceFromEntity);
