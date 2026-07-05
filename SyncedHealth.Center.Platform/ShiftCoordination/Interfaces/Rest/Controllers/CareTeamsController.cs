@@ -106,4 +106,19 @@ public class CareTeamsController(
 
         return Ok(careTeamResource);
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteCareTeam(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var command = DeleteCareTeamCommandFromRouteAssembler.ToCommandFromRoute(id);
+
+        var result = await careTeamCommandService.Handle(command, cancellationToken);
+
+        if (!result.IsSuccess)
+            return ShiftCoordinationActionResultAssembler.ToActionResult(result);
+
+        return NoContent();
+    }
 }

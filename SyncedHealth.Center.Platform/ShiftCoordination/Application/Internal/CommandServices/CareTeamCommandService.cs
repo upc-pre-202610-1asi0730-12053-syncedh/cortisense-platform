@@ -121,4 +121,48 @@ public class CareTeamCommandService(
             );
         }
     }
+
+    public async Task<Result<CareTeam>> Handle(
+        DeleteCareTeamCommand command,
+        CancellationToken cancellationToken = default)
+    {
+        var careTeam = await careTeamRepository.FindByIdAsync(command.Id, cancellationToken);
+
+        if (careTeam is null)
+        {
+            return Result<CareTeam>.Failure(
+                ShiftCoordinationError.CareTeamNotFound,
+                "The specified care team was not found."
+            );
+        }
+
+        try
+        {
+            careTeamRepository.Remove(careTeam);
+            await unitOfWork.CompleteAsync(cancellationToken);
+
+            return Result<CareTeam>.Success(careTeam);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result<CareTeam>.Failure(
+                ShiftCoordinationError.OperationCancelled,
+                "The operation was cancelled."
+            );
+        }
+        catch (DbUpdateException)
+        {
+            return Result<CareTeam>.Failure(
+                ShiftCoordinationError.DatabaseError,
+                "A database error occurred while deleting the care team."
+            );
+        }
+        catch (Exception)
+        {
+            return Result<CareTeam>.Failure(
+                ShiftCoordinationError.InternalServerError,
+                "An internal server error occurred while deleting the care team."
+            );
+        }
+    }
 }

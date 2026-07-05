@@ -15,4 +15,9 @@ public interface ICareTeamCommandService
         UpdateCareTeamCommand command,
         CancellationToken cancellationToken = default
     );
+
+    Task<Result<CareTeam>> Handle(
+        DeleteCareTeamCommand command,
+        CancellationToken cancellationToken = default
+    );
 }
