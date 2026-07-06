@@ -1,0 +1,176 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "Audit & Compliance Bounded Context" as AuditBC {
+        package "Domain" as AuditDomain {
+            class AuditLog <<Aggregate>> {
+                +AuditLog()
+                +AuditLog(command: CreateAuditLogCommand)
+                +Id: int
+                +OrganizationId: int
+                +ActorUserId: int
+                +Type: EAuditLogType
+                +Severity: EAuditSeverity
+                +ResourceType: EAuditResourceType
+                +ResourceId: int
+                +Source: EAuditActionSource
+                +Description: string
+            }
+
+            enum EAuditLogType <<ValueObject>> {
+                UserInvited
+                UserRoleChanged
+                TeamCreated
+                TeamUpdated
+                TeamDeleted
+                AlertCreated
+                AlertResolved
+                AnomalyReviewed
+                AnomalyCreated
+                PreventiveActionCreated
+                PreventiveActionAccepted
+                PreventiveActionCompleted
+                ShiftCheckIn
+                SubscriptionActivated
+                ReportGenerated
+                SystemAccessed
+                RiskAssessmentEvaluated
+            }
+
+            enum EAuditSeverity <<ValueObject>> {
+                Low
+                Medium
+                High
+                Critical
+            }
+
+            enum EAuditResourceType <<ValueObject>> {
+                User
+                Organization
+                CareTeam
+                ShiftRecord
+                RecoveryPlan
+                PreventiveAction
+                ClinicalAlert
+                VitalSignAnomaly
+                Subscription
+            }
+
+            enum EAuditActionSource <<ValueObject>> {
+                Iam
+                ClinicalRiskAssessment
+                ShiftCoordination
+                StaffRecovery
+                Subscription
+                System
+            }
+
+            interface IAuditLogCommandService {
+                +Handle(command: CreateAuditLogCommand, ct: CancellationToken): Task<AuditLog>
+            }
+            interface IAuditLogQueryService {
+                +Handle(query: GetAllAuditLogsQuery, ct: CancellationToken): Task<IEnumerable<AuditLog>>
+            }
+        }
+
+        package "Interfaces" as AuditInterfaces {
+            class AuditLogsController {
+                +AuditLogsController(cmdSvc: IAuditLogCommandService, qrySvc: IAuditLogQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+        }
+
+        AuditLogsController ..> IAuditLogCommandService : dependency
+        AuditLogsController ..> IAuditLogQueryService : dependency
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        AuditLog ..> EAuditLogType : uses >
+        AuditLog ..> EAuditSeverity : uses >
+        AuditLog ..> EAuditResourceType : uses >
+        AuditLog ..> EAuditActionSource : uses >
+        IAuditLogCommandService ..> AuditLog : uses >
+        IAuditLogQueryService ..> AuditLog : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    VitalSignReadingCommandService ..> IAuditLogCommandService : dependency
+    RiskAssessmentCommandService ..> IAuditLogCommandService : dependency
+    AuditLog ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        AuditLog --> Organization : references >
+        AuditLog --> User : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+
+@enduml

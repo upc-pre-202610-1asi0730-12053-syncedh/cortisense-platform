@@ -1,0 +1,309 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "IAM Bounded Context" as Iam {
+        package "Domain" as IamDomain {
+            class User <<Aggregate>> {
+                +User()
+                +User(command: SignUpCommand, passwordHash: string)
+                +Id: int
+                +OrganizationId: int
+                +FirstName: string
+                +LastName: string
+                +Email: string
+                +PasswordHash: string
+                +Phone: string?
+                +WorkAreaId: int?
+                +SpecialtyId: int?
+                +Role: string
+                +Status: string
+                +RegistrationStatus: string
+                +ActivatedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateUserCommand, passwordHash: string?): void
+                +UpdatePasswordHash(passwordHash: string): void
+            }
+
+            class Organization <<Aggregate>> {
+                +Organization()
+                +Organization(command: CreateOrganizationCommand)
+                +Id: int
+                +Name: string
+                +Ruc: string
+                +Email: string
+                +Phone: string
+                +Address: string
+                +Status: string
+                +RegistrationStatus: string
+                +ActivatedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateOrganizationCommand): void
+            }
+
+            class Invitation <<Aggregate>> {
+                +Invitation()
+                +Invitation(command: CreateInvitationCommand)
+                +Id: int
+                +OrganizationId: int
+                +Email: string
+                +Role: string
+                +Status: string
+                +Token: string
+                +EmailStatus: string
+                +ResendEmailId: string?
+                +EmailError: string?
+                +ExpiresAt: DateTimeOffset?
+                +SentAt: DateTimeOffset?
+                +AcceptedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateInvitationCommand): void
+                +MarkEmailAsSent(resendEmailId: string): void
+                +MarkEmailAsSkipped(): void
+                +MarkEmailAsFailed(error: string): void
+                +MarkAsAccepted(): void
+                +Cancel(): void
+            }
+
+            interface IUserCommandService {
+                +Handle(command: SignUpCommand, ct: CancellationToken): Task<User>
+                +Handle(command: UpdateUserCommand, ct: CancellationToken): Task<User?>
+            }
+            interface IUserQueryService {
+                +Handle(query: GetUserByIdQuery, ct: CancellationToken): Task<User?>
+                +Handle(query: GetAllUsersQuery, ct: CancellationToken): Task<IEnumerable<User>>
+                +Handle(query: GetUserByEmailQuery, ct: CancellationToken): Task<User?>
+            }
+            interface IOrganizationCommandService {
+                +Handle(command: CreateOrganizationCommand, ct: CancellationToken): Task<Organization>
+                +Handle(command: UpdateOrganizationCommand, ct: CancellationToken): Task<Organization?>
+            }
+            interface IOrganizationQueryService {
+                +Handle(query: GetOrganizationByIdQuery, ct: CancellationToken): Task<Organization?>
+            }
+            interface IInvitationCommandService {
+                +Handle(command: CreateInvitationCommand, ct: CancellationToken): Task<Invitation>
+                +Handle(command: UpdateInvitationCommand, ct: CancellationToken): Task<Invitation?>
+            }
+            interface IInvitationQueryService {
+                +Handle(query: GetInvitationByTokenQuery, ct: CancellationToken): Task<Invitation?>
+                +Handle(query: GetAllInvitationsByOrganizationIdQuery, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+
+            interface IUserRepository {
+                +FindByEmailAsync(email: string, ct: CancellationToken): Task<User?>
+                +ExistsByEmailAsync(email: string, ct: CancellationToken): Task<bool>
+                +FindAllByOrganizationIdAsync(orgId: int, ct: CancellationToken): Task<IEnumerable<User>>
+            }
+            interface IOrganizationRepository {
+                +FindByEmailAsync(email: string, ct: CancellationToken): Task<Organization?>
+            }
+            interface IInvitationRepository {
+                +FindByTokenAsync(token: string, ct: CancellationToken): Task<Invitation?>
+                +FindAllByOrganizationIdAsync(orgId: int, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+        }
+
+        package "Application" as IamApp {
+            class UserCommandService {
+                +UserCommandService(repo: IUserRepository, uow: IUnitOfWork, hashing: IHashingService)
+                +Handle(command: SignUpCommand, ct: CancellationToken): Task<User>
+                +Handle(command: UpdateUserCommand, ct: CancellationToken): Task<User?>
+            }
+            class UserQueryService {
+                +UserQueryService(repo: IUserRepository)
+                +Handle(query: GetUserByIdQuery, ct: CancellationToken): Task<User?>
+                +Handle(query: GetAllUsersQuery, ct: CancellationToken): Task<IEnumerable<User>>
+                +Handle(query: GetUserByEmailQuery, ct: CancellationToken): Task<User?>
+            }
+            class OrganizationCommandService {
+                +OrganizationCommandService(repo: IOrganizationRepository, uow: IUnitOfWork)
+                +Handle(command: CreateOrganizationCommand, ct: CancellationToken): Task<Organization>
+                +Handle(command: UpdateOrganizationCommand, ct: CancellationToken): Task<Organization?>
+            }
+            class OrganizationQueryService {
+                +OrganizationQueryService(repo: IOrganizationRepository)
+                +Handle(query: GetOrganizationByIdQuery, ct: CancellationToken): Task<Organization?>
+            }
+            class InvitationCommandService {
+                +InvitationCommandService(repo: IInvitationRepository, uow: IUnitOfWork, email: IResendEmailService)
+                +Handle(command: CreateInvitationCommand, ct: CancellationToken): Task<Invitation>
+                +Handle(command: UpdateInvitationCommand, ct: CancellationToken): Task<Invitation?>
+            }
+            class InvitationQueryService {
+                +InvitationQueryService(repo: IInvitationRepository)
+                +Handle(query: GetInvitationByTokenQuery, ct: CancellationToken): Task<Invitation?>
+                +Handle(query: GetAllInvitationsByOrganizationIdQuery, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+        }
+
+        package "Infrastructure" as IamInfra {
+            class UserRepository {
+                +UserRepository(context: AppDbContext)
+            }
+            class OrganizationRepository {
+                +OrganizationRepository(context: AppDbContext)
+            }
+            class InvitationRepository {
+                +InvitationRepository(context: AppDbContext)
+            }
+        }
+
+        package "Interfaces" as IamInterfaces {
+            class AuthenticationController {
+                +AuthenticationController(orgCmd: IOrganizationCommandService, userCmd: IUserCommandService, tokenSvc: ITokenService, hashing: IHashingService)
+                +SignUp(resource: SignUpResource, ct: CancellationToken): Task<IActionResult>
+                +SignIn(resource: SignInResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class UsersController {
+                +UsersController(userCmd: IUserCommandService, userQry: IUserQueryService)
+                +GetAllUsers(ct: CancellationToken): Task<IActionResult>
+                +GetUserById(id: int, ct: CancellationToken): Task<IActionResult>
+                +UpdateUser(id: int, resource: UpdateUserResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class OrganizationsController {
+                +OrganizationsController(orgCmd: IOrganizationCommandService, orgQry: IOrganizationQueryService)
+                +GetOrganizationById(id: int, ct: CancellationToken): Task<IActionResult>
+                +UpdateOrganization(id: int, resource: UpdateOrganizationResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class InvitationsController {
+                +InvitationsController(invCmd: IInvitationCommandService, invQry: IInvitationQueryService)
+                +CreateInvitation(resource: CreateInvitationResource, ct: CancellationToken): Task<IActionResult>
+                +AcceptInvitation(resource: AcceptInvitationResource, ct: CancellationToken): Task<IActionResult>
+                +GetAllByOrganizationId(organizationId: int, ct: CancellationToken): Task<IActionResult>
+            }
+        }
+
+        UserCommandService ..> IUserRepository : dependency
+        UserQueryService ..> IUserRepository : dependency
+        OrganizationCommandService ..> IOrganizationRepository : dependency
+        OrganizationQueryService ..> IOrganizationRepository : dependency
+        InvitationCommandService ..> IInvitationRepository : dependency
+        InvitationQueryService ..> IInvitationRepository : dependency
+        AuthenticationController ..> IUserCommandService : dependency
+        AuthenticationController ..> IOrganizationCommandService : dependency
+        UsersController ..> IUserCommandService : dependency
+        UsersController ..> IUserQueryService : dependency
+        OrganizationsController ..> IOrganizationCommandService : dependency
+        OrganizationsController ..> IOrganizationQueryService : dependency
+        InvitationsController ..> IInvitationCommandService : dependency
+        InvitationsController ..> IInvitationQueryService : dependency
+        UserRepository ..|> IUserRepository : implements
+        OrganizationRepository ..|> IOrganizationRepository : implements
+        InvitationRepository ..|> IInvitationRepository : implements
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        IUserCommandService ..> User : uses >
+        IUserQueryService ..> User : uses >
+        IOrganizationCommandService ..> Organization : uses >
+        IOrganizationQueryService ..> Organization : uses >
+        IInvitationCommandService ..> Invitation : uses >
+        IInvitationQueryService ..> Invitation : uses >
+        IUserRepository ..> User : uses >
+        IOrganizationRepository ..> Organization : uses >
+        IInvitationRepository ..> Invitation : uses >
+        UserCommandService ..> User : uses >
+        UserQueryService ..> User : uses >
+        OrganizationCommandService ..> Organization : uses >
+        OrganizationQueryService ..> Organization : uses >
+        InvitationCommandService ..> Invitation : uses >
+        InvitationQueryService ..> Invitation : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    IUserRepository ...|> IBaseRepository : extends
+    IOrganizationRepository ...|> IBaseRepository : extends
+    IInvitationRepository ...|> IBaseRepository : extends
+    UserCommandService ..> IUnitOfWork : dependency
+    OrganizationCommandService ..> IUnitOfWork : dependency
+    InvitationCommandService ..> IUnitOfWork : dependency
+    UserRepository ..> AppDbContext : dependency
+    OrganizationRepository ..> AppDbContext : dependency
+    InvitationRepository ..> AppDbContext : dependency
+    User ..|> IAuditableEntity : implements
+    Organization ..|> IAuditableEntity : implements
+    Invitation ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        User --> Organization : references >
+        User --> WorkArea : references >
+        User --> Specialty : references >
+        Invitation --> Organization : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+    UserCommandService ..|> IUserCommandService : implements
+    UserQueryService ..|> IUserQueryService : implements
+    OrganizationCommandService ..|> IOrganizationCommandService : implements
+    OrganizationQueryService ..|> IOrganizationQueryService : implements
+    InvitationCommandService ..|> IInvitationCommandService : implements
+    InvitationQueryService ..|> IInvitationQueryService : implements
+
+@enduml

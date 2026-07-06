@@ -1,0 +1,212 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "Subscription & Billing Bounded Context" as SubscriptionBC {
+        package "Domain" as SubDomain {
+            class Plan <<Aggregate>> {
+                +Plan()
+                +Id: int
+                +Code: string
+                +Name: string
+                +Price: decimal
+                +Currency: string
+                +BillingPeriod: EBillingPeriod
+                +MaxDoctors: int?
+                +MaxSupervisors: int
+                +MaxTeams: int
+                +MaxWorkAreas: int
+                +MonthlyInvitations: int
+                +DataHistoryDays: int
+                +SupportLevel: ESupportLevel
+                +Recommended: bool
+                +FeatureKeys: IList<string>
+                +EnabledModules: IList<string>
+                +DisabledModules: IList<string>
+            }
+
+            class Subscription <<Aggregate>> {
+                +Subscription()
+                +Subscription(command: CreateSubscriptionCommand)
+                +Id: int
+                +OrganizationId: int
+                +PlanId: int
+                +Status: ESubscriptionStatus
+                +StartedAt: DateTimeOffset
+                +CancelledAt: DateTimeOffset?
+                +StripeSubscriptionId: string?
+                +StripeCustomerId: string?
+                +UpdatePlan(planId: int): void
+                +Activate(stripeSubscriptionId: string?, stripeCustomerId: string?): void
+                +Cancel(): void
+            }
+
+            class CheckoutSession <<Aggregate>> {
+                +CheckoutSession()
+                +CheckoutSession(command: CreateCheckoutSessionCommand)
+                +Id: int
+                +OrganizationId: int
+                +PlanId: int
+                +Status: ECheckoutSessionStatus
+                +StripeSessionId: string
+                +StripeSessionUrl: string
+            }
+
+            enum EBillingPeriod <<ValueObject>> {
+                Monthly
+                Annual
+            }
+
+            enum ESubscriptionStatus <<ValueObject>> {
+                Pending
+                Active
+                Cancelled
+                Expired
+            }
+
+            enum ECheckoutSessionStatus <<ValueObject>> {
+                Pending
+                Completed
+                Expired
+            }
+
+            enum ESupportLevel <<ValueObject>> {
+                Basic
+                Priority
+                Dedicated
+            }
+
+            interface ISubscriptionCommandService {
+                +Handle(command: CreateSubscriptionCommand, ct: CancellationToken): Task<Subscription>
+                +Handle(command: UpdateSubscriptionCommand, ct: CancellationToken): Task<Subscription?>
+                +Handle(command: CancelSubscriptionCommand, ct: CancellationToken): Task<Subscription?>
+            }
+            interface ICheckoutSessionCommandService {
+                +Handle(command: CreateCheckoutSessionCommand, ct: CancellationToken): Task<CheckoutSession>
+            }
+            interface IPlanQueryService {
+                +Handle(query: GetAllPlansQuery, ct: CancellationToken): Task<IEnumerable<Plan>>
+                +Handle(query: GetPlanByIdQuery, ct: CancellationToken): Task<Plan?>
+            }
+        }
+
+        package "Interfaces" as SubInterfaces {
+            class PlansController {
+                +PlansController(qrySvc: IPlanQueryService)
+                +GetAll(ct): Task<IActionResult>
+                +GetById(id: int, ct): Task<IActionResult>
+            }
+            class SubscriptionsController {
+                +SubscriptionsController(cmdSvc: ISubscriptionCommandService, qrySvc: ISubscriptionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class CheckoutSessionsController {
+                +CheckoutSessionsController(cmdSvc: ICheckoutSessionCommandService, qrySvc: ICheckoutSessionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetByOrganizationId(organizationId: int, ct): Task<IActionResult>
+            }
+            class BillingController {
+                +BillingController(cmdSvc: ISubscriptionCommandService, stripeSvc: IStripeBillingService)
+                +HandleWebhook(ct): Task<IActionResult>
+            }
+        }
+
+        PlansController ..> IPlanQueryService : dependency
+        SubscriptionsController ..> ISubscriptionCommandService : dependency
+        CheckoutSessionsController ..> ICheckoutSessionCommandService : dependency
+        BillingController ..> ISubscriptionCommandService : dependency
+        Subscription --> Plan : references (by PlanId)
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        Plan ..> EBillingPeriod : uses >
+        Plan ..> ESupportLevel : uses >
+        Subscription ..> ESubscriptionStatus : uses >
+        CheckoutSession ..> ECheckoutSessionStatus : uses >
+        ISubscriptionCommandService ..> Subscription : uses >
+        ICheckoutSessionCommandService ..> CheckoutSession : uses >
+        IPlanQueryService ..> Plan : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    Plan ..|> IAuditableEntity : implements
+    Subscription ..|> IAuditableEntity : implements
+    CheckoutSession ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        Subscription --> Organization : references >
+        CheckoutSession --> Organization : references >
+        CheckoutSession --> Plan : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+
+@enduml

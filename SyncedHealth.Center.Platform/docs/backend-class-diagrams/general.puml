@@ -1,0 +1,877 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    title
+        SyncedHealth.Center.Platform
+        Class Diagram
+        IAM, Clinical Risk, Shift Coordination, Staff Recovery, Audit & Compliance, Subscription, Shared
+    end title
+
+    ' =========================================================
+    ' SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+    ' =========================================================
+    ' IAM BOUNDED CONTEXT
+    ' =========================================================
+    package "IAM Bounded Context" as Iam {
+        package "Domain" as IamDomain {
+            class User <<Aggregate>> {
+                +User()
+                +User(command: SignUpCommand, passwordHash: string)
+                +Id: int
+                +OrganizationId: int
+                +FirstName: string
+                +LastName: string
+                +Email: string
+                +PasswordHash: string
+                +Phone: string?
+                +WorkAreaId: int?
+                +SpecialtyId: int?
+                +Role: string
+                +Status: string
+                +RegistrationStatus: string
+                +ActivatedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateUserCommand, passwordHash: string?): void
+                +UpdatePasswordHash(passwordHash: string): void
+            }
+
+            class Organization <<Aggregate>> {
+                +Organization()
+                +Organization(command: CreateOrganizationCommand)
+                +Id: int
+                +Name: string
+                +Ruc: string
+                +Email: string
+                +Phone: string
+                +Address: string
+                +Status: string
+                +RegistrationStatus: string
+                +ActivatedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateOrganizationCommand): void
+            }
+
+            class Invitation <<Aggregate>> {
+                +Invitation()
+                +Invitation(command: CreateInvitationCommand)
+                +Id: int
+                +OrganizationId: int
+                +Email: string
+                +Role: string
+                +Status: string
+                +Token: string
+                +EmailStatus: string
+                +ResendEmailId: string?
+                +EmailError: string?
+                +ExpiresAt: DateTimeOffset?
+                +SentAt: DateTimeOffset?
+                +AcceptedAt: DateTimeOffset?
+                +CancelledAt: DateTimeOffset?
+                +Update(command: UpdateInvitationCommand): void
+                +MarkEmailAsSent(resendEmailId: string): void
+                +MarkEmailAsSkipped(): void
+                +MarkEmailAsFailed(error: string): void
+                +MarkAsAccepted(): void
+                +Cancel(): void
+            }
+
+            interface IUserCommandService {
+                +Handle(command: SignUpCommand, ct: CancellationToken): Task<User>
+                +Handle(command: UpdateUserCommand, ct: CancellationToken): Task<User?>
+            }
+            interface IUserQueryService {
+                +Handle(query: GetUserByIdQuery, ct: CancellationToken): Task<User?>
+                +Handle(query: GetAllUsersQuery, ct: CancellationToken): Task<IEnumerable<User>>
+                +Handle(query: GetUserByEmailQuery, ct: CancellationToken): Task<User?>
+            }
+            interface IOrganizationCommandService {
+                +Handle(command: CreateOrganizationCommand, ct: CancellationToken): Task<Organization>
+                +Handle(command: UpdateOrganizationCommand, ct: CancellationToken): Task<Organization?>
+            }
+            interface IOrganizationQueryService {
+                +Handle(query: GetOrganizationByIdQuery, ct: CancellationToken): Task<Organization?>
+            }
+            interface IInvitationCommandService {
+                +Handle(command: CreateInvitationCommand, ct: CancellationToken): Task<Invitation>
+                +Handle(command: UpdateInvitationCommand, ct: CancellationToken): Task<Invitation?>
+            }
+            interface IInvitationQueryService {
+                +Handle(query: GetInvitationByTokenQuery, ct: CancellationToken): Task<Invitation?>
+                +Handle(query: GetAllInvitationsByOrganizationIdQuery, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+
+            interface IUserRepository {
+                +FindByEmailAsync(email: string, ct: CancellationToken): Task<User?>
+                +ExistsByEmailAsync(email: string, ct: CancellationToken): Task<bool>
+                +FindAllByOrganizationIdAsync(orgId: int, ct: CancellationToken): Task<IEnumerable<User>>
+            }
+            interface IOrganizationRepository {
+                +FindByEmailAsync(email: string, ct: CancellationToken): Task<Organization?>
+            }
+            interface IInvitationRepository {
+                +FindByTokenAsync(token: string, ct: CancellationToken): Task<Invitation?>
+                +FindAllByOrganizationIdAsync(orgId: int, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+        }
+
+        package "Application" as IamApp {
+            class UserCommandService {
+                +UserCommandService(repo: IUserRepository, uow: IUnitOfWork, hashing: IHashingService)
+                +Handle(command: SignUpCommand, ct: CancellationToken): Task<User>
+                +Handle(command: UpdateUserCommand, ct: CancellationToken): Task<User?>
+            }
+            class UserQueryService {
+                +UserQueryService(repo: IUserRepository)
+                +Handle(query: GetUserByIdQuery, ct: CancellationToken): Task<User?>
+                +Handle(query: GetAllUsersQuery, ct: CancellationToken): Task<IEnumerable<User>>
+                +Handle(query: GetUserByEmailQuery, ct: CancellationToken): Task<User?>
+            }
+            class OrganizationCommandService {
+                +OrganizationCommandService(repo: IOrganizationRepository, uow: IUnitOfWork)
+                +Handle(command: CreateOrganizationCommand, ct: CancellationToken): Task<Organization>
+                +Handle(command: UpdateOrganizationCommand, ct: CancellationToken): Task<Organization?>
+            }
+            class OrganizationQueryService {
+                +OrganizationQueryService(repo: IOrganizationRepository)
+                +Handle(query: GetOrganizationByIdQuery, ct: CancellationToken): Task<Organization?>
+            }
+            class InvitationCommandService {
+                +InvitationCommandService(repo: IInvitationRepository, uow: IUnitOfWork, email: IResendEmailService)
+                +Handle(command: CreateInvitationCommand, ct: CancellationToken): Task<Invitation>
+                +Handle(command: UpdateInvitationCommand, ct: CancellationToken): Task<Invitation?>
+            }
+            class InvitationQueryService {
+                +InvitationQueryService(repo: IInvitationRepository)
+                +Handle(query: GetInvitationByTokenQuery, ct: CancellationToken): Task<Invitation?>
+                +Handle(query: GetAllInvitationsByOrganizationIdQuery, ct: CancellationToken): Task<IEnumerable<Invitation>>
+            }
+        }
+
+        package "Infrastructure" as IamInfra {
+            class UserRepository {
+                +UserRepository(context: AppDbContext)
+            }
+            class OrganizationRepository {
+                +OrganizationRepository(context: AppDbContext)
+            }
+            class InvitationRepository {
+                +InvitationRepository(context: AppDbContext)
+            }
+        }
+
+        package "Interfaces" as IamInterfaces {
+            class AuthenticationController {
+                +AuthenticationController(orgCmd: IOrganizationCommandService, userCmd: IUserCommandService, tokenSvc: ITokenService, hashing: IHashingService)
+                +SignUp(resource: SignUpResource, ct: CancellationToken): Task<IActionResult>
+                +SignIn(resource: SignInResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class UsersController {
+                +UsersController(userCmd: IUserCommandService, userQry: IUserQueryService)
+                +GetAllUsers(ct: CancellationToken): Task<IActionResult>
+                +GetUserById(id: int, ct: CancellationToken): Task<IActionResult>
+                +UpdateUser(id: int, resource: UpdateUserResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class OrganizationsController {
+                +OrganizationsController(orgCmd: IOrganizationCommandService, orgQry: IOrganizationQueryService)
+                +GetOrganizationById(id: int, ct: CancellationToken): Task<IActionResult>
+                +UpdateOrganization(id: int, resource: UpdateOrganizationResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class InvitationsController {
+                +InvitationsController(invCmd: IInvitationCommandService, invQry: IInvitationQueryService)
+                +CreateInvitation(resource: CreateInvitationResource, ct: CancellationToken): Task<IActionResult>
+                +AcceptInvitation(resource: AcceptInvitationResource, ct: CancellationToken): Task<IActionResult>
+                +GetAllByOrganizationId(organizationId: int, ct: CancellationToken): Task<IActionResult>
+            }
+        }
+
+        UserCommandService ..> IUserRepository : dependency
+        UserQueryService ..> IUserRepository : dependency
+        OrganizationCommandService ..> IOrganizationRepository : dependency
+        OrganizationQueryService ..> IOrganizationRepository : dependency
+        InvitationCommandService ..> IInvitationRepository : dependency
+        InvitationQueryService ..> IInvitationRepository : dependency
+        AuthenticationController ..> IUserCommandService : dependency
+        AuthenticationController ..> IOrganizationCommandService : dependency
+        UsersController ..> IUserCommandService : dependency
+        UsersController ..> IUserQueryService : dependency
+        OrganizationsController ..> IOrganizationCommandService : dependency
+        OrganizationsController ..> IOrganizationQueryService : dependency
+        InvitationsController ..> IInvitationCommandService : dependency
+        InvitationsController ..> IInvitationQueryService : dependency
+        UserRepository ..|> IUserRepository : implements
+        OrganizationRepository ..|> IOrganizationRepository : implements
+        InvitationRepository ..|> IInvitationRepository : implements
+    }
+
+    ' =========================================================
+    ' CLINICAL RISK ASSESSMENT BOUNDED CONTEXT
+    ' =========================================================
+    package "Clinical Risk Assessment Bounded Context" as ClinicalRisk {
+        package "Domain" as CRADomain {
+            class VitalSignReading <<Aggregate>> {
+                +VitalSignReading()
+                +VitalSignReading(command: CreateVitalSignReadingCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +HeartRate: int
+                +Hrv: int
+                +FatigueLevel: int
+                +CortisolLevel: decimal
+                +SensorStatus: string
+                +RecordedAt: DateTimeOffset?
+            }
+
+            class VitalSignAnomaly <<Aggregate>> {
+                +VitalSignAnomaly()
+                +VitalSignAnomaly(command: CreateVitalSignAnomalyCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +Type: string
+                +Severity: string
+                +Status: string
+                +Value: string
+                +Threshold: string
+                +Message: string
+                +DetectedAt: DateTimeOffset?
+                +ReviewedAt: DateTimeOffset?
+                +ReviewedBy: int?
+                +UpdateStatus(status: string, reviewedBy: int?): void
+            }
+
+            class ClinicalAlert <<Aggregate>> {
+                +ClinicalAlert()
+                +ClinicalAlert(command: CreateClinicalAlertCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +Severity: string
+                +Status: string
+                +Message: string
+                +CreatedAt: DateTimeOffset?
+                +ResolvedAt: DateTimeOffset?
+                +ResolvedBy: int?
+                +UpdateStatus(status: string, resolvedBy: int?): void
+            }
+
+            class RiskAssessment <<Aggregate>> {
+                +RiskAssessment()
+                +RiskAssessment(command: CreateRiskAssessmentCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +FatigueLevel: int
+                +RiskLevel: string
+                +HeartRate: int
+                +Hrv: int
+                +LastUpdatedAt: DateTimeOffset?
+                +UpdateRiskLevel(riskLevel: string): void
+            }
+
+            interface IVitalSignReadingCommandService {
+                +Handle(command: CreateVitalSignReadingCommand, ct: CancellationToken): Task<VitalSignReading>
+            }
+            interface IVitalSignReadingQueryService {
+                +Handle(query: GetAllVitalSignReadingsQuery, ct: CancellationToken): Task<IEnumerable<VitalSignReading>>
+                +Handle(query: GetVitalSignReadingByIdQuery, ct: CancellationToken): Task<VitalSignReading?>
+            }
+            interface IVitalSignAnomalyCommandService {
+                +Handle(command: CreateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly>
+                +Handle(command: UpdateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly?>
+            }
+            interface IVitalSignAnomalyQueryService {
+                +Handle(query: GetAllVitalSignAnomaliesQuery, ct: CancellationToken): Task<IEnumerable<VitalSignAnomaly>>
+            }
+            interface IClinicalAlertCommandService {
+                +Handle(command: CreateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert>
+                +Handle(command: UpdateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert?>
+            }
+            interface IClinicalAlertQueryService {
+                +Handle(query: GetAllClinicalAlertsQuery, ct: CancellationToken): Task<IEnumerable<ClinicalAlert>>
+            }
+            interface IRiskAssessmentCommandService {
+                +Handle(command: CreateRiskAssessmentCommand, ct: CancellationToken): Task<RiskAssessment>
+            }
+            interface IRiskAssessmentQueryService {
+                +Handle(query: GetAllRiskAssessmentsQuery, ct: CancellationToken): Task<IEnumerable<RiskAssessment>>
+            }
+        }
+
+        package "Application" as CRAApp {
+            class VitalSignReadingCommandService {
+                +VitalSignReadingCommandService(repo: IVitalSignReadingRepository, uow: IUnitOfWork, riskSvc: IRiskAssessmentCommandService, auditSvc: IAuditLogCommandService)
+                +Handle(command: CreateVitalSignReadingCommand, ct: CancellationToken): Task<VitalSignReading>
+            }
+            class RiskAssessmentCommandService {
+                +RiskAssessmentCommandService(repo: IRiskAssessmentRepository, anomalyRepo: IVitalSignAnomalyRepository, alertRepo: IClinicalAlertRepository, uow: IUnitOfWork, auditSvc: IAuditLogCommandService)
+                +Handle(command: CreateRiskAssessmentCommand, ct: CancellationToken): Task<RiskAssessment>
+            }
+            class VitalSignAnomalyCommandService {
+                +VitalSignAnomalyCommandService(repo: IVitalSignAnomalyRepository, uow: IUnitOfWork)
+                +Handle(command: CreateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly>
+                +Handle(command: UpdateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly?>
+            }
+            class ClinicalAlertCommandService {
+                +ClinicalAlertCommandService(repo: IClinicalAlertRepository, uow: IUnitOfWork)
+                +Handle(command: CreateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert>
+                +Handle(command: UpdateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert?>
+            }
+        }
+
+        package "Interfaces" as CRAInterfaces {
+            class VitalSignReadingsController {
+                +VitalSignReadingsController(cmdSvc: IVitalSignReadingCommandService, qrySvc: IVitalSignReadingQueryService)
+                +Create(resource: CreateVitalSignReadingResource, ct: CancellationToken): Task<IActionResult>
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+            }
+            class VitalSignAnomaliesController {
+                +VitalSignAnomaliesController(cmdSvc: IVitalSignAnomalyCommandService, qrySvc: IVitalSignAnomalyQueryService)
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+                +Update(id: int, resource: UpdateVitalSignAnomalyResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class ClinicalAlertsController {
+                +ClinicalAlertsController(cmdSvc: IClinicalAlertCommandService, qrySvc: IClinicalAlertQueryService)
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+                +Update(id: int, resource: UpdateClinicalAlertResource, ct: CancellationToken): Task<IActionResult>
+            }
+        }
+
+        VitalSignReadingCommandService ..> IRiskAssessmentCommandService : dependency
+        RiskAssessmentCommandService ..> IVitalSignAnomalyCommandService : dependency
+        RiskAssessmentCommandService ..> IClinicalAlertCommandService : dependency
+        VitalSignReadingsController ..> IVitalSignReadingCommandService : dependency
+        VitalSignAnomaliesController ..> IVitalSignAnomalyCommandService : dependency
+        ClinicalAlertsController ..> IClinicalAlertCommandService : dependency
+    }
+
+    ' =========================================================
+    ' SHIFT COORDINATION BOUNDED CONTEXT
+    ' =========================================================
+    package "Shift Coordination Bounded Context" as ShiftCoord {
+        package "Domain" as ShiftDomain {
+            class CareTeam <<Aggregate>> {
+                +CareTeam()
+                +CareTeam(command: CreateCareTeamCommand)
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+                +WorkAreaId: int
+                +SupervisorId: int
+                +Status: string
+                +Update(command: UpdateCareTeamCommand): void
+            }
+
+            class TeamMember <<Aggregate>> {
+                +TeamMember()
+                +TeamMember(command: CreateTeamMemberCommand)
+                +Id: int
+                +TeamId: int
+                +UserId: int
+            }
+
+            class ShiftRecord <<Aggregate>> {
+                +ShiftRecord()
+                +ShiftRecord(command: CreateShiftRecordCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +WorkAreaId: int
+                +Type: string
+                +Status: string
+                +ScheduledStart: DateTimeOffset
+                +ScheduledEnd: DateTimeOffset
+                +CheckInAt: DateTimeOffset?
+                +CheckOutAt: DateTimeOffset?
+                +UpdateStatus(status: string, checkInAt: DateTimeOffset?, checkOutAt: DateTimeOffset?): void
+                +Block(): void
+                +Reassign(newUserId: int): void
+            }
+
+            class WorkArea <<Aggregate>> {
+                +WorkArea()
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+            }
+
+            class Specialty <<Aggregate>> {
+                +Specialty()
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+            }
+
+            interface ICareTeamCommandService {
+                +Handle(command: CreateCareTeamCommand, ct: CancellationToken): Task<CareTeam>
+                +Handle(command: UpdateCareTeamCommand, ct: CancellationToken): Task<CareTeam?>
+                +Handle(command: DeleteCareTeamCommand, ct: CancellationToken): Task<bool>
+            }
+            interface ICareTeamQueryService {
+                +Handle(query: GetAllCareTeamsQuery, ct: CancellationToken): Task<IEnumerable<CareTeam>>
+            }
+            interface IShiftRecordCommandService {
+                +Handle(command: CreateShiftRecordCommand, ct: CancellationToken): Task<ShiftRecord>
+                +Handle(command: UpdateShiftRecordCommand, ct: CancellationToken): Task<ShiftRecord?>
+            }
+            interface IShiftRecordQueryService {
+                +Handle(query: GetAllShiftRecordsQuery, ct: CancellationToken): Task<IEnumerable<ShiftRecord>>
+            }
+            interface ITeamMemberCommandService {
+                +Handle(command: CreateTeamMemberCommand, ct: CancellationToken): Task<TeamMember>
+                +Handle(command: DeleteTeamMemberCommand, ct: CancellationToken): Task<bool>
+            }
+            interface ITeamMemberQueryService {
+                +Handle(query: GetAllTeamMembersQuery, ct: CancellationToken): Task<IEnumerable<TeamMember>>
+            }
+        }
+
+        package "Interfaces" as ShiftInterfaces {
+            class CareTeamsController {
+                +CareTeamsController(cmdSvc: ICareTeamCommandService, qrySvc: ICareTeamQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+                +Delete(id: int, ct): Task<IActionResult>
+            }
+            class ShiftRecordsController {
+                +ShiftRecordsController(cmdSvc: IShiftRecordCommandService, qrySvc: IShiftRecordQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class TeamMembersController {
+                +TeamMembersController(cmdSvc: ITeamMemberCommandService, qrySvc: ITeamMemberQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Delete(id: int, ct): Task<IActionResult>
+            }
+            class WorkAreasController {
+                +WorkAreasController(cmdSvc: IWorkAreaCommandService, qrySvc: IWorkAreaQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+            class SpecialtiesController {
+                +SpecialtiesController(cmdSvc: ISpecialtyCommandService, qrySvc: ISpecialtyQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+        }
+
+        CareTeamsController ..> ICareTeamCommandService : dependency
+        CareTeamsController ..> ICareTeamQueryService : dependency
+        ShiftRecordsController ..> IShiftRecordCommandService : dependency
+        ShiftRecordsController ..> IShiftRecordQueryService : dependency
+        TeamMembersController ..> ITeamMemberCommandService : dependency
+        TeamMembersController ..> ITeamMemberQueryService : dependency
+    }
+
+    ' =========================================================
+    ' STAFF RECOVERY BOUNDED CONTEXT
+    ' =========================================================
+    package "Staff Recovery Bounded Context" as StaffRecovery {
+        package "Domain" as StaffDomain {
+            class RecoveryPlan <<Aggregate>> {
+                +RecoveryPlan()
+                +RecoveryPlan(command: IssueRecoveryRecommendationCommand)
+                +Id: int
+                +MedicalStaffId: int
+                +Description: string
+                +SuggestedRestDays: int
+                +Status: string
+                +UpdateStatus(status: string): void
+            }
+
+            interface IRecoveryPlanCommandService {
+                +Handle(command: IssueRecoveryRecommendationCommand, ct: CancellationToken): Task<RecoveryPlan>
+                +Handle(command: UpdateRecoveryPlanStatusCommand, ct: CancellationToken): Task<RecoveryPlan?>
+            }
+            interface IRecoveryPlanQueryService {
+                +Handle(query: GetAllRecoveryPlansQuery, ct: CancellationToken): Task<IEnumerable<RecoveryPlan>>
+                +Handle(query: GetRecoveryPlanByIdQuery, ct: CancellationToken): Task<RecoveryPlan?>
+            }
+        }
+
+        package "Interfaces" as StaffInterfaces {
+            class RecoveryPlansController {
+                +RecoveryPlansController(cmdSvc: IRecoveryPlanCommandService, qrySvc: IRecoveryPlanQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class PreventiveActionsController {
+                +PreventiveActionsController(cmdSvc: IPreventiveActionCommandService, qrySvc: IPreventiveActionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+        }
+
+        RecoveryPlansController ..> IRecoveryPlanCommandService : dependency
+        RecoveryPlansController ..> IRecoveryPlanQueryService : dependency
+    }
+
+    ' =========================================================
+    ' AUDIT & COMPLIANCE BOUNDED CONTEXT
+    ' =========================================================
+    package "Audit & Compliance Bounded Context" as AuditBC {
+        package "Domain" as AuditDomain {
+            class AuditLog <<Aggregate>> {
+                +AuditLog()
+                +AuditLog(command: CreateAuditLogCommand)
+                +Id: int
+                +OrganizationId: int
+                +ActorUserId: int
+                +Type: EAuditLogType
+                +Severity: EAuditSeverity
+                +ResourceType: EAuditResourceType
+                +ResourceId: int
+                +Source: EAuditActionSource
+                +Description: string
+            }
+
+            enum EAuditLogType <<ValueObject>> {
+                UserInvited
+                UserRoleChanged
+                TeamCreated
+                TeamUpdated
+                TeamDeleted
+                AlertCreated
+                AlertResolved
+                AnomalyReviewed
+                AnomalyCreated
+                PreventiveActionCreated
+                PreventiveActionAccepted
+                PreventiveActionCompleted
+                ShiftCheckIn
+                SubscriptionActivated
+                ReportGenerated
+                SystemAccessed
+                RiskAssessmentEvaluated
+            }
+
+            enum EAuditSeverity <<ValueObject>> {
+                Low
+                Medium
+                High
+                Critical
+            }
+
+            enum EAuditResourceType <<ValueObject>> {
+                User
+                Organization
+                CareTeam
+                ShiftRecord
+                RecoveryPlan
+                PreventiveAction
+                ClinicalAlert
+                VitalSignAnomaly
+                Subscription
+            }
+
+            enum EAuditActionSource <<ValueObject>> {
+                Iam
+                ClinicalRiskAssessment
+                ShiftCoordination
+                StaffRecovery
+                Subscription
+                System
+            }
+
+            interface IAuditLogCommandService {
+                +Handle(command: CreateAuditLogCommand, ct: CancellationToken): Task<AuditLog>
+            }
+            interface IAuditLogQueryService {
+                +Handle(query: GetAllAuditLogsQuery, ct: CancellationToken): Task<IEnumerable<AuditLog>>
+            }
+        }
+
+        package "Interfaces" as AuditInterfaces {
+            class AuditLogsController {
+                +AuditLogsController(cmdSvc: IAuditLogCommandService, qrySvc: IAuditLogQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+        }
+
+        AuditLogsController ..> IAuditLogCommandService : dependency
+        AuditLogsController ..> IAuditLogQueryService : dependency
+    }
+
+    ' =========================================================
+    ' SUBSCRIPTION & BILLING BOUNDED CONTEXT
+    ' =========================================================
+    package "Subscription & Billing Bounded Context" as SubscriptionBC {
+        package "Domain" as SubDomain {
+            class Plan <<Aggregate>> {
+                +Plan()
+                +Id: int
+                +Code: string
+                +Name: string
+                +Price: decimal
+                +Currency: string
+                +BillingPeriod: EBillingPeriod
+                +MaxDoctors: int?
+                +MaxSupervisors: int
+                +MaxTeams: int
+                +MaxWorkAreas: int
+                +MonthlyInvitations: int
+                +DataHistoryDays: int
+                +SupportLevel: ESupportLevel
+                +Recommended: bool
+                +FeatureKeys: IList<string>
+                +EnabledModules: IList<string>
+                +DisabledModules: IList<string>
+            }
+
+            class Subscription <<Aggregate>> {
+                +Subscription()
+                +Subscription(command: CreateSubscriptionCommand)
+                +Id: int
+                +OrganizationId: int
+                +PlanId: int
+                +Status: ESubscriptionStatus
+                +StartedAt: DateTimeOffset
+                +CancelledAt: DateTimeOffset?
+                +StripeSubscriptionId: string?
+                +StripeCustomerId: string?
+                +UpdatePlan(planId: int): void
+                +Activate(stripeSubscriptionId: string?, stripeCustomerId: string?): void
+                +Cancel(): void
+            }
+
+            class CheckoutSession <<Aggregate>> {
+                +CheckoutSession()
+                +CheckoutSession(command: CreateCheckoutSessionCommand)
+                +Id: int
+                +OrganizationId: int
+                +PlanId: int
+                +Status: ECheckoutSessionStatus
+                +StripeSessionId: string
+                +StripeSessionUrl: string
+            }
+
+            enum EBillingPeriod <<ValueObject>> {
+                Monthly
+                Annual
+            }
+
+            enum ESubscriptionStatus <<ValueObject>> {
+                Pending
+                Active
+                Cancelled
+                Expired
+            }
+
+            enum ECheckoutSessionStatus <<ValueObject>> {
+                Pending
+                Completed
+                Expired
+            }
+
+            enum ESupportLevel <<ValueObject>> {
+                Basic
+                Priority
+                Dedicated
+            }
+
+            interface ISubscriptionCommandService {
+                +Handle(command: CreateSubscriptionCommand, ct: CancellationToken): Task<Subscription>
+                +Handle(command: UpdateSubscriptionCommand, ct: CancellationToken): Task<Subscription?>
+                +Handle(command: CancelSubscriptionCommand, ct: CancellationToken): Task<Subscription?>
+            }
+            interface ICheckoutSessionCommandService {
+                +Handle(command: CreateCheckoutSessionCommand, ct: CancellationToken): Task<CheckoutSession>
+            }
+            interface IPlanQueryService {
+                +Handle(query: GetAllPlansQuery, ct: CancellationToken): Task<IEnumerable<Plan>>
+                +Handle(query: GetPlanByIdQuery, ct: CancellationToken): Task<Plan?>
+            }
+        }
+
+        package "Interfaces" as SubInterfaces {
+            class PlansController {
+                +PlansController(qrySvc: IPlanQueryService)
+                +GetAll(ct): Task<IActionResult>
+                +GetById(id: int, ct): Task<IActionResult>
+            }
+            class SubscriptionsController {
+                +SubscriptionsController(cmdSvc: ISubscriptionCommandService, qrySvc: ISubscriptionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class CheckoutSessionsController {
+                +CheckoutSessionsController(cmdSvc: ICheckoutSessionCommandService, qrySvc: ICheckoutSessionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetByOrganizationId(organizationId: int, ct): Task<IActionResult>
+            }
+            class BillingController {
+                +BillingController(cmdSvc: ISubscriptionCommandService, stripeSvc: IStripeBillingService)
+                +HandleWebhook(ct): Task<IActionResult>
+            }
+        }
+
+        PlansController ..> IPlanQueryService : dependency
+        SubscriptionsController ..> ISubscriptionCommandService : dependency
+        CheckoutSessionsController ..> ICheckoutSessionCommandService : dependency
+        BillingController ..> ISubscriptionCommandService : dependency
+        Subscription --> Plan : references (by PlanId)
+    }
+
+
+    ' =========================================================
+    ' CROSS-BOUNDARY RELATIONSHIPS
+    ' =========================================================
+
+    ' All BCs repositories extend IBaseRepository from Shared
+    IUserRepository ...|> IBaseRepository : extends
+    IOrganizationRepository ...|> IBaseRepository : extends
+    IInvitationRepository ...|> IBaseRepository : extends
+
+    ' Application Layer dependencies on Shared
+    UserCommandService ..> IUnitOfWork : dependency
+    OrganizationCommandService ..> IUnitOfWork : dependency
+    InvitationCommandService ..> IUnitOfWork : dependency
+    VitalSignReadingCommandService ..> IUnitOfWork : dependency
+    RiskAssessmentCommandService ..> IUnitOfWork : dependency
+
+    ' Infrastructure dependencies on AppDbContext
+    UserRepository ..> AppDbContext : dependency
+    OrganizationRepository ..> AppDbContext : dependency
+    InvitationRepository ..> AppDbContext : dependency
+
+    ' Cross-BC: Clinical Risk -> Audit
+    VitalSignReadingCommandService ..> IAuditLogCommandService : dependency
+    RiskAssessmentCommandService ..> IAuditLogCommandService : dependency
+
+    ' Cross-BC: Shift Coord -> Audit
+    ' (via AuditLogCommandService injected into ShiftRecord command services)
+
+    ' IAuditableEntity applied to all aggregates
+    User ..|> IAuditableEntity : implements
+    Organization ..|> IAuditableEntity : implements
+    Invitation ..|> IAuditableEntity : implements
+    VitalSignReading ..|> IAuditableEntity : implements
+    VitalSignAnomaly ..|> IAuditableEntity : implements
+    ClinicalAlert ..|> IAuditableEntity : implements
+    RiskAssessment ..|> IAuditableEntity : implements
+    CareTeam ..|> IAuditableEntity : implements
+    TeamMember ..|> IAuditableEntity : implements
+    ShiftRecord ..|> IAuditableEntity : implements
+    WorkArea ..|> IAuditableEntity : implements
+    Specialty ..|> IAuditableEntity : implements
+    RecoveryPlan ..|> IAuditableEntity : implements
+    AuditLog ..|> IAuditableEntity : implements
+    Plan ..|> IAuditableEntity : implements
+    Subscription ..|> IAuditableEntity : implements
+    CheckoutSession ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        User --> Organization : references >
+        User --> WorkArea : references >
+        User --> Specialty : references >
+        Invitation --> Organization : references >
+        VitalSignReading --> Organization : references >
+        VitalSignReading --> User : references >
+        VitalSignAnomaly --> Organization : references >
+        VitalSignAnomaly --> User : references >
+        ClinicalAlert --> Organization : references >
+        ClinicalAlert --> User : references >
+        RiskAssessment --> Organization : references >
+        RiskAssessment --> User : references >
+        CareTeam --> Organization : references >
+        CareTeam --> WorkArea : references >
+        CareTeam --> User : references >
+        TeamMember --> CareTeam : references >
+        TeamMember --> User : references >
+        ShiftRecord --> Organization : references >
+        ShiftRecord --> User : references >
+        ShiftRecord --> WorkArea : references >
+        WorkArea --> Organization : references >
+        Specialty --> Organization : references >
+        RecoveryPlan --> User : references >
+        AuditLog --> Organization : references >
+        AuditLog --> User : references >
+        Subscription --> Organization : references >
+        CheckoutSession --> Organization : references >
+        CheckoutSession --> Plan : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+    UserCommandService ..|> IUserCommandService : implements
+    UserQueryService ..|> IUserQueryService : implements
+    OrganizationCommandService ..|> IOrganizationCommandService : implements
+    OrganizationQueryService ..|> IOrganizationQueryService : implements
+    InvitationCommandService ..|> IInvitationCommandService : implements
+    InvitationQueryService ..|> IInvitationQueryService : implements
+    VitalSignReadingCommandService ..|> IVitalSignReadingCommandService : implements
+    RiskAssessmentCommandService ..|> IRiskAssessmentCommandService : implements
+    VitalSignAnomalyCommandService ..|> IVitalSignAnomalyCommandService : implements
+    ClinicalAlertCommandService ..|> IClinicalAlertCommandService : implements
+
+@enduml

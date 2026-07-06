@@ -1,0 +1,220 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "Shift Coordination Bounded Context" as ShiftCoord {
+        package "Domain" as ShiftDomain {
+            class CareTeam <<Aggregate>> {
+                +CareTeam()
+                +CareTeam(command: CreateCareTeamCommand)
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+                +WorkAreaId: int
+                +SupervisorId: int
+                +Status: string
+                +Update(command: UpdateCareTeamCommand): void
+            }
+
+            class TeamMember <<Aggregate>> {
+                +TeamMember()
+                +TeamMember(command: CreateTeamMemberCommand)
+                +Id: int
+                +TeamId: int
+                +UserId: int
+            }
+
+            class ShiftRecord <<Aggregate>> {
+                +ShiftRecord()
+                +ShiftRecord(command: CreateShiftRecordCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +WorkAreaId: int
+                +Type: string
+                +Status: string
+                +ScheduledStart: DateTimeOffset
+                +ScheduledEnd: DateTimeOffset
+                +CheckInAt: DateTimeOffset?
+                +CheckOutAt: DateTimeOffset?
+                +UpdateStatus(status: string, checkInAt: DateTimeOffset?, checkOutAt: DateTimeOffset?): void
+                +Block(): void
+                +Reassign(newUserId: int): void
+            }
+
+            class WorkArea <<Aggregate>> {
+                +WorkArea()
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+            }
+
+            class Specialty <<Aggregate>> {
+                +Specialty()
+                +Id: int
+                +OrganizationId: int
+                +Name: string
+            }
+
+            interface ICareTeamCommandService {
+                +Handle(command: CreateCareTeamCommand, ct: CancellationToken): Task<CareTeam>
+                +Handle(command: UpdateCareTeamCommand, ct: CancellationToken): Task<CareTeam?>
+                +Handle(command: DeleteCareTeamCommand, ct: CancellationToken): Task<bool>
+            }
+            interface ICareTeamQueryService {
+                +Handle(query: GetAllCareTeamsQuery, ct: CancellationToken): Task<IEnumerable<CareTeam>>
+            }
+            interface IShiftRecordCommandService {
+                +Handle(command: CreateShiftRecordCommand, ct: CancellationToken): Task<ShiftRecord>
+                +Handle(command: UpdateShiftRecordCommand, ct: CancellationToken): Task<ShiftRecord?>
+            }
+            interface IShiftRecordQueryService {
+                +Handle(query: GetAllShiftRecordsQuery, ct: CancellationToken): Task<IEnumerable<ShiftRecord>>
+            }
+            interface ITeamMemberCommandService {
+                +Handle(command: CreateTeamMemberCommand, ct: CancellationToken): Task<TeamMember>
+                +Handle(command: DeleteTeamMemberCommand, ct: CancellationToken): Task<bool>
+            }
+            interface ITeamMemberQueryService {
+                +Handle(query: GetAllTeamMembersQuery, ct: CancellationToken): Task<IEnumerable<TeamMember>>
+            }
+        }
+
+        package "Interfaces" as ShiftInterfaces {
+            class CareTeamsController {
+                +CareTeamsController(cmdSvc: ICareTeamCommandService, qrySvc: ICareTeamQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+                +Delete(id: int, ct): Task<IActionResult>
+            }
+            class ShiftRecordsController {
+                +ShiftRecordsController(cmdSvc: IShiftRecordCommandService, qrySvc: IShiftRecordQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class TeamMembersController {
+                +TeamMembersController(cmdSvc: ITeamMemberCommandService, qrySvc: ITeamMemberQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Delete(id: int, ct): Task<IActionResult>
+            }
+            class WorkAreasController {
+                +WorkAreasController(cmdSvc: IWorkAreaCommandService, qrySvc: IWorkAreaQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+            class SpecialtiesController {
+                +SpecialtiesController(cmdSvc: ISpecialtyCommandService, qrySvc: ISpecialtyQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+            }
+        }
+
+        CareTeamsController ..> ICareTeamCommandService : dependency
+        CareTeamsController ..> ICareTeamQueryService : dependency
+        ShiftRecordsController ..> IShiftRecordCommandService : dependency
+        ShiftRecordsController ..> IShiftRecordQueryService : dependency
+        TeamMembersController ..> ITeamMemberCommandService : dependency
+        TeamMembersController ..> ITeamMemberQueryService : dependency
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        ICareTeamCommandService ..> CareTeam : uses >
+        ICareTeamQueryService ..> CareTeam : uses >
+        IShiftRecordCommandService ..> ShiftRecord : uses >
+        IShiftRecordQueryService ..> ShiftRecord : uses >
+        ITeamMemberCommandService ..> TeamMember : uses >
+        ITeamMemberQueryService ..> TeamMember : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    CareTeam ..|> IAuditableEntity : implements
+    TeamMember ..|> IAuditableEntity : implements
+    ShiftRecord ..|> IAuditableEntity : implements
+    WorkArea ..|> IAuditableEntity : implements
+    Specialty ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        CareTeam --> Organization : references >
+        CareTeam --> WorkArea : references >
+        CareTeam --> User : references >
+        TeamMember --> CareTeam : references >
+        TeamMember --> User : references >
+        ShiftRecord --> Organization : references >
+        ShiftRecord --> User : references >
+        ShiftRecord --> WorkArea : references >
+        WorkArea --> Organization : references >
+        Specialty --> Organization : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+
+@enduml

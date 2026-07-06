@@ -1,0 +1,257 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "Clinical Risk Assessment Bounded Context" as ClinicalRisk {
+        package "Domain" as CRADomain {
+            class VitalSignReading <<Aggregate>> {
+                +VitalSignReading()
+                +VitalSignReading(command: CreateVitalSignReadingCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +HeartRate: int
+                +Hrv: int
+                +FatigueLevel: int
+                +CortisolLevel: decimal
+                +SensorStatus: string
+                +RecordedAt: DateTimeOffset?
+            }
+
+            class VitalSignAnomaly <<Aggregate>> {
+                +VitalSignAnomaly()
+                +VitalSignAnomaly(command: CreateVitalSignAnomalyCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +Type: string
+                +Severity: string
+                +Status: string
+                +Value: string
+                +Threshold: string
+                +Message: string
+                +DetectedAt: DateTimeOffset?
+                +ReviewedAt: DateTimeOffset?
+                +ReviewedBy: int?
+                +UpdateStatus(status: string, reviewedBy: int?): void
+            }
+
+            class ClinicalAlert <<Aggregate>> {
+                +ClinicalAlert()
+                +ClinicalAlert(command: CreateClinicalAlertCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +Severity: string
+                +Status: string
+                +Message: string
+                +CreatedAt: DateTimeOffset?
+                +ResolvedAt: DateTimeOffset?
+                +ResolvedBy: int?
+                +UpdateStatus(status: string, resolvedBy: int?): void
+            }
+
+            class RiskAssessment <<Aggregate>> {
+                +RiskAssessment()
+                +RiskAssessment(command: CreateRiskAssessmentCommand)
+                +Id: int
+                +OrganizationId: int
+                +UserId: int
+                +FatigueLevel: int
+                +RiskLevel: string
+                +HeartRate: int
+                +Hrv: int
+                +LastUpdatedAt: DateTimeOffset?
+                +UpdateRiskLevel(riskLevel: string): void
+            }
+
+            interface IVitalSignReadingCommandService {
+                +Handle(command: CreateVitalSignReadingCommand, ct: CancellationToken): Task<VitalSignReading>
+            }
+            interface IVitalSignReadingQueryService {
+                +Handle(query: GetAllVitalSignReadingsQuery, ct: CancellationToken): Task<IEnumerable<VitalSignReading>>
+                +Handle(query: GetVitalSignReadingByIdQuery, ct: CancellationToken): Task<VitalSignReading?>
+            }
+            interface IVitalSignAnomalyCommandService {
+                +Handle(command: CreateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly>
+                +Handle(command: UpdateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly?>
+            }
+            interface IVitalSignAnomalyQueryService {
+                +Handle(query: GetAllVitalSignAnomaliesQuery, ct: CancellationToken): Task<IEnumerable<VitalSignAnomaly>>
+            }
+            interface IClinicalAlertCommandService {
+                +Handle(command: CreateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert>
+                +Handle(command: UpdateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert?>
+            }
+            interface IClinicalAlertQueryService {
+                +Handle(query: GetAllClinicalAlertsQuery, ct: CancellationToken): Task<IEnumerable<ClinicalAlert>>
+            }
+            interface IRiskAssessmentCommandService {
+                +Handle(command: CreateRiskAssessmentCommand, ct: CancellationToken): Task<RiskAssessment>
+            }
+            interface IRiskAssessmentQueryService {
+                +Handle(query: GetAllRiskAssessmentsQuery, ct: CancellationToken): Task<IEnumerable<RiskAssessment>>
+            }
+        }
+
+        package "Application" as CRAApp {
+            class VitalSignReadingCommandService {
+                +VitalSignReadingCommandService(repo: IVitalSignReadingRepository, uow: IUnitOfWork, riskSvc: IRiskAssessmentCommandService, auditSvc: IAuditLogCommandService)
+                +Handle(command: CreateVitalSignReadingCommand, ct: CancellationToken): Task<VitalSignReading>
+            }
+            class RiskAssessmentCommandService {
+                +RiskAssessmentCommandService(repo: IRiskAssessmentRepository, anomalyRepo: IVitalSignAnomalyRepository, alertRepo: IClinicalAlertRepository, uow: IUnitOfWork, auditSvc: IAuditLogCommandService)
+                +Handle(command: CreateRiskAssessmentCommand, ct: CancellationToken): Task<RiskAssessment>
+            }
+            class VitalSignAnomalyCommandService {
+                +VitalSignAnomalyCommandService(repo: IVitalSignAnomalyRepository, uow: IUnitOfWork)
+                +Handle(command: CreateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly>
+                +Handle(command: UpdateVitalSignAnomalyCommand, ct: CancellationToken): Task<VitalSignAnomaly?>
+            }
+            class ClinicalAlertCommandService {
+                +ClinicalAlertCommandService(repo: IClinicalAlertRepository, uow: IUnitOfWork)
+                +Handle(command: CreateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert>
+                +Handle(command: UpdateClinicalAlertCommand, ct: CancellationToken): Task<ClinicalAlert?>
+            }
+        }
+
+        package "Interfaces" as CRAInterfaces {
+            class VitalSignReadingsController {
+                +VitalSignReadingsController(cmdSvc: IVitalSignReadingCommandService, qrySvc: IVitalSignReadingQueryService)
+                +Create(resource: CreateVitalSignReadingResource, ct: CancellationToken): Task<IActionResult>
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+            }
+            class VitalSignAnomaliesController {
+                +VitalSignAnomaliesController(cmdSvc: IVitalSignAnomalyCommandService, qrySvc: IVitalSignAnomalyQueryService)
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+                +Update(id: int, resource: UpdateVitalSignAnomalyResource, ct: CancellationToken): Task<IActionResult>
+            }
+            class ClinicalAlertsController {
+                +ClinicalAlertsController(cmdSvc: IClinicalAlertCommandService, qrySvc: IClinicalAlertQueryService)
+                +GetAll(ct: CancellationToken): Task<IActionResult>
+                +Update(id: int, resource: UpdateClinicalAlertResource, ct: CancellationToken): Task<IActionResult>
+            }
+        }
+
+        VitalSignReadingCommandService ..> IRiskAssessmentCommandService : dependency
+        RiskAssessmentCommandService ..> IVitalSignAnomalyCommandService : dependency
+        RiskAssessmentCommandService ..> IClinicalAlertCommandService : dependency
+        VitalSignReadingsController ..> IVitalSignReadingCommandService : dependency
+        VitalSignAnomaliesController ..> IVitalSignAnomalyCommandService : dependency
+        ClinicalAlertsController ..> IClinicalAlertCommandService : dependency
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        IVitalSignReadingCommandService ..> VitalSignReading : uses >
+        IVitalSignReadingQueryService ..> VitalSignReading : uses >
+        IVitalSignAnomalyCommandService ..> VitalSignAnomaly : uses >
+        IVitalSignAnomalyQueryService ..> VitalSignAnomaly : uses >
+        IClinicalAlertCommandService ..> ClinicalAlert : uses >
+        IClinicalAlertQueryService ..> ClinicalAlert : uses >
+        IRiskAssessmentCommandService ..> RiskAssessment : uses >
+        IRiskAssessmentQueryService ..> RiskAssessment : uses >
+        VitalSignReadingCommandService ..> VitalSignReading : uses >
+        RiskAssessmentCommandService ..> RiskAssessment : uses >
+        VitalSignAnomalyCommandService ..> IUnitOfWork : uses >
+        VitalSignAnomalyCommandService ..> VitalSignAnomaly : uses >
+        ClinicalAlertCommandService ..> IUnitOfWork : uses >
+        ClinicalAlertCommandService ..> ClinicalAlert : uses >
+        VitalSignReadingsController ..> IVitalSignReadingQueryService : uses >
+        VitalSignAnomaliesController ..> IVitalSignAnomalyQueryService : uses >
+        ClinicalAlertsController ..> IClinicalAlertQueryService : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    VitalSignReadingCommandService ..> IUnitOfWork : dependency
+    RiskAssessmentCommandService ..> IUnitOfWork : dependency
+    VitalSignReadingCommandService ..> IAuditLogCommandService : dependency
+    RiskAssessmentCommandService ..> IAuditLogCommandService : dependency
+    VitalSignReading ..|> IAuditableEntity : implements
+    VitalSignAnomaly ..|> IAuditableEntity : implements
+    ClinicalAlert ..|> IAuditableEntity : implements
+    RiskAssessment ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        VitalSignReading --> Organization : references >
+        VitalSignReading --> User : references >
+        VitalSignAnomaly --> Organization : references >
+        VitalSignAnomaly --> User : references >
+        ClinicalAlert --> Organization : references >
+        ClinicalAlert --> User : references >
+        RiskAssessment --> Organization : references >
+        RiskAssessment --> User : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+    VitalSignReadingCommandService ..|> IVitalSignReadingCommandService : implements
+    RiskAssessmentCommandService ..|> IRiskAssessmentCommandService : implements
+    VitalSignAnomalyCommandService ..|> IVitalSignAnomalyCommandService : implements
+    ClinicalAlertCommandService ..|> IClinicalAlertCommandService : implements
+
+@enduml

@@ -1,0 +1,127 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 120
+skinparam defaultFontName Arial
+skinparam classFontSize 14
+skinparam classAttributeFontSize 12
+skinparam arrowThickness 1.5
+skinparam arrowColor #555555
+skinparam classBackgroundColor #Fdfdfd
+skinparam packageBackgroundColor #F0F4F8
+skinparam packageBorderColor #4A90E2
+
+    ' =========================================================
+    ' INJECTED SHARED BOUNDED CONTEXT
+    ' =========================================================
+    package "Shared Bounded Context" as Shared {
+        package "Domain" as SharedDomain {
+            interface IBaseRepository<TEntity> {
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            interface IUnitOfWork {
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            interface IAuditableEntity <<Entity>> {
+                +CreatedAt: DateTimeOffset?
+                +UpdatedAt: DateTimeOffset?
+            }
+        }
+
+        package "Infrastructure" as SharedInfra {
+            class AppDbContext {
+                +AppDbContext(options: DbContextOptions<AppDbContext>)
+                +SaveChangesAsync(ct: CancellationToken): Task<int>
+            }
+
+            class BaseRepository<TEntity> {
+                +BaseRepository(context: AppDbContext)
+                +AddAsync(entity: TEntity, ct: CancellationToken): Task
+                +FindByIdAsync(id: int, ct: CancellationToken): Task<TEntity?>
+                +Update(entity: TEntity): void
+                +Remove(entity: TEntity): void
+                +ListAsync(ct: CancellationToken): Task<IEnumerable<TEntity>>
+            }
+
+            class UnitOfWork {
+                +UnitOfWork(context: AppDbContext)
+                +CompleteAsync(ct: CancellationToken): Task
+            }
+
+            class AuditableEntityInterceptor {
+                +SavingChangesAsync(eventData, result, ct): ValueTask<InterceptionResult<int>>
+            }
+        }
+
+        BaseRepository ..> AppDbContext : dependency
+        UnitOfWork ..> AppDbContext : dependency
+    }
+
+
+    package "Staff Recovery Bounded Context" as StaffRecovery {
+        package "Domain" as StaffDomain {
+            class RecoveryPlan <<Aggregate>> {
+                +RecoveryPlan()
+                +RecoveryPlan(command: IssueRecoveryRecommendationCommand)
+                +Id: int
+                +MedicalStaffId: int
+                +Description: string
+                +SuggestedRestDays: int
+                +Status: string
+                +UpdateStatus(status: string): void
+            }
+
+            interface IRecoveryPlanCommandService {
+                +Handle(command: IssueRecoveryRecommendationCommand, ct: CancellationToken): Task<RecoveryPlan>
+                +Handle(command: UpdateRecoveryPlanStatusCommand, ct: CancellationToken): Task<RecoveryPlan?>
+            }
+            interface IRecoveryPlanQueryService {
+                +Handle(query: GetAllRecoveryPlansQuery, ct: CancellationToken): Task<IEnumerable<RecoveryPlan>>
+                +Handle(query: GetRecoveryPlanByIdQuery, ct: CancellationToken): Task<RecoveryPlan?>
+            }
+        }
+
+        package "Interfaces" as StaffInterfaces {
+            class RecoveryPlansController {
+                +RecoveryPlansController(cmdSvc: IRecoveryPlanCommandService, qrySvc: IRecoveryPlanQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+            class PreventiveActionsController {
+                +PreventiveActionsController(cmdSvc: IPreventiveActionCommandService, qrySvc: IPreventiveActionQueryService)
+                +Create(resource, ct): Task<IActionResult>
+                +GetAll(ct): Task<IActionResult>
+                +Update(id: int, resource, ct): Task<IActionResult>
+            }
+        }
+
+        RecoveryPlansController ..> IRecoveryPlanCommandService : dependency
+        RecoveryPlansController ..> IRecoveryPlanQueryService : dependency
+
+        ' Auto-generated dependencies to prevent floating classes (Commands, Queries, Resources)
+        IRecoveryPlanCommandService ..> RecoveryPlan : uses >
+        IRecoveryPlanQueryService ..> RecoveryPlan : uses >
+
+    }
+
+    ' CROSS-BOUNDARY RELATIONSHIPS FOR THIS BC
+    RecoveryPlan ..|> IAuditableEntity : implements
+
+
+    ' Auto-generated Entity-to-Entity relationships (based on Foreign Keys)
+        RecoveryPlan --> User : references >
+
+
+    ' Corrected inline relations to prevent duplicates
+    BaseRepository ..|> IBaseRepository : implements
+    UnitOfWork ..|> IUnitOfWork : implements
+
+@enduml
