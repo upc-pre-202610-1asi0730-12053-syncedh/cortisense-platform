@@ -28,7 +28,7 @@ public static class DatabaseSeedingExtensions
 
         // 2. Subscription Billing Seeding
         builder.Entity<SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates.Subscription>().HasData(
-            new { Id = 101, OrganizationId = 101, PlanId = 3, Status = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESubscriptionStatus.Active, StartedAt = DateTimeOffset.UtcNow }
+            new { Id = 101, OrganizationId = 101, PlanId = 3, Status = SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects.ESubscriptionStatus.Active, StartedAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z") }
         );
 
         // 3. Shift Coordination Seeding
@@ -51,19 +51,19 @@ public static class DatabaseSeedingExtensions
         );
 
         builder.Entity<ShiftRecord>().HasData(
-            new { Id = 101, OrganizationId = 101, UserId = 103, WorkAreaId = 2, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(1).AddHours(8) },
-            new { Id = 102, OrganizationId = 101, UserId = 104, WorkAreaId = 1, Type = "NIGHT", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1).AddHours(20), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(4) },
-            new { Id = 103, OrganizationId = 101, UserId = 103, WorkAreaId = 3, Type = "EMERGENCY", Status = "IN_PROGRESS", ScheduledStart = DateTimeOffset.UtcNow.AddHours(-10), ScheduledEnd = DateTimeOffset.UtcNow.AddHours(2), CheckInAt = DateTimeOffset.UtcNow.AddHours(-10) },
-            new { Id = 204, OrganizationId = 101, UserId = 205, WorkAreaId = 2, Type = "DAY", Status = "COMPLETED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(-1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(-1).AddHours(8), CheckInAt = DateTimeOffset.UtcNow.AddDays(-1), CheckOutAt = DateTimeOffset.UtcNow.AddDays(-1).AddHours(8) },
-            new { Id = 205, OrganizationId = 101, UserId = 206, WorkAreaId = 1, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(2), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(8) }
+            new { Id = 101, OrganizationId = 101, UserId = 103, WorkAreaId = 2, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(1), ScheduledEnd = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(1).AddHours(8) },
+            new { Id = 102, OrganizationId = 101, UserId = 104, WorkAreaId = 1, Type = "NIGHT", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(1).AddHours(20), ScheduledEnd = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(2).AddHours(4) },
+            new { Id = 103, OrganizationId = 101, UserId = 103, WorkAreaId = 3, Type = "EMERGENCY", Status = "IN_PROGRESS", ScheduledStart = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddHours(-10), ScheduledEnd = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddHours(2), CheckInAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddHours(-10) },
+            new { Id = 204, OrganizationId = 101, UserId = 205, WorkAreaId = 2, Type = "DAY", Status = "COMPLETED", ScheduledStart = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(-1), ScheduledEnd = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(-1).AddHours(8), CheckInAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(-1), CheckOutAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(-1).AddHours(8) },
+            new { Id = 205, OrganizationId = 101, UserId = 206, WorkAreaId = 1, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(2), ScheduledEnd = DateTimeOffset.Parse("2026-07-06T00:00:00Z").AddDays(2).AddHours(8) }
         );
 
         // 4. Clinical Risk Assessment Seeding
         builder.Entity<RiskAssessment>().HasData(
-            new { Id = 101, OrganizationId = 101, UserId = 103, FatigueLevel = 85, RiskLevel = "HIGH", HeartRate = 120, Hrv = 20, LastUpdatedAt = DateTimeOffset.UtcNow },
-            new { Id = 102, OrganizationId = 101, UserId = 104, FatigueLevel = 20, RiskLevel = "LOW", HeartRate = 70, Hrv = 60, LastUpdatedAt = DateTimeOffset.UtcNow },
-            new { Id = 203, OrganizationId = 101, UserId = 205, FatigueLevel = 45, RiskLevel = "MEDIUM", HeartRate = 95, Hrv = 40, LastUpdatedAt = DateTimeOffset.UtcNow },
-            new { Id = 204, OrganizationId = 101, UserId = 206, FatigueLevel = 10, RiskLevel = "LOW", HeartRate = 65, Hrv = 70, LastUpdatedAt = DateTimeOffset.UtcNow }
+            new { Id = 101, OrganizationId = 101, UserId = 103, FatigueLevel = 85, RiskLevel = "HIGH", HeartRate = 120, Hrv = 20, LastUpdatedAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z") },
+            new { Id = 102, OrganizationId = 101, UserId = 104, FatigueLevel = 20, RiskLevel = "LOW", HeartRate = 70, Hrv = 60, LastUpdatedAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z") },
+            new { Id = 203, OrganizationId = 101, UserId = 205, FatigueLevel = 45, RiskLevel = "MEDIUM", HeartRate = 95, Hrv = 40, LastUpdatedAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z") },
+            new { Id = 204, OrganizationId = 101, UserId = 206, FatigueLevel = 10, RiskLevel = "LOW", HeartRate = 65, Hrv = 70, LastUpdatedAt = DateTimeOffset.Parse("2026-07-06T00:00:00Z") }
         );
 
         // 5. Staff Recovery Seeding
