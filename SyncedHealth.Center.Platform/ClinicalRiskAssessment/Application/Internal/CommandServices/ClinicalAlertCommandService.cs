@@ -13,11 +13,13 @@ namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Intern
 
 public class ClinicalAlertCommandService(
     IClinicalAlertRepository clinicalAlertRepository,
+    SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,
     IUnitOfWork unitOfWork,
     IStringLocalizer<ClinicalRiskAssessmentMessages> localizer)
     : IClinicalAlertCommandService
 {
     private readonly IStringLocalizer<ClinicalRiskAssessmentMessages> _localizer = localizer;
+    private readonly SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService _auditLogCommandService = auditLogCommandService;
 
     private static readonly string[] ValidSeverities = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
     private static readonly string[] ValidStatuses = ["OPEN", "ACKNOWLEDGED", "RESOLVED"];
@@ -46,12 +48,34 @@ public class ClinicalAlertCommandService(
                 ClinicalRiskAssessmentError.InvalidBiometricData,
                 _localizer["MessageRequired"]);
 
+        var existingAlerts = await clinicalAlertRepository.FindByUserIdAsync(command.UserId, cancellationToken);
+        var openAlert = existingAlerts.FirstOrDefault(a => a.Status == "OPEN" || a.Status == "ACKNOWLEDGED");
+        if (openAlert != null)
+        {
+            // Do not recreate, avoid spamming
+            return Result<ClinicalAlert>.Success(openAlert);
+        }
+
         var clinicalAlert = new ClinicalAlert(command);
 
         try
         {
             await clinicalAlertRepository.AddAsync(clinicalAlert, cancellationToken);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                command.OrganizationId,
+                command.UserId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.AlertCreated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Warning,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.ClinicalAlert,
+                clinicalAlert.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ClinicalRiskAssessment,
+                $"Alert {clinicalAlert.Severity} created for User {command.UserId}."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<ClinicalAlert>.Success(clinicalAlert);
         }
         catch (OperationCanceledException)
@@ -96,6 +120,20 @@ public class ClinicalAlertCommandService(
         {
             clinicalAlertRepository.Update(clinicalAlert);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                clinicalAlert.OrganizationId,
+                command.ResolvedBy ?? clinicalAlert.UserId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.AlertResolved,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.ClinicalAlert,
+                clinicalAlert.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ClinicalRiskAssessment,
+                $"Alert status updated to {command.Status} for User {clinicalAlert.UserId}."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<ClinicalAlert>.Success(clinicalAlert);
         }
         catch (OperationCanceledException)

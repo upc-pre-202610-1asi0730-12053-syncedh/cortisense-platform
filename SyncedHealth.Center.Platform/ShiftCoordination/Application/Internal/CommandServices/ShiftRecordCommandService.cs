@@ -13,11 +13,13 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.Co
 
 public class ShiftRecordCommandService(
     IShiftRecordRepository shiftRecordRepository,
+    SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,
     IUnitOfWork unitOfWork,
     IStringLocalizer<ShiftCoordinationMessages> localizer)
     : IShiftRecordCommandService
 {
     private readonly IStringLocalizer<ShiftCoordinationMessages> _localizer = localizer;
+    private readonly SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService _auditLogCommandService = auditLogCommandService;
 
     private static readonly string[] ValidTypes = ["DAY", "NIGHT", "EMERGENCY"];
 
@@ -128,6 +130,20 @@ public class ShiftRecordCommandService(
         {
             shiftRecordRepository.Update(shiftRecord);
             await unitOfWork.CompleteAsync(cancellationToken);
+            
+            // Audit
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                shiftRecord.OrganizationId,
+                shiftRecord.UserId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.ShiftCheckIn,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.Shift,
+                shiftRecord.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ShiftCoordination,
+                $"User {shiftRecord.UserId} checked into Shift #{shiftRecord.Id}"
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<ShiftRecord>.Success(shiftRecord);
         }
         catch (OperationCanceledException)
@@ -236,12 +252,27 @@ public class ShiftRecordCommandService(
         if (shiftRecord is null)
             return Result<ShiftRecord>.Failure(ShiftCoordinationError.ShiftRecordNotFound, _localizer["ShiftRecordNotFound"]);
 
+        var oldUserId = shiftRecord.UserId;
         shiftRecord.Reassign(command.NewUserId);
         
         try
         {
             shiftRecordRepository.Update(shiftRecord);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                shiftRecord.OrganizationId,
+                command.NewUserId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.TeamUpdated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Warning,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.Shift,
+                shiftRecord.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ShiftCoordination,
+                $"Shift #{shiftRecord.Id} reassigned from User {oldUserId} to User {command.NewUserId}"
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<ShiftRecord>.Success(shiftRecord);
         }
         catch (Exception)

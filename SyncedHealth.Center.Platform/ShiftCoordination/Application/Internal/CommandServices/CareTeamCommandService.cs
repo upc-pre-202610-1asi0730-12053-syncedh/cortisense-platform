@@ -11,9 +11,11 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.Co
 
 public class CareTeamCommandService(
     ICareTeamRepository careTeamRepository,
+    SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,
     IUnitOfWork unitOfWork)
     : ICareTeamCommandService
 {
+    private readonly SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService _auditLogCommandService = auditLogCommandService;
     public async Task<Result<CareTeam>> Handle(
         CreateCareTeamCommand command,
         CancellationToken cancellationToken = default)
@@ -37,6 +39,19 @@ public class CareTeamCommandService(
         {
             await careTeamRepository.AddAsync(careTeam, cancellationToken);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                command.OrganizationId,
+                command.SupervisorId, // Assuming Supervisor is the actor for now, or just default to 1 since we don't have the actual user id who performed this action in the command
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.TeamCreated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.CareTeam,
+                careTeam.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ShiftCoordination,
+                $"Care team {careTeam.Name} created."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
 
             return Result<CareTeam>.Success(careTeam);
         }
@@ -97,6 +112,19 @@ public class CareTeamCommandService(
             careTeamRepository.Update(careTeam);
             await unitOfWork.CompleteAsync(cancellationToken);
 
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                careTeam.OrganizationId,
+                command.SupervisorId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.TeamUpdated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.CareTeam,
+                careTeam.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ShiftCoordination,
+                $"Care team {careTeam.Name} updated."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<CareTeam>.Success(careTeam);
         }
         catch (OperationCanceledException)
@@ -140,6 +168,19 @@ public class CareTeamCommandService(
         {
             careTeamRepository.Remove(careTeam);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                careTeam.OrganizationId,
+                careTeam.SupervisorId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.TeamDeleted,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Warning,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.CareTeam,
+                careTeam.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ShiftCoordination,
+                $"Care team {careTeam.Name} deleted."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
 
             return Result<CareTeam>.Success(careTeam);
         }

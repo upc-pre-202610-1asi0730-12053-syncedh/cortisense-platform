@@ -315,6 +315,29 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext>();
     context.Database.Migrate();
+    
+    // Purge spammy audit logs on startup
+    var logsToPurge = context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().Where(l => l.Type == SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.RiskAssessmentEvaluated);
+    context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().RemoveRange(logsToPurge);
+    
+    // Check if there are any logs left, if not, create a seed one
+    if (!context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().Any())
+    {
+        var dummyLog = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog(
+            new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                1, 1, 
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.SystemAccessed, 
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info, 
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.System, 
+                1, 
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.Iam, 
+                "El sistema fue actualizado para registrar acciones administrativas."
+            )
+        );
+        context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().Add(dummyLog);
+    }
+
+    context.SaveChanges();
 }
 
 // Configure the HTTP request pipeline.

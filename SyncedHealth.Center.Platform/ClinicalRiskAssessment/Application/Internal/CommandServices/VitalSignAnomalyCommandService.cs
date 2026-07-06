@@ -13,11 +13,13 @@ namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Intern
 
 public class VitalSignAnomalyCommandService(
     IVitalSignAnomalyRepository vitalSignAnomalyRepository,
+    SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,
     IUnitOfWork unitOfWork,
     IStringLocalizer<ClinicalRiskAssessmentMessages> localizer)
     : IVitalSignAnomalyCommandService
 {
     private readonly IStringLocalizer<ClinicalRiskAssessmentMessages> _localizer = localizer;
+    private readonly SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService _auditLogCommandService = auditLogCommandService;
 
     private static readonly string[] ValidSeverities = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
     private static readonly string[] ValidStatuses = ["OPEN", "REVIEWED", "RESOLVED"];
@@ -56,12 +58,34 @@ public class VitalSignAnomalyCommandService(
                 ClinicalRiskAssessmentError.InvalidBiometricData,
                 _localizer["MessageRequired"]);
 
+        var existingAnomalies = await vitalSignAnomalyRepository.FindByUserIdAsync(command.UserId, cancellationToken);
+        var openAnomaly = existingAnomalies.FirstOrDefault(a => a.Status == "OPEN");
+        if (openAnomaly != null)
+        {
+            // Do not recreate, avoid spamming
+            return Result<VitalSignAnomaly>.Success(openAnomaly);
+        }
+
         var vitalSignAnomaly = new VitalSignAnomaly(command);
 
         try
         {
             await vitalSignAnomalyRepository.AddAsync(vitalSignAnomaly, cancellationToken);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                command.OrganizationId,
+                command.UserId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.AnomalyCreated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Warning,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.VitalSignAnomaly,
+                vitalSignAnomaly.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.ClinicalRiskAssessment,
+                $"Anomaly {vitalSignAnomaly.Type} created for User {command.UserId}."
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+
             return Result<VitalSignAnomaly>.Success(vitalSignAnomaly);
         }
         catch (OperationCanceledException)

@@ -9,12 +9,17 @@ public enum EAuditLogType
     UserRoleChanged,
     TeamCreated,
     TeamUpdated,
+    TeamDeleted,
+    AlertCreated,
     AlertResolved,
     AnomalyReviewed,
     PreventiveActionCreated,
+    PreventiveActionAccepted,
     PreventiveActionCompleted,
     ShiftCheckIn,
     SubscriptionActivated,
     ReportGenerated,
-    SystemAccessed
+    SystemAccessed,
+    RiskAssessmentEvaluated,
+    AnomalyCreated
 }

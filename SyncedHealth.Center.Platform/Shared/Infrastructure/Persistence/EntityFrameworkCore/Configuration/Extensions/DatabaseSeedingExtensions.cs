@@ -32,6 +32,24 @@ public static class DatabaseSeedingExtensions
         );
 
         // 3. Shift Coordination Seeding
+        builder.Entity<WorkArea>().HasData(
+            new { Id = 1001, Name = "Emergencias" },
+            new { Id = 1002, Name = "Cuidados Intensivos (UCI)" },
+            new { Id = 1003, Name = "Cirugía" }
+        );
+
+        builder.Entity<CareTeam>().HasData(
+            new { Id = 1001, OrganizationId = 101, Name = "Equipo de Emergencias Alpha", WorkAreaId = 1001, SupervisorId = 102, Status = "ACTIVE" },
+            new { Id = 1002, OrganizationId = 101, Name = "Equipo UCI Beta", WorkAreaId = 1002, SupervisorId = 207, Status = "ACTIVE" }
+        );
+
+        builder.Entity<TeamMember>().HasData(
+            new { Id = 1001, TeamId = 1001, UserId = 103 },
+            new { Id = 1002, TeamId = 1001, UserId = 104 },
+            new { Id = 1003, TeamId = 1002, UserId = 205 },
+            new { Id = 1004, TeamId = 1002, UserId = 206 }
+        );
+
         builder.Entity<ShiftRecord>().HasData(
             new { Id = 101, OrganizationId = 101, UserId = 103, WorkAreaId = 2, Type = "DAY", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(1).AddHours(8) },
             new { Id = 102, OrganizationId = 101, UserId = 104, WorkAreaId = 1, Type = "NIGHT", Status = "SCHEDULED", ScheduledStart = DateTimeOffset.UtcNow.AddDays(1).AddHours(20), ScheduledEnd = DateTimeOffset.UtcNow.AddDays(2).AddHours(4) },

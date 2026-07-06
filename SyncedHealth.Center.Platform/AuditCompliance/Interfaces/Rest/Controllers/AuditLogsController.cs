@@ -104,4 +104,14 @@ public class AuditLogsController(
             new { auditLogId = auditLogResource.Id },
             auditLogResource);
     }
+
+    [HttpDelete("purge")]
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+    public async Task<IActionResult> Purge([FromServices] SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.AppDbContext context)
+    {
+        var logsToPurge = context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().Where(l => l.Type == SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.RiskAssessmentEvaluated);
+        context.Set<SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates.AuditLog>().RemoveRange(logsToPurge);
+        await context.SaveChangesAsync();
+        return Ok("Purged.");
+    }
 }

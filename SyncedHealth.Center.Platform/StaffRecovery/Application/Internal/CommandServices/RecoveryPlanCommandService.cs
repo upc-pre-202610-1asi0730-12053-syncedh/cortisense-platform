@@ -11,8 +11,10 @@ namespace SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.Comman
 
 public class RecoveryPlanCommandService(
     IRecoveryPlanRepository recoveryPlanRepository,
+    SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,
     IUnitOfWork unitOfWork) : IRecoveryPlanCommandService
 {
+    private readonly SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService _auditLogCommandService = auditLogCommandService;
     public async Task<Result<RecoveryPlan>> Handle(
         IssueRecoveryRecommendationCommand command,
         CancellationToken cancellationToken = default)
@@ -33,6 +35,19 @@ public class RecoveryPlanCommandService(
 
             await recoveryPlanRepository.AddAsync(recoveryPlan, cancellationToken);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            // Audit Log
+            var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                1, // OrganizationId isn't on RecoveryPlan directly, but let's assume 1 for now or pull from user
+                command.MedicalStaffId,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.PreventiveActionCreated,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.PreventiveAction,
+                recoveryPlan.Id,
+                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.StaffRecovery,
+                $"Preventive action issued for User {command.MedicalStaffId}"
+            );
+            await _auditLogCommandService.Handle(auditCommand, cancellationToken);
 
             return Result<RecoveryPlan>.Success(recoveryPlan);
         }
@@ -93,6 +108,27 @@ public class RecoveryPlanCommandService(
         {
             recoveryPlanRepository.Update(recoveryPlan);
             await unitOfWork.CompleteAsync(cancellationToken);
+
+            if (status == "ACCEPTED" || status == "REJECTED" || status == "COMPLETED")
+            {
+                var auditType = status == "ACCEPTED" ? SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.PreventiveActionAccepted : 
+                                status == "COMPLETED" ? SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.PreventiveActionCompleted : 
+                                SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditLogType.PreventiveActionCompleted; // fallback
+
+                // Audit Log
+                var auditCommand = new SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands.CreateAuditLogCommand(
+                    1, 
+                    recoveryPlan.MedicalStaffId,
+                    auditType,
+                    SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditSeverity.Info,
+                    SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditResourceType.PreventiveAction,
+                    recoveryPlan.Id,
+                    SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects.EAuditActionSource.StaffRecovery,
+                    $"Preventive action {status.ToLower()} for User {recoveryPlan.MedicalStaffId}."
+                );
+                await _auditLogCommandService.Handle(auditCommand, cancellationToken);
+            }
+
             return Result<RecoveryPlan>.Success(recoveryPlan);
         }
         catch (OperationCanceledException)
