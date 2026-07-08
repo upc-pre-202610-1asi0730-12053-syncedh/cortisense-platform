@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
+﻿using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Services;
@@ -8,6 +8,9 @@ namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Hashing.BCrypt.Service
  *     This class is responsible for hashing and validating passwords.
  * </summary>
  */
+/// <summary>
+/// Represents the hashing service in the CortiSense Platform.
+/// </summary>
 public class HashingService : IHashingService
 {
     /**

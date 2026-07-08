@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Shared.Resources.Errors;
+﻿namespace SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
+/// <summary>
+/// Represents the subscription error in the CortiSense Platform.
+/// </summary>
 public enum SubscriptionError
 {
     PlanNotFound,

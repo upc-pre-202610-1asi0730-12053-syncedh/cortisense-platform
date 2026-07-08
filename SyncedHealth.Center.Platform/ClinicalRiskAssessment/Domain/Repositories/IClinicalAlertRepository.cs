@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 
+/// <summary>
+/// Represents the clinical alert repository in the CortiSense Platform.
+/// </summary>
 public interface IClinicalAlertRepository : IBaseRepository<ClinicalAlert>
 {
     Task<IEnumerable<ClinicalAlert>> FindByOrganizationIdAsync(

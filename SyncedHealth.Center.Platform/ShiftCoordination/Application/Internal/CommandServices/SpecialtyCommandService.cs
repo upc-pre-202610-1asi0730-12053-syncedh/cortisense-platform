@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
@@ -9,6 +9,9 @@ using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the specialty command service in the CortiSense Platform.
+/// </summary>
 public class SpecialtyCommandService(
     ISpecialtyRepository specialtyRepository,
     IUnitOfWork unitOfWork)

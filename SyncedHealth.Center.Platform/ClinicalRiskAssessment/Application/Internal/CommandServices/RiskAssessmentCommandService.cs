@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model;
@@ -14,6 +14,9 @@ using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the risk assessment command service in the CortiSense Platform.
+/// </summary>
 public class RiskAssessmentCommandService(
     IRiskAssessmentRepository riskAssessmentRepository,
     IVitalSignAnomalyCommandService vitalSignAnomalyCommandService,

@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
 
+/// <summary>
+/// Represents the team member repository in the CortiSense Platform.
+/// </summary>
 public interface ITeamMemberRepository : IBaseRepository<TeamMember>
 {
     Task<IEnumerable<TeamMember>> FindByTeamIdAsync(

@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the clinical alert resource in the CortiSense Platform.
+/// </summary>
 public record ClinicalAlertResource(
     int Id,
     int OrganizationId,

@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 
+/// <summary>
+/// Represents the invitation query service in the CortiSense Platform.
+/// </summary>
 public interface IInvitationQueryService
 {
     Task<IEnumerable<Invitation>> Handle(

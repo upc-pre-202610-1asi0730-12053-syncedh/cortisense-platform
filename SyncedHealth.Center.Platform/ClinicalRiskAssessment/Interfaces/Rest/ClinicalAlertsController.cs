@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
@@ -14,6 +14,9 @@ namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest;
 [Route("api/v1/clinicalAlerts")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Clinical Alert Endpoints.")]
+/// <summary>
+/// Controller for clinical alerts REST API endpoints.
+/// </summary>
 public class ClinicalAlertsController(
     IClinicalAlertCommandService clinicalAlertCommandService,
     IClinicalAlertQueryService clinicalAlertQueryService,

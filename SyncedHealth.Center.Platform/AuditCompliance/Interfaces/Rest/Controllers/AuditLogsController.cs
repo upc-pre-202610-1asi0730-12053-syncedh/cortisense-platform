@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
 using SyncedHealth.Center.Platform.AuditCompliance.Application.QueryServices;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Queries;
@@ -7,11 +7,11 @@ using SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Transform;
 
 namespace SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Controllers;
 
-/// <summary>
-/// REST controller for audit log operations.
-/// </summary>
 [ApiController]
 [Route("api/v1/auditLogs")]
+/// <summary>
+/// Controller for audit logs REST API endpoints.
+/// </summary>
 public class AuditLogsController(
     IAuditLogCommandService auditLogCommandService,
     IAuditLogQueryService auditLogQueryService) : ControllerBase

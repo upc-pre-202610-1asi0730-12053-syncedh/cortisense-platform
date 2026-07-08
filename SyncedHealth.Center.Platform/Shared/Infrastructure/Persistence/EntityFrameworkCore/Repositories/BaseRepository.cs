@@ -1,26 +1,16 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
 /// <summary>
-///     Base repository for all repositories
+/// Represents the base repository in the CortiSense Platform.
 /// </summary>
-/// <remarks>
-///     This class is used to define the basic CRUD operations for all repositories.
-///     This class implements the IBaseRepository interface.
-/// </remarks>
-/// <typeparam name="TEntity">
-///     The entity type for the repository
-/// </typeparam>
 public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 {
     protected readonly AppDbContext Context;
 
-    /// <summary>
-    ///     Default constructor for the base repository
-    /// </summary>
     protected BaseRepository(AppDbContext context)
     {
         Context = context;

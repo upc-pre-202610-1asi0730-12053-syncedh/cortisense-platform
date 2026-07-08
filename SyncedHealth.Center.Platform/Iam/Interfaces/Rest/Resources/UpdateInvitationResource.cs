@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the update invitation resource in the CortiSense Platform.
+/// </summary>
 public record UpdateInvitationResource(
     string? Email,
     string? Role,

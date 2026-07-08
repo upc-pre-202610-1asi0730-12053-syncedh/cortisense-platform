@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the invitation resource from entity assembler in the CortiSense Platform.
+/// </summary>
 public static class InvitationResourceFromEntityAssembler
 {
     public static InvitationResource ToResourceFromEntity(Invitation entity)

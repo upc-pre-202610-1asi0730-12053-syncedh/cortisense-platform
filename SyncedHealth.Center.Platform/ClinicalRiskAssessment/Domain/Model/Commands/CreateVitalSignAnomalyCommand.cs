@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
 
+/// <summary>
+/// Command to create vital sign anomaly.
+/// </summary>
 public record CreateVitalSignAnomalyCommand(
     int OrganizationId,
     int UserId,

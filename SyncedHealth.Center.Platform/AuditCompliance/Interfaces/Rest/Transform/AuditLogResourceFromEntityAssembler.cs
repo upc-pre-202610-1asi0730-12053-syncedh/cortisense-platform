@@ -1,18 +1,13 @@
-using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Transform;
 
 /// <summary>
-/// Assembler used to convert an audit log entity into a REST resource.
+/// Represents the audit log resource from entity assembler in the CortiSense Platform.
 /// </summary>
 public static class AuditLogResourceFromEntityAssembler
 {
-    /// <summary>
-    /// Converts an audit log entity into an audit log resource.
-    /// </summary>
-    /// <param name="entity">The audit log entity.</param>
-    /// <returns>The audit log resource.</returns>
     public static AuditLogResource ToResourceFromEntity(AuditLog entity)
     {
         return new AuditLogResource(

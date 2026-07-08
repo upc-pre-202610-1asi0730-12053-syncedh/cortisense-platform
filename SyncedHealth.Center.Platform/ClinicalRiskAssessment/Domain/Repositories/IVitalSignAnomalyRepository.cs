@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 
+/// <summary>
+/// Represents the vital sign anomaly repository in the CortiSense Platform.
+/// </summary>
 public interface IVitalSignAnomalyRepository : IBaseRepository<VitalSignAnomaly>
 {
     Task<IEnumerable<VitalSignAnomaly>> FindByOrganizationIdAsync(

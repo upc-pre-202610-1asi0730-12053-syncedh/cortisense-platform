@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.Shared.Application.Model;
+﻿using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Errors;
@@ -7,6 +7,9 @@ using SyncedHealth.Center.Platform.StaffRecovery.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Application.Internal.QueryServices;
 
+/// <summary>
+/// Represents the recovery plan query service in the CortiSense Platform.
+/// </summary>
 public class RecoveryPlanQueryService(
     IRecoveryPlanRepository recoveryPlanRepository) : IRecoveryPlanQueryService
 {

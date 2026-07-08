@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Model;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Model;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Errors;
 
+/// <summary>
+/// Represents the clinical risk assessment errors in the CortiSense Platform.
+/// </summary>
 public static class ClinicalRiskAssessmentErrors
 {
     public static readonly Error RiskAssessmentNotFound =

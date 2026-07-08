@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Resources;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Resources;
 
 /// <summary>
-/// Marker class used to locate audit compliance localized messages.
+/// Represents the audit compliance messages in the CortiSense Platform.
 /// </summary>
 public class AuditComplianceMessages
 {

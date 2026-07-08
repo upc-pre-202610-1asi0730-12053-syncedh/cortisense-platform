@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
+﻿namespace SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 
+/// <summary>
+/// Represents the iam context facade in the CortiSense Platform.
+/// </summary>
 public interface IIamContextFacade
 {
     Task<int> CreateUser(

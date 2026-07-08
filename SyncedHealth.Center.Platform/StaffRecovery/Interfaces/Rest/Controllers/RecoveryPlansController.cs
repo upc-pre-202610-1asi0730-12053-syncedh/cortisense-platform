@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.CommandServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Commands;
@@ -10,6 +10,9 @@ namespace SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Controllers
 
 [ApiController]
 [Route("api/v1/recovery-plans")]
+/// <summary>
+/// Controller for recovery plans REST API endpoints.
+/// </summary>
 public class RecoveryPlansController(
     IRecoveryPlanCommandService recoveryPlanCommandService,
     IRecoveryPlanQueryService recoveryPlanQueryService) : ControllerBase

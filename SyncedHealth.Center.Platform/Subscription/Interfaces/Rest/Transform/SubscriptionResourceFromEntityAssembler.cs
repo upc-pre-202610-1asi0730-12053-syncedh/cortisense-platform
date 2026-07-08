@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
+﻿using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the subscription resource from entity assembler in the CortiSense Platform.
+/// </summary>
 public static class SubscriptionResourceFromEntityAssembler
 {
     public static SubscriptionResource ToResourceFromEntity(Domain.Model.Aggregates.Subscription entity)

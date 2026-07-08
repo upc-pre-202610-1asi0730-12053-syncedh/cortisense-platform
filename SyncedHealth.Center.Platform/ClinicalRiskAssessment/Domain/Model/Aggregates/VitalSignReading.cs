@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the vital sign reading in the CortiSense Platform.
+/// </summary>
 public partial class VitalSignReading
 {
     public VitalSignReading()

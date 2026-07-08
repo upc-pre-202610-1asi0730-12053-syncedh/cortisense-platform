@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
@@ -15,6 +15,9 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest;
 [Route("api/v1/shiftRecords")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Shift Record Endpoints.")]
+/// <summary>
+/// Controller for shift records REST API endpoints.
+/// </summary>
 public class ShiftRecordsController(
     IShiftRecordCommandService shiftRecordCommandService,
     IShiftRecordQueryService shiftRecordQueryService,

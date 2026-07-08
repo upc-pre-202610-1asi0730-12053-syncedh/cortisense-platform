@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Queries;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
 
+/// <summary>
+/// Represents the specialty query service in the CortiSense Platform.
+/// </summary>
 public interface ISpecialtyQueryService
 {
     Task<IEnumerable<Specialty>> Handle(

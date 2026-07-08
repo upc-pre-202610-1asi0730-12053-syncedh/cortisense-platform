@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
+/// <summary>
+/// Command to create organization.
+/// </summary>
 public record CreateOrganizationCommand(
     string Name,
     string Ruc,

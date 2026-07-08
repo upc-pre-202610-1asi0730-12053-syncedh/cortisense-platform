@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 
@@ -10,6 +10,9 @@ namespace SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices
  *     This interface is used to generate and validate JWT tokens
  * </remarks>
  */
+/// <summary>
+/// Represents the token service in the CortiSense Platform.
+/// </summary>
 public interface ITokenService
 {
     /**

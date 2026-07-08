@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
@@ -7,6 +7,9 @@ using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
+/// <summary>
+/// Represents the database seeding extensions in the CortiSense Platform.
+/// </summary>
 public static class DatabaseSeedingExtensions
 {
     public static void ApplyDatabaseSeeding(this ModelBuilder builder)

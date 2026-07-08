@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model;
@@ -11,6 +11,9 @@ using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the clinical alert command service in the CortiSense Platform.
+/// </summary>
 public class ClinicalAlertCommandService(
     IClinicalAlertRepository clinicalAlertRepository,
     SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,

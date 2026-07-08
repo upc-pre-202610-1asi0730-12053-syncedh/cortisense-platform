@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Resources;
 
 /// <summary>
-/// Resource used to create an audit log.
+/// Represents the create audit log resource in the CortiSense Platform.
 /// </summary>
 public record CreateAuditLogResource(
     [Required]

@@ -1,10 +1,13 @@
-using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
+﻿using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Internal.QueryServices;
 
+/// <summary>
+/// Represents the organization query service in the CortiSense Platform.
+/// </summary>
 public class OrganizationQueryService(IOrganizationRepository organizationRepository)
     : IOrganizationQueryService
 {

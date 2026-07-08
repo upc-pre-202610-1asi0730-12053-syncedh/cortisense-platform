@@ -1,8 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
+/// <summary>
+/// Represents the model builder extensions in the CortiSense Platform.
+/// </summary>
 public static class ModelBuilderExtensions
 {
     public static void ApplyStaffRecoveryConfiguration(this ModelBuilder builder)

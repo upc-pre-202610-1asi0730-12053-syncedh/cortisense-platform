@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.CommandServices;
@@ -14,6 +14,9 @@ namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest;
 [Route("api/v1/riskAssessments")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Risk Assessment Endpoints.")]
+/// <summary>
+/// Controller for risk assessments REST API endpoints.
+/// </summary>
 public class RiskAssessmentsController(
     IRiskAssessmentCommandService riskAssessmentCommandService,
     IRiskAssessmentQueryService riskAssessmentQueryService,

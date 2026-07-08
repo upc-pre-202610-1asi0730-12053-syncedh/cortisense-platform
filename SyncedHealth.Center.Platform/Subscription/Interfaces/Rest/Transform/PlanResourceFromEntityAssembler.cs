@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the plan resource from entity assembler in the CortiSense Platform.
+/// </summary>
 public static class PlanResourceFromEntityAssembler
 {
     public static PlanResource ToResourceFromEntity(Plan entity)

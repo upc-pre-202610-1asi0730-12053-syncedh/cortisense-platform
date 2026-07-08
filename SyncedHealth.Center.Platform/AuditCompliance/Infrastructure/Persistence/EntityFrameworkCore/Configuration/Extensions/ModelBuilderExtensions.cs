@@ -1,17 +1,13 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
 /// <summary>
-/// Provides Entity Framework Core configuration for the Audit Compliance bounded context.
+/// Represents the model builder extensions in the CortiSense Platform.
 /// </summary>
 public static class ModelBuilderExtensions
 {
-    /// <summary>
-    /// Applies the Audit Compliance bounded context configuration.
-    /// </summary>
-    /// <param name="builder">The model builder.</param>
     public static void ApplyAuditComplianceConfiguration(this ModelBuilder builder)
     {
         // Audit Compliance Context

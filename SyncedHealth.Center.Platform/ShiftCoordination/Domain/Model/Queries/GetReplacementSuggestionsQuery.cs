@@ -1,7 +1,6 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Queries;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Queries;
 
 /// <summary>
-/// Query to find available staff in a work area who can cover a shift (replacement suggestions).
-/// Returns shift records in SCHEDULED status within the same work area.
+/// Represents a query to get replacement suggestions in the CortiSense Platform.
 /// </summary>
 public record GetReplacementSuggestionsQuery(int WorkAreaId, int OrganizationId);

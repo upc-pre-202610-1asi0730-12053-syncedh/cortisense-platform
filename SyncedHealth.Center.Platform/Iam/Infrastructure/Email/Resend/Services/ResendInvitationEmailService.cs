@@ -1,4 +1,4 @@
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -11,6 +11,9 @@ using IamMessagesResource = SyncedHealth.Center.Platform.Iam.Resources.IamMessag
 
 namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Services;
 
+/// <summary>
+/// Represents the resend invitation email service in the CortiSense Platform.
+/// </summary>
 public class ResendInvitationEmailService(
     HttpClient httpClient,
     IOptions<ResendSettings> resendSettingsOptions,
@@ -271,6 +274,9 @@ public class ResendInvitationEmailService(
         return Environment.GetEnvironmentVariable(environmentVariableName) ?? string.Empty;
     }
 
+    /// <summary>
+    /// Represents the resend send email request in the CortiSense Platform.
+    /// </summary>
     private sealed record ResendSendEmailRequest(
         [property: JsonPropertyName("from")] string From,
         [property: JsonPropertyName("to")] string[] To,
@@ -278,6 +284,9 @@ public class ResendInvitationEmailService(
         [property: JsonPropertyName("html")] string Html
     );
 
+    /// <summary>
+    /// Represents the resend send email response in the CortiSense Platform.
+    /// </summary>
     private sealed record ResendSendEmailResponse(
         [property: JsonPropertyName("id")] string? Id
     );

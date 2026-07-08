@@ -1,8 +1,11 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the user in the CortiSense Platform.
+/// </summary>
 public partial class User
 {
     public User()

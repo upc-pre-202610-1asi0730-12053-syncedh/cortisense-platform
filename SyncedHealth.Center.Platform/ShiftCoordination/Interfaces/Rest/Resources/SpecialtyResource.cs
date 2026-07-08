@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the specialty resource in the CortiSense Platform.
+/// </summary>
 public record SpecialtyResource
 {
     public int Id { get; init; }

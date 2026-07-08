@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
 
+/// <summary>
+/// Command to create risk assessment.
+/// </summary>
 public record CreateRiskAssessmentCommand(
     int OrganizationId,
     int UserId,

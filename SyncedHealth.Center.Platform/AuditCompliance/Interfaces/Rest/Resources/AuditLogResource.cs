@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Interfaces.Rest.Resources;
 
 /// <summary>
-/// Resource used to expose audit log information through the REST API.
+/// Represents the audit log resource in the CortiSense Platform.
 /// </summary>
 public record AuditLogResource(
     int Id,

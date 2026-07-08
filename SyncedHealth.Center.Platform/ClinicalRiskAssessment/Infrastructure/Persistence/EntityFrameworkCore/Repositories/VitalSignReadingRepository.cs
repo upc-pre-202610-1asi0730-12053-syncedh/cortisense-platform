@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
@@ -6,6 +6,9 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrame
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
+/// <summary>
+/// Represents the vital sign reading repository in the CortiSense Platform.
+/// </summary>
 public class VitalSignReadingRepository(AppDbContext context)
     : BaseRepository<VitalSignReading>(context), IVitalSignReadingRepository
 {

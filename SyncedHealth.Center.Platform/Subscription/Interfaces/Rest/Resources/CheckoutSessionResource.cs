@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 /// <summary>
-/// Represents a payment or checkout session attempt.
+/// Represents the checkout session resource in the CortiSense Platform.
 /// </summary>
 public record CheckoutSessionResource
 {

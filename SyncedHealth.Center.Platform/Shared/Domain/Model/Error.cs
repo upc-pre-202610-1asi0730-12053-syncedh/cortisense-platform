@@ -1,10 +1,8 @@
-namespace SyncedHealth.Center.Platform.Shared.Domain.Model;
+﻿namespace SyncedHealth.Center.Platform.Shared.Domain.Model;
 
 /// <summary>
-///     Represents a domain error.
+/// Represents the error in the CortiSense Platform.
 /// </summary>
-/// <param name="Code">The unique error code.</param>
-/// <param name="Message">The error message.</param>
 public record Error(string Code, string Message)
 {
     public static readonly Error None = new(string.Empty, string.Empty);

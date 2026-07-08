@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.AuditCompliance.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
@@ -11,7 +11,7 @@ using SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.Entit
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 
 /// <summary>
-/// Application database context for the CortiSense Platform.
+/// Represents the app db context in the CortiSense Platform.
 /// </summary>
 public class AppDbContext(DbContextOptions options) : DbContext(options)
 {

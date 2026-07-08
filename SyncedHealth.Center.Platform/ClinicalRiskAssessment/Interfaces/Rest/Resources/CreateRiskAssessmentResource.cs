@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the create risk assessment resource in the CortiSense Platform.
+/// </summary>
 public record CreateRiskAssessmentResource(
     int OrganizationId,
     int UserId,

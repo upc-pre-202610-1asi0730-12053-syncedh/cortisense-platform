@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Swashbuckle.AspNetCore.Annotations;
@@ -19,6 +19,9 @@ namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 [Route("api/v1/invitations")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Invitation endpoints")]
+/// <summary>
+/// Controller for invitations REST API endpoints.
+/// </summary>
 public class InvitationsController(
     IInvitationCommandService invitationCommandService,
     IInvitationQueryService invitationQueryService,

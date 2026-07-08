@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
@@ -14,6 +14,9 @@ namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 [Route("api/v1/checkoutSessions")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Checkout Session Endpoints.")]
+/// <summary>
+/// Controller for checkout sessions REST API endpoints.
+/// </summary>
 public class CheckoutSessionsController(
     ICheckoutSessionCommandService checkoutSessionCommandService,
     ICheckoutSessionQueryService checkoutSessionQueryService,

@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Model;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Model;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Errors;
 
+/// <summary>
+/// Represents the iam errors in the CortiSense Platform.
+/// </summary>
 public static class IamErrors
 {
     public static readonly Error InvalidCredentials = new("Iam.InvalidCredentials", "Invalid username or password.");

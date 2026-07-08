@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model;
 
 /// <summary>
-/// Represents the possible errors in the audit compliance bounded context.
+/// Represents the audit compliance error in the CortiSense Platform.
 /// </summary>
 public enum AuditComplianceError
 {

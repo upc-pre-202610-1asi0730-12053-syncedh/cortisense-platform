@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the update invitation command from resource assembler in the CortiSense Platform.
+/// </summary>
 public static class UpdateInvitationCommandFromResourceAssembler
 {
     public static UpdateInvitationCommand ToCommandFromResource(

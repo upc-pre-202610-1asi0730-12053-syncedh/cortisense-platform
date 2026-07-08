@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Queries;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
 
+/// <summary>
+/// Represents the shift record query service in the CortiSense Platform.
+/// </summary>
 public interface IShiftRecordQueryService
 {
     Task<IEnumerable<ShiftRecord>> Handle(GetAllShiftRecordsQuery query, CancellationToken cancellationToken);

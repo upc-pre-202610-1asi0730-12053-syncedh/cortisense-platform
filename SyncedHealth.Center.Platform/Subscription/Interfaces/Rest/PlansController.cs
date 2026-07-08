@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes;
@@ -12,6 +12,9 @@ namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 [Route("api/v1/plans")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Plan Endpoints.")]
+/// <summary>
+/// Controller for plans REST API endpoints.
+/// </summary>
 public class PlansController(IPlanQueryService planQueryService) : ControllerBase
 {
     [AllowAnonymous]

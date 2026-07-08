@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
+﻿using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Attributes;
@@ -11,6 +11,9 @@ namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.Co
  * It validates a token is included in the request header and that the token is valid.
  * If the token is valid then it sets the user in HttpContext.Items["User"].
  */
+/// <summary>
+/// Represents the request authorization middleware in the CortiSense Platform.
+/// </summary>
 public class RequestAuthorizationMiddleware(RequestDelegate next)
 {
     // Public paths that do not require authentication

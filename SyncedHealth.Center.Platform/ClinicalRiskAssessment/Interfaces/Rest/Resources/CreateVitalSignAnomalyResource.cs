@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the create vital sign anomaly resource in the CortiSense Platform.
+/// </summary>
 public record CreateVitalSignAnomalyResource(
     int OrganizationId,
     int UserId,

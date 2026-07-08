@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 /// <summary>
-/// Represents the bounded context or module that generated an audit event.
+/// Represents the e audit action source in the CortiSense Platform.
 /// </summary>
 public enum EAuditActionSource
 {

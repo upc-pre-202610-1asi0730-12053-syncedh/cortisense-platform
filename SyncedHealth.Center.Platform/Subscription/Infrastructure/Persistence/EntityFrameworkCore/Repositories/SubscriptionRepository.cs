@@ -1,10 +1,13 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
+/// <summary>
+/// Represents the subscription repository in the CortiSense Platform.
+/// </summary>
 public class SubscriptionRepository(AppDbContext context) : BaseRepository<Domain.Model.Aggregates.Subscription>(context), ISubscriptionRepository
 {
     public async Task<IEnumerable<Domain.Model.Aggregates.Subscription>> FindByOrganizationIdAsync(int organizationId, CancellationToken cancellationToken = default)

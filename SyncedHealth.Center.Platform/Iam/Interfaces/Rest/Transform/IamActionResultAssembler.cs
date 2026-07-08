@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Iam.Domain.Model;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
@@ -8,6 +8,9 @@ using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the iam action result assembler in the CortiSense Platform.
+/// </summary>
 public static class IamActionResultAssembler
 {
     private static int ToStatusCodeFromIamError(IamError error)

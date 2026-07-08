@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -8,11 +8,8 @@ using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components;
 
 /// <summary>
-///     Global Exception Handling Middleware
+/// Represents the global exception handler middleware in the CortiSense Platform.
 /// </summary>
-/// <remarks>
-///     This middleware catches all unhandled exceptions and returns a Problem Details response.
-/// </remarks>
 public class GlobalExceptionHandlerMiddleware(
     RequestDelegate next,
     ILogger<GlobalExceptionHandlerMiddleware> logger,

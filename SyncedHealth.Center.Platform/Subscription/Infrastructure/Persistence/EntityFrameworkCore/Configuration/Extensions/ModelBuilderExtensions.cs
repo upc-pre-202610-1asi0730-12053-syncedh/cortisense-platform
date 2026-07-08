@@ -1,10 +1,13 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.Subscription.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
+/// <summary>
+/// Represents the model builder extensions in the CortiSense Platform.
+/// </summary>
 public static class ModelBuilderExtensions
 {
     public static void ApplySubscriptionConfiguration(this ModelBuilder builder)

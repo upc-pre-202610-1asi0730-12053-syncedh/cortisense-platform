@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Swashbuckle.AspNetCore.Annotations;
@@ -18,6 +18,9 @@ namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 [Route("api/v1/users")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available User endpoints")]
+/// <summary>
+/// Controller for users REST API endpoints.
+/// </summary>
 public class UsersController(
     IUserCommandService userCommandService,
     IUserQueryService userQueryService,

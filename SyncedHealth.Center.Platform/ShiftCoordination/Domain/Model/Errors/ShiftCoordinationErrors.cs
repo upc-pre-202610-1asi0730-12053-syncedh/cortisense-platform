@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Model;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Model;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Errors;
 
+/// <summary>
+/// Represents the shift coordination errors in the CortiSense Platform.
+/// </summary>
 public static class ShiftCoordinationErrors
 {
     public static readonly Error ShiftRecordNotFound =

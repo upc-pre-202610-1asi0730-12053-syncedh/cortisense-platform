@@ -1,9 +1,9 @@
-using SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components;
+﻿using SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Components;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Pipeline.Middleware.Extensions;
 
 /// <summary>
-///     Middleware extensions
+/// Represents the middleware extensions in the CortiSense Platform.
 /// </summary>
 public static class MiddlewareExtensions
 {

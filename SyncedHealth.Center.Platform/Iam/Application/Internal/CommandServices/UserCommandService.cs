@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
@@ -13,6 +13,9 @@ using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the user command service in the CortiSense Platform.
+/// </summary>
 public class UserCommandService(
     IUserRepository userRepository,
     ITokenService tokenService,

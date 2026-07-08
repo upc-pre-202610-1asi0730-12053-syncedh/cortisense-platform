@@ -1,9 +1,9 @@
-using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
+﻿using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands;
 
 /// <summary>
-/// Command used to request the creation of an audit log entry.
+/// Command to create audit log.
 /// </summary>
 public record CreateAuditLogCommand(
     int OrganizationId,

@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
+﻿using SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Commands;
@@ -10,13 +10,12 @@ using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 namespace SyncedHealth.Center.Platform.AuditCompliance.Application.Internal.CommandServices;
 
 /// <summary>
-/// Application service that handles audit log write operations.
+/// Represents the audit log command service in the CortiSense Platform.
 /// </summary>
 public class AuditLogCommandService(
     IAuditLogRepository auditLogRepository,
     IUnitOfWork unitOfWork) : IAuditLogCommandService
 {
-    /// <inheritdoc />
     public async Task<Result<AuditLog>> Handle(
         CreateAuditLogCommand command,
         CancellationToken cancellationToken)

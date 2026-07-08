@@ -1,4 +1,4 @@
-namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
+﻿namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
 
 /**
  * <summary>
@@ -8,4 +8,7 @@ namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
  *     This query object includes the user id to search
  * </remarks>
  */
+/// <summary>
+/// Represents a query to get user by id in the CortiSense Platform.
+/// </summary>
 public record GetUserByIdQuery(int Id);

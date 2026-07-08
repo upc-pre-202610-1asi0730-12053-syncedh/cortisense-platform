@@ -1,10 +1,13 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Errors;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the staff recovery action result assembler in the CortiSense Platform.
+/// </summary>
 public static class StaffRecoveryActionResultAssembler
 {
     private static int ToStatusCodeFromStaffRecoveryError(StaffRecoveryError error)

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
@@ -10,6 +10,9 @@ namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Pipeline.Middleware.At
  * If a user is not signed in, then it returns a 401-status code.
  */
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+/// <summary>
+/// Represents the authorize attribute in the CortiSense Platform.
+/// </summary>
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
     /**

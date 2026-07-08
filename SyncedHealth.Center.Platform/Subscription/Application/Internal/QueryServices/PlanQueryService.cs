@@ -1,10 +1,13 @@
-using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
+﻿using SyncedHealth.Center.Platform.Subscription.Application.QueryServices;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Subscription.Application.Internal.QueryServices;
 
+/// <summary>
+/// Represents the plan query service in the CortiSense Platform.
+/// </summary>
 public class PlanQueryService(IPlanRepository planRepository) : IPlanQueryService
 {
     public async Task<IEnumerable<Plan>> Handle(GetAllPlansQuery query, CancellationToken cancellationToken)

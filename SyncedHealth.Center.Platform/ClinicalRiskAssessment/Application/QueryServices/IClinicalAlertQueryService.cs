@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Queries;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.QueryServices;
 
+/// <summary>
+/// Represents the clinical alert query service in the CortiSense Platform.
+/// </summary>
 public interface IClinicalAlertQueryService
 {
     Task<IEnumerable<ClinicalAlert>> Handle(GetAllClinicalAlertsQuery query, CancellationToken cancellationToken);

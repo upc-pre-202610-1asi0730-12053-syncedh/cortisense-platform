@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
+/// <summary>
+/// Command to sign up.
+/// </summary>
 public record SignUpCommand(
     int OrganizationId,
     string FirstName,

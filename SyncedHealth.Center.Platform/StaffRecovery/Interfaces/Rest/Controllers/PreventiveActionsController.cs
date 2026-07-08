@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.CommandServices;
 using SyncedHealth.Center.Platform.StaffRecovery.Application.QueryServices;
@@ -11,6 +11,9 @@ namespace SyncedHealth.Center.Platform.StaffRecovery.Interfaces.Rest.Controllers
 
 [ApiController]
 [Route("api/v1/preventiveActions")]
+/// <summary>
+/// Controller for preventive actions REST API endpoints.
+/// </summary>
 public class PreventiveActionsController(
     IRecoveryPlanCommandService recoveryPlanCommandService,
     IRecoveryPlanQueryService recoveryPlanQueryService,
@@ -230,6 +233,9 @@ public class PreventiveActionsController(
     }
 }
 
+/// <summary>
+/// Represents the create preventive action resource in the CortiSense Platform.
+/// </summary>
 public record CreatePreventiveActionResource(
     int OrganizationId,
     int SupervisorId,
@@ -238,11 +244,17 @@ public record CreatePreventiveActionResource(
     string Notes
 );
 
+/// <summary>
+/// Represents the update preventive action status resource in the CortiSense Platform.
+/// </summary>
 public record UpdatePreventiveActionStatusResource(
     string Status,
     DateTimeOffset? CompletedAt
 );
 
+/// <summary>
+/// Represents the preventive action resource in the CortiSense Platform.
+/// </summary>
 public record PreventiveActionResource(
     int Id,
     int OrganizationId,

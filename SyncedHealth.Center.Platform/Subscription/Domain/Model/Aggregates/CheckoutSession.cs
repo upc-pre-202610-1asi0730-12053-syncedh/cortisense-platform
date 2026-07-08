@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the checkout session in the CortiSense Platform.
+/// </summary>
 public partial class CheckoutSession
 {
     public CheckoutSession()

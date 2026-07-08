@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
+﻿namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Email.Resend.Configuration;
 
+/// <summary>
+/// Represents the resend settings in the CortiSense Platform.
+/// </summary>
 public class ResendSettings
 {
     public string ApiToken { get; set; } = string.Empty;

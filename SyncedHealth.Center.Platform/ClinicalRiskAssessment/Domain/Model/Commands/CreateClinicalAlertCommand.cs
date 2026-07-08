@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
 
+/// <summary>
+/// Command to create clinical alert.
+/// </summary>
 public record CreateClinicalAlertCommand(
     int OrganizationId,
     int UserId,

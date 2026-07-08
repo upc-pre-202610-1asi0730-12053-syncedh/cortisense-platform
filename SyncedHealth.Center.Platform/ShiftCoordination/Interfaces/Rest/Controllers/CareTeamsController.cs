@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Queries;
@@ -9,6 +9,9 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Control
 
 [ApiController]
 [Route("api/v1/careTeams")]
+/// <summary>
+/// Controller for care teams REST API endpoints.
+/// </summary>
 public class CareTeamsController(
     ICareTeamCommandService careTeamCommandService,
     ICareTeamQueryService careTeamQueryService)

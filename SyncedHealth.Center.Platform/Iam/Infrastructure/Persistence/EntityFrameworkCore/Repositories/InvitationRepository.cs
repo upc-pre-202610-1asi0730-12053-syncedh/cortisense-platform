@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
@@ -6,6 +6,9 @@ using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrame
 
 namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
+/// <summary>
+/// Represents the invitation repository in the CortiSense Platform.
+/// </summary>
 public class InvitationRepository(AppDbContext context)
     : BaseRepository<Invitation>(context), IInvitationRepository
 {

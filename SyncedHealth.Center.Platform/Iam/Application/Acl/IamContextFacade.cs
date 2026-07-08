@@ -1,4 +1,4 @@
-using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
+﻿using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Application.QueryServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Iam.Domain.Model.Queries;
@@ -6,6 +6,9 @@ using SyncedHealth.Center.Platform.Iam.Interfaces.Acl;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Acl;
 
+/// <summary>
+/// Represents the iam context facade in the CortiSense Platform.
+/// </summary>
 public class IamContextFacade(
     IUserCommandService userCommandService,
     IUserQueryService userQueryService)

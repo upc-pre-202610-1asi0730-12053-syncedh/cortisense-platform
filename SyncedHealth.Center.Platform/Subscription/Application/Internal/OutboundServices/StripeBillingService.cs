@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Checkout;
@@ -13,6 +13,9 @@ using SyncedHealth.Center.Platform.Subscription.Resources;
 
 namespace SyncedHealth.Center.Platform.Subscription.Application.Internal.OutboundServices;
 
+/// <summary>
+/// Represents the stripe billing service in the CortiSense Platform.
+/// </summary>
 public class StripeBillingService(
     IPlanRepository planRepository,
     ICheckoutSessionRepository checkoutSessionRepository,

@@ -1,18 +1,11 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
 /// <summary>
-///     Unit of work for the application.
+/// Represents the unit of work in the CortiSense Platform.
 /// </summary>
-/// <remarks>
-///     This class is used to save changes to the database context.
-///     It implements the IUnitOfWork interface.
-/// </remarks>
-/// <param name="context">
-///     The database context for the application
-/// </param>
 public class UnitOfWork(AppDbContext context) : IUnitOfWork
 {
     // inheritedDoc

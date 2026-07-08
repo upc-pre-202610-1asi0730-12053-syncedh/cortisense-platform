@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the organization resource in the CortiSense Platform.
+/// </summary>
 public record OrganizationResource(
     int Id,
     string Name,

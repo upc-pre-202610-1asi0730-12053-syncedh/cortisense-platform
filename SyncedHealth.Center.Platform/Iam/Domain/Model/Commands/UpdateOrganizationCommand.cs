@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
+/// <summary>
+/// Command to update organization.
+/// </summary>
 public record UpdateOrganizationCommand(
     int Id,
     string? Name,

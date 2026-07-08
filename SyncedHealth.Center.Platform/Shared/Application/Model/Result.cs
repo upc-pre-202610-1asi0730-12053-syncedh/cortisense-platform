@@ -1,11 +1,10 @@
-//Added for Enum
+﻿//Added for Enum
 
 namespace SyncedHealth.Center.Platform.Shared.Application.Model;
 
 /// <summary>
-///     Generic Result class for Command Handlers in the Application Layer.
+/// Represents the result in the CortiSense Platform.
 /// </summary>
-/// <typeparam name="T">The type of the result value.</typeparam>
 public class Result<T>
 {
     // Modified constructor to include message and Enum? error
@@ -41,7 +40,7 @@ public class Result<T>
 }
 
 /// <summary>
-///     Non-generic Result class for Command Handlers.
+/// Represents the result in the CortiSense Platform.
 /// </summary>
 public class Result : Result<object>
 {

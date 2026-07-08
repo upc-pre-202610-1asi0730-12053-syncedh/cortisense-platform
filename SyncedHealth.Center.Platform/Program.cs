@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Cortex.Mediator.Commands;
 using Cortex.Mediator.DependencyInjection;
 using Microsoft.EntityFrameworkCore;

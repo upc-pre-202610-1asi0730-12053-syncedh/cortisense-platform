@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
@@ -7,6 +7,9 @@ using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the shift coordination action result assembler in the CortiSense Platform.
+/// </summary>
 public static class ShiftCoordinationActionResultAssembler
 {
     private static int ToStatusCodeFromShiftCoordinationError(ShiftCoordinationError error)

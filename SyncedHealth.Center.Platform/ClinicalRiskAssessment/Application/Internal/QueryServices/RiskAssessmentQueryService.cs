@@ -1,10 +1,13 @@
-using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.QueryServices;
+﻿using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.QueryServices;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Queries;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Application.Internal.QueryServices;
 
+/// <summary>
+/// Represents the risk assessment query service in the CortiSense Platform.
+/// </summary>
 public class RiskAssessmentQueryService(IRiskAssessmentRepository riskAssessmentRepository)
     : IRiskAssessmentQueryService
 {

@@ -1,4 +1,4 @@
-namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
+﻿namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 
 /**
  * <summary>
@@ -6,6 +6,9 @@ namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configurati
  *     It is used to configure the token settings in the app settings .json file.
  * </summary>
  */
+/// <summary>
+/// Represents the token settings in the CortiSense Platform.
+/// </summary>
 public class TokenSettings
 {
     public required string Secret { get; set; }

@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Commands;
 
+/// <summary>
+/// Command to create vital sign reading.
+/// </summary>
 public record CreateVitalSignReadingCommand(
     int OrganizationId,
     int UserId,

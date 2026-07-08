@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
+﻿namespace SyncedHealth.Center.Platform.Subscription.Infrastructure.Stripe.Configuration;
 
+/// <summary>
+/// Represents the stripe settings in the CortiSense Platform.
+/// </summary>
 public class StripeSettings
 {
     public string SecretKey { get; set; } = string.Empty;

@@ -1,4 +1,4 @@
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -9,6 +9,9 @@ using SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Configuration;
 
 namespace SyncedHealth.Center.Platform.Iam.Infrastructure.Tokens.Jwt.Services;
 
+/// <summary>
+/// Represents the token service in the CortiSense Platform.
+/// </summary>
 public class TokenService(IOptions<TokenSettings> tokenSettings) : ITokenService
 {
     private readonly TokenSettings _tokenSettings = tokenSettings.Value;

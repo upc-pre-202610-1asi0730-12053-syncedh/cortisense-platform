@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Shared.Resources;
 using SyncedHealth.Center.Platform.Shared.Resources.Errors;
@@ -15,6 +15,9 @@ using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 namespace SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 
+/// <summary>
+/// Represents the problem details factory in the CortiSense Platform.
+/// </summary>
 public class ProblemDetailsFactory
 {
    private readonly Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory

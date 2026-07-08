@@ -1,18 +1,12 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SyncedHealth.Center.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 
 /// <summary>
-///     Model builder extensions for the database context
+/// Represents the model builder extensions in the CortiSense Platform.
 /// </summary>
 public static class ModelBuilderExtensions
 {
-    /// <summary>
-    ///     Use snake case naming convention for the database context
-    /// </summary>
-    /// <param name="builder">
-    ///     The model builder for the database context
-    /// </param>
     public static void UseSnakeCaseNamingConvention(this ModelBuilder builder)
     {
         foreach (var entity in builder.Model.GetEntityTypes())

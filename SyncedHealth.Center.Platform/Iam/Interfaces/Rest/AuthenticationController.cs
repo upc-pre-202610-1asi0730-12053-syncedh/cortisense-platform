@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,6 +17,9 @@ namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 [Route("api/v1/authentication")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Authentication endpoints")]
+/// <summary>
+/// Controller for authentication REST API endpoints.
+/// </summary>
 public class AuthenticationController(
     IUserCommandService userCommandService,
     IStringLocalizer<ErrorMessages> errorLocalizer,

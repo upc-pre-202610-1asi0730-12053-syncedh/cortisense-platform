@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Commands;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the team member in the CortiSense Platform.
+/// </summary>
 public partial class TeamMember
 {
     public TeamMember()

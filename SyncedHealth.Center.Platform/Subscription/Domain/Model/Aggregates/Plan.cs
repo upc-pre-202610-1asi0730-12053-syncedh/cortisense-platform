@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
+﻿using SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the plan in the CortiSense Platform.
+/// </summary>
 public partial class Plan
 {
     public Plan()

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.CommandServices;
 using SyncedHealth.Center.Platform.ShiftCoordination.Application.QueryServices;
@@ -10,6 +10,9 @@ namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Control
 
 [ApiController]
 [Route("api/v1/workAreas")]
+/// <summary>
+/// Controller for work areas REST API endpoints.
+/// </summary>
 public class WorkAreasController(
     IWorkAreaCommandService workAreaCommandService,
     IWorkAreaQueryService workAreaQueryService)

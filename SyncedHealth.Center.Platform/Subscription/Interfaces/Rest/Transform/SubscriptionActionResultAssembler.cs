@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
@@ -7,6 +7,9 @@ using SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the subscription action result assembler in the CortiSense Platform.
+/// </summary>
 public static class SubscriptionActionResultAssembler
 {
     private static int ToStatusCodeFromSubscriptionError(SubscriptionError error)

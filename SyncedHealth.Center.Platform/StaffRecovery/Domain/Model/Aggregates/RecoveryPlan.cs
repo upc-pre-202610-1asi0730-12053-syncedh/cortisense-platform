@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Commands;
 
 namespace SyncedHealth.Center.Platform.StaffRecovery.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the recovery plan in the CortiSense Platform.
+/// </summary>
 public partial class RecoveryPlan
 {
     public RecoveryPlan()

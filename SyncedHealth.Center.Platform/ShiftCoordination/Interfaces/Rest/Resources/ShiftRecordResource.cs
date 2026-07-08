@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the shift record resource in the CortiSense Platform.
+/// </summary>
 public record ShiftRecordResource(
     int Id,
     int OrganizationId,

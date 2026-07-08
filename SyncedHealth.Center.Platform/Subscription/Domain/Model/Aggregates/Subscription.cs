@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.Subscription.Domain.Model.Commands;
 using SyncedHealth.Center.Platform.Subscription.Domain.Model.ValueObjects;
 
 namespace SyncedHealth.Center.Platform.Subscription.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the subscription in the CortiSense Platform.
+/// </summary>
 public partial class Subscription
 {
     public Subscription()

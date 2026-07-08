@@ -1,6 +1,6 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Queries;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.Queries;
 
 /// <summary>
-/// Query used to request an audit log by its identifier.
+/// Represents a query to get audit log by id in the CortiSense Platform.
 /// </summary>
 public record GetAuditLogByIdQuery(int AuditLogId);

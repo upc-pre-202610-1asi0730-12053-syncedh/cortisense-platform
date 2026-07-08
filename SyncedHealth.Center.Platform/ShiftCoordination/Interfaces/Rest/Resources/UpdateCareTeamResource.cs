@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Interfaces.Rest.Resources;
 
+/// <summary>
+/// Represents the update care team resource in the CortiSense Platform.
+/// </summary>
 public record UpdateCareTeamResource
 {
     public string? Name { get; init; }

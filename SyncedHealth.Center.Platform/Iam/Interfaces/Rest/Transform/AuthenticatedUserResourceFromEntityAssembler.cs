@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Resources;
 
 namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the authenticated user resource from entity assembler in the CortiSense Platform.
+/// </summary>
 public static class AuthenticatedUserResourceFromEntityAssembler
 {
     public static AuthenticatedUserResource ToResourceFromEntity(User user, string token)

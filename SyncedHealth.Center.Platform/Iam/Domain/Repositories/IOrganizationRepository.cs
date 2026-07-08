@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Repositories;
 
+/// <summary>
+/// Represents the organization repository in the CortiSense Platform.
+/// </summary>
 public interface IOrganizationRepository : IBaseRepository<Organization>
 {
     Task<Organization?> FindByEmailAsync(

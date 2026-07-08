@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -20,6 +20,9 @@ namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest;
 [Route("api/v1/billing")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Billing Endpoints.")]
+    /// <summary>
+    /// Controller for billing REST API endpoints.
+    /// </summary>
 public class BillingController(
     IStripeBillingService stripeBillingService,
     ICheckoutSessionRepository checkoutSessionRepository,

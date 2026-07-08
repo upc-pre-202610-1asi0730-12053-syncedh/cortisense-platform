@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 /// <summary>
-/// Payload for creating a new subscription.
+/// Represents the create subscription resource in the CortiSense Platform.
 /// </summary>
 public record CreateSubscriptionResource
 {

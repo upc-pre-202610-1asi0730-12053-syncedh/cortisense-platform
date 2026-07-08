@@ -1,6 +1,6 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Commands;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Commands;
 
 /// <summary>
-/// Command to reassign a blocked shift to a suggested replacement (US-23).
+/// Command to reassign shift.
 /// </summary>
 public record ReassignShiftCommand(int ShiftRecordId, int NewUserId);

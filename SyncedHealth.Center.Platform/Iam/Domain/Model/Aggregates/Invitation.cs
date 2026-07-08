@@ -1,7 +1,10 @@
-using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
+﻿using SyncedHealth.Center.Platform.Iam.Domain.Model.Commands;
 
 namespace SyncedHealth.Center.Platform.Iam.Domain.Model.Aggregates;
 
+/// <summary>
+/// Represents the invitation in the CortiSense Platform.
+/// </summary>
 public partial class Invitation
 {
     public Invitation()

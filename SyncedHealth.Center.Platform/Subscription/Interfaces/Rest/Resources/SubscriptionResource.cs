@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
+﻿namespace SyncedHealth.Center.Platform.Subscription.Interfaces.Rest.Resources;
 
 /// <summary>
-/// Represents an organization's subscription.
+/// Represents the subscription resource in the CortiSense Platform.
 /// </summary>
 public record SubscriptionResource
 {

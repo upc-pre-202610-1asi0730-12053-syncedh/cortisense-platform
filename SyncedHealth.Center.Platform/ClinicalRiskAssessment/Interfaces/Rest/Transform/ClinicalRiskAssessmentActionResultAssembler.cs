@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model;
 using SyncedHealth.Center.Platform.ClinicalRiskAssessment.Domain.Model.Aggregates;
@@ -7,6 +7,9 @@ using SyncedHealth.Center.Platform.Shared.Interfaces.Rest.ProblemDetails;
 
 namespace SyncedHealth.Center.Platform.ClinicalRiskAssessment.Interfaces.Rest.Transform;
 
+/// <summary>
+/// Represents the clinical risk assessment action result assembler in the CortiSense Platform.
+/// </summary>
 public static class ClinicalRiskAssessmentActionResultAssembler
 {
     private static int ToStatusCodeFromClinicalRiskAssessmentError(ClinicalRiskAssessmentError error)

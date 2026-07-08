@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 /// <summary>
-/// Represents the system resource affected by an audited action.
+/// Represents the e audit resource type in the CortiSense Platform.
 /// </summary>
 public enum EAuditResourceType
 {

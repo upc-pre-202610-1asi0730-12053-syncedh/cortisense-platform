@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
@@ -11,6 +11,9 @@ using SyncedHealth.Center.Platform.ShiftCoordination.Resources;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the shift record command service in the CortiSense Platform.
+/// </summary>
 public class ShiftRecordCommandService(
     IShiftRecordRepository shiftRecordRepository,
     SyncedHealth.Center.Platform.AuditCompliance.Application.CommandServices.IAuditLogCommandService auditLogCommandService,

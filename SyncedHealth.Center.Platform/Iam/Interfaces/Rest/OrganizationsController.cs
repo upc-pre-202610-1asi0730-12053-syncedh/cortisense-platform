@@ -1,4 +1,4 @@
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,6 +16,9 @@ namespace SyncedHealth.Center.Platform.Iam.Interfaces.Rest;
 [Route("api/v1/organizations")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Organization endpoints")]
+/// <summary>
+/// Controller for organizations REST API endpoints.
+/// </summary>
 public class OrganizationsController(
     IOrganizationCommandService organizationCommandService,
     IOrganizationQueryService organizationQueryService,

@@ -1,5 +1,8 @@
-namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model;
+﻿namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model;
 
+/// <summary>
+/// Represents the shift coordination error in the CortiSense Platform.
+/// </summary>
 public enum ShiftCoordinationError
 {
     None,

@@ -1,8 +1,11 @@
-using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
+﻿using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
 using SyncedHealth.Center.Platform.ShiftCoordination.Domain.Model.Aggregates;
 
 namespace SyncedHealth.Center.Platform.ShiftCoordination.Domain.Repositories;
 
+/// <summary>
+/// Represents the shift record repository in the CortiSense Platform.
+/// </summary>
 public interface IShiftRecordRepository : IBaseRepository<ShiftRecord>
 {
     Task<IEnumerable<ShiftRecord>> FindByOrganizationIdAsync(
@@ -25,9 +28,6 @@ public interface IShiftRecordRepository : IBaseRepository<ShiftRecord>
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Finds SCHEDULED shift records in a work area (available for replacement).
-    /// </summary>
     Task<IEnumerable<ShiftRecord>> FindAvailableByWorkAreaAsync(
         int workAreaId,
         int organizationId,

@@ -1,4 +1,4 @@
-namespace SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
+﻿namespace SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices;
 
 /**
  * <summary>
@@ -8,6 +8,9 @@ namespace SyncedHealth.Center.Platform.Iam.Application.Internal.OutboundServices
  *     This interface is used to hash and verify passwords
  * </remarks>
  */
+/// <summary>
+/// Represents the hashing service in the CortiSense Platform.
+/// </summary>
 public interface IHashingService
 {
     /**

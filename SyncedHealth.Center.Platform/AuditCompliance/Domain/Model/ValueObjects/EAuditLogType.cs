@@ -1,7 +1,7 @@
-namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
+﻿namespace SyncedHealth.Center.Platform.AuditCompliance.Domain.Model.ValueObjects;
 
 /// <summary>
-/// Represents the type of action recorded in an audit log.
+/// Represents the e audit log type in the CortiSense Platform.
 /// </summary>
 public enum EAuditLogType
 {

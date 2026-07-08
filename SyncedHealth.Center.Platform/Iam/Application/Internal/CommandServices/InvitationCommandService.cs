@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Iam.Application.CommandServices;
 using SyncedHealth.Center.Platform.Iam.Domain.Model;
@@ -12,6 +12,9 @@ using SyncedHealth.Center.Platform.Shared.Resources.Errors;
 
 namespace SyncedHealth.Center.Platform.Iam.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the invitation command service in the CortiSense Platform.
+/// </summary>
 public class InvitationCommandService(
     IInvitationRepository invitationRepository,
     IUserCommandService userCommandService,

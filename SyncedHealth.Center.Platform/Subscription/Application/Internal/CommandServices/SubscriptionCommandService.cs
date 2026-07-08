@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SyncedHealth.Center.Platform.Shared.Application.Model;
 using SyncedHealth.Center.Platform.Shared.Domain.Repositories;
@@ -10,6 +10,9 @@ using SyncedHealth.Center.Platform.Subscription.Domain.Repositories;
 
 namespace SyncedHealth.Center.Platform.Subscription.Application.Internal.CommandServices;
 
+/// <summary>
+/// Represents the subscription command service in the CortiSense Platform.
+/// </summary>
 public class SubscriptionCommandService(
     ISubscriptionRepository subscriptionRepository,
     IPlanRepository planRepository,
